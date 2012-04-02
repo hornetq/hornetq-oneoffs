@@ -13,6 +13,7 @@
 
 package org.hornetq.core.persistence.impl.nullpm;
 
+import java.nio.ByteBuffer;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -567,6 +568,38 @@ public class NullStorageManager implements StorageManager
    {
       // TODO Auto-generated method stub
       
+   }
+
+   /* (non-Javadoc)
+    * @see org.hornetq.core.persistence.StorageManager#startPageRead()
+    */
+   public void beforePageRead() throws Exception
+   {
+      
+   }
+
+   /* (non-Javadoc)
+    * @see org.hornetq.core.persistence.StorageManager#finishPageRead()
+    */
+   public void afterPageRead() throws Exception
+   {
+      
+   }
+
+   /* (non-Javadoc)
+    * @see org.hornetq.core.persistence.StorageManager#allocateDirectBuffer(int)
+    */
+   public ByteBuffer allocateDirectBuffer(int size)
+   {
+      return ByteBuffer.allocateDirect(size);
+   }
+
+   /* (non-Javadoc)
+    * @see org.hornetq.core.persistence.StorageManager#freeDirectuffer(java.nio.ByteBuffer)
+    */
+   public void freeDirectuffer(ByteBuffer buffer)
+   {
+      // nothing to be done.. just wait for GC
    }
 
 }

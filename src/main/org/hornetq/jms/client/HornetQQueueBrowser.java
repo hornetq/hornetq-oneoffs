@@ -33,7 +33,7 @@ import org.hornetq.core.logging.Logger;
  * @author <a href="mailto:tim.fox@jboss.com">Tim Fox</a>
  * @author <a href="mailto:andy.taylor@jboss.org">Andy Taylor</a>
  *
- * $Id$
+ * $Id: HornetQQueueBrowser.java 9219 2010-05-10 20:35:28Z clebert.suconic@jboss.com $
  */
 public class HornetQQueueBrowser implements QueueBrowser
 {

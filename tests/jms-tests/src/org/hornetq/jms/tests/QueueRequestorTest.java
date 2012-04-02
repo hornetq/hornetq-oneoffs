@@ -29,9 +29,9 @@ import org.hornetq.jms.tests.util.ProxyAssertSupport;
 
 /**
  * @author <a href="mailto:tim.fox@jboss.com">Tim Fox</a>
- * @version <tt>$Revision$</tt>
+ * @version <tt>$Revision: 8611 $</tt>
  *
- * $Id$
+ * $Id: QueueRequestorTest.java 8611 2009-12-08 01:06:31Z timfox $
  */
 public class QueueRequestorTest extends JMSTestCase
 {

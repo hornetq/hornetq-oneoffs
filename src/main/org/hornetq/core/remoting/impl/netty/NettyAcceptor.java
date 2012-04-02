@@ -81,7 +81,7 @@ import org.jboss.netty.util.VirtualExecutorService;
  * @author <a href="tim.fox@jboss.com">Tim Fox</a>
  * @author <a href="tlee@redhat.com">Trustin Lee</a>
  * @author <a href="jmesnil@redhat.com">Jeff Mesnil</a>
- * @version $Rev$, $Date$
+ * @version $Rev: 10037 $, $Date: 2010-12-13 07:03:21 -0600 (Mon, 13 Dec 2010) $
  */
 public class NettyAcceptor implements Acceptor
 {

@@ -48,8 +48,8 @@ clebert        hard    nofile          10240
 
 
  * @author <a href="mailto:clebert.suconic@jboss.org">Clebert Suconic</a>
- * @version <tt>$Revision$</tt>
- *          $Id$
+ * @version <tt>$Revision: 8611 $</tt>
+ *          $Id: SeveralClientsStressTest.java 8611 2009-12-08 01:06:31Z timfox $
  */
 public class SeveralClientsStressTest extends HornetQServerTestCase
 {

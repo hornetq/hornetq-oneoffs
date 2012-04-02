@@ -19,9 +19,9 @@ import org.hornetq.jms.tests.util.ProxyAssertSupport;
 
 /**
  * @author <a href="mailto:tim.fox@jboss.com">Tim Fox</a>
- * @version <tt>$Revision$</tt>
+ * @version <tt>$Revision: 9088 $</tt>
  *
- * $Id$
+ * $Id: JMSCorrelationIDHeaderTest.java 9088 2010-04-09 17:43:11Z timfox $
  */
 public class JMSCorrelationIDHeaderTest extends MessageHeaderTestBase
 {

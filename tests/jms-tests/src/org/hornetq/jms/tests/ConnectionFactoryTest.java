@@ -41,9 +41,9 @@ import org.hornetq.jms.tests.util.ProxyAssertSupport;
 /**
  * @author <a href="mailto:ovidiu@feodorov.com">Ovidiu Feodorov</a>
  * @author <a href="mailto:tim.fox@jboss.com">Tim Fox</a>
- * @version <tt>$Revision$</tt>
+ * @version <tt>$Revision: 9994 $</tt>
  *
- * $Id$
+ * $Id: ConnectionFactoryTest.java 9994 2010-12-05 10:14:53Z gaohoward $
  */
 public class ConnectionFactoryTest extends JMSTestCase
 {

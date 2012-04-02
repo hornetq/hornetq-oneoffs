@@ -40,7 +40,7 @@ import org.hornetq.utils.UUIDGenerator;
  * @author <a href="mailto:tim.fox@jboss.com">Tim Fox</a>
  * @author <a href="mailto:clebert.suconic@jboss.org">Clebert Suconic</a>
  * @author <a href="mailto:ataylor@redhat.com">Andy Taylor</a>
- * @version <tt>$Revision$</tt> $Id$
+ * @version <tt>$Revision: 11390 $</tt> $Id: ClientProducerImpl.java 11390 2011-09-21 19:40:01Z clebert.suconic@jboss.com $
  */
 public class ClientProducerImpl implements ClientProducerInternal
 {
@@ -409,7 +409,8 @@ public class ClientProducerImpl implements ClientProducerInternal
 
             lastChunk = pos >= bodySize;
 
-            final SessionSendContinuationMessage chunk = new SessionSendContinuationMessage(bodyBuffer.toByteBuffer()
+            final SessionSendContinuationMessage chunk = new SessionSendContinuationMessage(msgI,
+                                                                                            bodyBuffer.toByteBuffer()
                                                                                                       .array(),
                                                                                             !lastChunk,
                                                                                             lastChunk && sendBlocking);
@@ -529,11 +530,11 @@ public class ClientProducerImpl implements ClientProducerInternal
 
             buff = buff2;
 
-            chunk = new SessionSendContinuationMessage(buff, false, sendBlocking, messageSize.get());
+            chunk = new SessionSendContinuationMessage(msgI, buff, false, sendBlocking, messageSize.get());
          }
          else
          {
-            chunk = new SessionSendContinuationMessage(buff, true, false);
+            chunk = new SessionSendContinuationMessage(msgI, buff, true, false);
          }
 
          if (sendBlocking && lastPacket)

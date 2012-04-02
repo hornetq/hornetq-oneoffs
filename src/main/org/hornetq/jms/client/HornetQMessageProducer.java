@@ -45,9 +45,9 @@ import org.hornetq.utils.UUIDGenerator;
  * @author <a href="mailto:ovidiu@feodorov.com">Ovidiu Feodorov</a>
  * @author <a href="mailto:tim.fox@jboss.com">Tim Fox</a>
  * @author <a href="mailto:ataylor@redhat.com">Andy Taylor</a>
- * @version <tt>$Revision$</tt>
+ * @version <tt>$Revision: 10777 $</tt>
  *
- * $Id$
+ * $Id: HornetQMessageProducer.java 10777 2011-06-06 20:25:18Z clebert.suconic@jboss.com $
  */
 public class HornetQMessageProducer implements MessageProducer, QueueSender, TopicPublisher
 {

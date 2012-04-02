@@ -27,8 +27,8 @@ import org.hornetq.jms.tests.util.ProxyAssertSupport;
 
 /**
  * @author <a href="mailto:ovidiu@feodorov.com">Ovidiu Feodorov</a>
- * @version <tt>$Revision$</tt>
- * $Id$
+ * @version <tt>$Revision: 8611 $</tt>
+ * $Id: ExpiredMessageTest.java 8611 2009-12-08 01:06:31Z timfox $
  */
 public class ExpiredMessageTest extends JMSTestCase
 {

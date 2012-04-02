@@ -31,6 +31,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Semaphore;
 
 import javax.transaction.xa.Xid;
 
@@ -156,6 +157,8 @@ public class JournalStorageManager implements StorageManager
    public static final byte PAGE_CURSOR_COUNTER_INC = 41;
 
    private UUID persistentID;
+   
+   private final Semaphore pageMaxConcurrentIO;
 
    private final BatchingIDGenerator idGenerator;
 
@@ -166,6 +169,8 @@ public class JournalStorageManager implements StorageManager
    private final Journal bindingsJournal;
 
    private final SequentialFileFactory largeMessagesFactory;
+   
+   private SequentialFileFactory journalFF = null;
 
    private volatile boolean started;
 
@@ -261,8 +266,6 @@ public class JournalStorageManager implements StorageManager
 
       syncTransactional = config.isJournalSyncTransactional();
 
-      SequentialFileFactory journalFF = null;
-
       if (config.getJournalType() == JournalType.ASYNCIO)
       {
          JournalStorageManager.log.info("Using AIO Journal");
@@ -318,6 +321,15 @@ public class JournalStorageManager implements StorageManager
       largeMessagesFactory = new NIOSequentialFileFactory(largeMessagesDirectory, false);
 
       perfBlastPages = config.getJournalPerfBlastPages();
+      
+      if (config.getPageMaxConcurrentIO() != 1)
+      {
+         pageMaxConcurrentIO = new Semaphore(config.getPageMaxConcurrentIO());
+      }
+      else
+      {
+         pageMaxConcurrentIO = null;
+      }
    }
 
    public void clearContext()
@@ -1072,7 +1084,8 @@ public class JournalStorageManager implements StorageManager
                }
                else
                {
-                  log.warn("Can't find queue " + encoding.queueID + " while reloading ACKNOWLEDGE_CURSOR");
+                  log.debug("Can't find queue " + encoding.queueID + " while reloading ACKNOWLEDGE_CURSOR");
+                  messageJournal.appendDeleteRecord(record.id, false);
                }
 
                break;
@@ -1091,7 +1104,8 @@ public class JournalStorageManager implements StorageManager
                }
                else
                {
-                  log.warn("Can't find queue " + encoding.queueID + " while reloading ACKNOWLEDGE_CURSOR");
+                  log.debug("Can't find queue " + encoding.queueID + " while reloading PAGE_CURSOR_COUNTER_VALUE");
+                  messageJournal.appendDeleteRecord(record.id, false);
                }
 
                break;
@@ -1111,7 +1125,8 @@ public class JournalStorageManager implements StorageManager
                }
                else
                {
-                  log.warn("Can't find queue " + encoding.queueID + " while reloading ACKNOWLEDGE_CURSOR");
+                  log.debug("Can't find queue " + encoding.queueID + " while reloading PAGE_CURSOR_COUNTER_INC");
+                  messageJournal.appendDeleteRecord(record.id, false);
                }
 
                break;
@@ -1532,6 +1547,45 @@ public class JournalStorageManager implements StorageManager
       return info;
    }
 
+
+   /* (non-Javadoc)
+    * @see org.hornetq.core.persistence.StorageManager#startPageRead()
+    */
+   public void beforePageRead() throws Exception
+   {
+      if (pageMaxConcurrentIO != null)
+      {
+         pageMaxConcurrentIO.acquire();
+      }
+   }
+
+   /* (non-Javadoc)
+    * @see org.hornetq.core.persistence.StorageManager#finishPageRead()
+    */
+   public void afterPageRead() throws Exception
+   {
+      if (pageMaxConcurrentIO != null)
+      {
+         pageMaxConcurrentIO.release();
+      }
+   }
+
+   /* (non-Javadoc)
+    * @see org.hornetq.core.persistence.StorageManager#allocateDirectBuffer(long)
+    */
+   public ByteBuffer allocateDirectBuffer(int size)
+   {
+      return journalFF.allocateDirectBuffer(size);
+   }
+
+   /* (non-Javadoc)
+    * @see org.hornetq.core.persistence.StorageManager#freeDirectuffer(java.nio.ByteBuffer)
+    */
+   public void freeDirectuffer(ByteBuffer buffer)
+   {
+      journalFF.releaseBuffer(buffer);
+   }
+
    // Public -----------------------------------------------------------------------------------
 
    public Journal getMessageJournal()
@@ -1629,23 +1683,25 @@ public class JournalStorageManager implements StorageManager
 
       if (largeMessage.containsProperty(Message.HDR_ORIG_MESSAGE_ID))
       {
+         // for compatibility: couple with old behaviour, copying the old file to avoid message loss
          long originalMessageID = largeMessage.getLongProperty(Message.HDR_ORIG_MESSAGE_ID);
-
-         LargeServerMessage originalMessage = (LargeServerMessage)messages.get(originalMessageID);
-
-         if (originalMessage == null)
+         
+         SequentialFile currentFile = createFileForLargeMessage(largeMessage.getMessageID(), true);
+         
+         if (!currentFile.exists())
          {
-            // this could happen if the message was deleted but the file still exists as the file still being used
-            originalMessage = createLargeMessage();
-            originalMessage.setDurable(true);
-            originalMessage.setMessageID(originalMessageID);
-            messages.put(originalMessageID, originalMessage);
+            SequentialFile linkedFile = createFileForLargeMessage(originalMessageID, true);
+            if (linkedFile.exists())
+            {
+               linkedFile.copyTo(currentFile);
+               linkedFile.close();
+            }
          }
-
-         originalMessage.incrementDelayDeletionCount();
-
-         largeMessage.setLinkedMessage(originalMessage);
+         
+         currentFile.close();
       }
+
+
       return largeMessage;
    }
 
@@ -2344,9 +2400,9 @@ public class JournalStorageManager implements StorageManager
 
    }
 
-   private static class QueueEncoding implements EncodingSupport
+   public static class QueueEncoding implements EncodingSupport
    {
-      long queueID;
+      public long queueID;
 
       public QueueEncoding(final long queueID)
       {
@@ -2398,7 +2454,7 @@ public class JournalStorageManager implements StorageManager
       }
    }
 
-   private static class RefEncoding extends QueueEncoding
+   public static class RefEncoding extends QueueEncoding
    {
       public RefEncoding()
       {
@@ -2848,7 +2904,7 @@ public class JournalStorageManager implements StorageManager
 
    // Encoding functions for binding Journal
 
-   private static Object newObjectEncoding(RecordInfo info)
+   public static Object newObjectEncoding(RecordInfo info)
    {
       HornetQBuffer buffer = HornetQBuffers.wrappedBuffer(info.data);
       long id = info.id;
@@ -2990,9 +3046,9 @@ public class JournalStorageManager implements StorageManager
       }
    }
 
-   private static class ReferenceDescribe
+   public static class ReferenceDescribe
    {
-      RefEncoding refEncoding;
+      public RefEncoding refEncoding;
 
       public ReferenceDescribe(RefEncoding refEncoding)
       {

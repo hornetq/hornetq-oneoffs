@@ -29,7 +29,7 @@ import org.jboss.netty.channel.group.ChannelGroup;
  * Common handler implementation for client and server side handler.
  *
  * @author <a href="mailto:tlee@redhat.com">Trustin Lee</a>
- * @version $Rev$, $Date$
+ * @version $Rev: 9760 $, $Date: 2010-10-08 06:49:58 -0500 (Fri, 08 Oct 2010) $
  */
 class HornetQChannelHandler extends SimpleChannelHandler
 {

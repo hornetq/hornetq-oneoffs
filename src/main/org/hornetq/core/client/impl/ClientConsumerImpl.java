@@ -596,7 +596,18 @@ public class ClientConsumerImpl implements ClientConsumerInternal
       {
          return;
       }
-      currentLargeMessageController.addPacket(chunk);
+      if (currentLargeMessageController == null)
+      {
+         if (log.isTraceEnabled())
+         {
+            log.trace("Sending back credits for largeController = null " + chunk.getPacketSize());
+         }
+         flowControl(chunk.getPacketSize(), false);
+      }
+      else
+      {
+         currentLargeMessageController.addPacket(chunk);
+      }
    }
 
    public void clear(boolean waitForOnMessage) throws HornetQException

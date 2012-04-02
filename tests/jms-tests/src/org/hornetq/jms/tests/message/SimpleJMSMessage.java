@@ -29,9 +29,9 @@ import org.hornetq.core.logging.Logger;
  * Foreign message implementation. Used for testing only.
  *
  * @author <a href="mailto:ovidiu@feodorov.com">Ovidiu Feodorov</a>
- * @version <tt>$Revision$</tt>
+ * @version <tt>$Revision: 9088 $</tt>
  *
- * $Id$
+ * $Id: SimpleJMSMessage.java 9088 2010-04-09 17:43:11Z timfox $
  */
 public class SimpleJMSMessage implements Message
 {

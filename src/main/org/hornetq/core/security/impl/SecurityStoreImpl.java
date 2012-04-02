@@ -43,9 +43,9 @@ import org.hornetq.utils.TypedProperties;
  * @author <a href="ataylor@redhat.com">Andy Taylor</a>
  *
  *
- * @version $Revision$
+ * @version $Revision: 10117 $
  *
- * $Id$
+ * $Id: SecurityStoreImpl.java 10117 2011-01-12 23:59:09Z clebert.suconic@jboss.com $
  */
 public class SecurityStoreImpl implements SecurityStore, HierarchicalRepositoryChangeListener
 {

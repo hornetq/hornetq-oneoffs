@@ -53,9 +53,9 @@ import org.hornetq.utils.VersionLoader;
  * @author <a href="mailto:ovidiu@feodorov.com">Ovidiu Feodorov</a>
  * @author <a href="mailto:tim.fox@jboss.com">Tim Fox</a>
  * @author <a href="mailto:ataylor@redhat.com">Andy Taylor</a>
- * @version <tt>$Revision$</tt>
+ * @version <tt>$Revision: 11387 $</tt>
  *          <p/>
- *          $Id$
+ *          $Id: HornetQConnection.java 11387 2011-09-21 17:56:19Z clebert.suconic@jboss.com $
  */
 public class HornetQConnection implements Connection, TopicConnection, QueueConnection
 {
@@ -180,6 +180,18 @@ public class HornetQConnection implements Connection, TopicConnection, QueueConn
       if (!justCreated)
       {
          throw new IllegalStateException("setClientID can only be called directly after the connection is created");
+      }
+      
+      try
+      {
+         initialSession.addUniqueMetaData("jms-client-id", clientID);
+      }
+      catch (HornetQException e)
+      {
+         if (e.getCode() == HornetQException.DUPLICATE_METADATA)
+         {
+            throw new IllegalStateException("clientID=" + clientID + " was already set into another connection");
+         }
       }
 
       this.clientID = clientID;

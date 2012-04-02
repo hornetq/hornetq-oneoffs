@@ -124,6 +124,8 @@ public interface ServerSession
 
    void addMetaData(String key, String data);
 
+   boolean addUniqueMetaData(String key, String data);
+
    String getMetaData(String key);
 
    String[] getTargetAddresses();

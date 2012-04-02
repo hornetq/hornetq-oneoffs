@@ -27,9 +27,9 @@ import javax.naming.spi.ObjectFactory;
  * Given a reference - reconstructs a HornetQRAConnectionFactory
  * 
  * @author <a href="tim.fox@jboss.com">Tim Fox</a>
- * @version $Revision$
+ * @version $Revision: 8611 $
  *
- * $Id$
+ * $Id: ConnectionFactoryObjectFactory.java 8611 2009-12-08 01:06:31Z timfox $
  */
 public class ConnectionFactoryObjectFactory implements ObjectFactory
 {

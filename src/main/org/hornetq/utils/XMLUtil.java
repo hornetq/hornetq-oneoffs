@@ -41,8 +41,8 @@ import org.xml.sax.SAXException;
 /**
  * @author <a href="mailto:ovidiu@feodorov.com">Ovidiu Feodorov</a>
  * @author <a href="mailto:tim.fox@jboss.com">Tim Fox</a>
- * @version <tt>$Revision$</tt>
- * $Id$
+ * @version <tt>$Revision: 8611 $</tt>
+ * $Id: XMLUtil.java 8611 2009-12-08 01:06:31Z timfox $
  */
 public class XMLUtil
 {

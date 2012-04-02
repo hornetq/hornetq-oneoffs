@@ -25,7 +25,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * @author <a href="mailto:tim.fox@jboss.com">Tim Fox</a>
  *         <p/>
- *         $Id$
+ *         $Id: TransactedSessionTest.java 10049 2010-12-17 02:20:26Z clebert.suconic@jboss.com $
  */
 public class TransactedSessionTest extends JMSTestCase
 {

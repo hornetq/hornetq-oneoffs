@@ -37,9 +37,9 @@ import org.hornetq.jms.tests.util.ProxyAssertSupport;
 /**
  * @author <a href="mailto:tim.fox@jboss.com">Tim Fox</a>
  * @author <a href="mailto:ovidiu@feodorov.com">Ovidiu Feodorov</a>
- * @version <tt>$Revision$</tt>
+ * @version <tt>$Revision: 9905 $</tt>
  *
- * $Id$
+ * $Id: BrowserTest.java 9905 2010-11-17 05:07:27Z clebert.suconic@jboss.com $
  */
 public class BrowserTest extends JMSTestCase
 {

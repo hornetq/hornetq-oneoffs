@@ -35,7 +35,7 @@ import org.hornetq.core.logging.Logger;
  * HornetQ implementation of a JMS MessageConsumer.
  * 
  * @author <a href="mailto:ovidiu@feodorov.com">Ovidiu Feodorov</a>
- * @version <tt>$Revision$</tt>
+ * @version <tt>$Revision: 10349 $</tt>
  */
 public class HornetQMessageConsumer implements MessageConsumer, QueueReceiver, TopicSubscriber
 {

@@ -33,9 +33,9 @@ import org.hornetq.jms.tests.util.ProxyAssertSupport;
 
 /**
  * @author <a href="mailto:ovidiu@feodorov.com">Ovidiu Feodorov</a>
- * @version <tt>$Revision$</tt>
+ * @version <tt>$Revision: 9722 $</tt>
  *
- * $Id$
+ * $Id: SelectorTest.java 9722 2010-09-24 12:16:25Z timfox $
  */
 public class SelectorTest extends HornetQServerTestCase
 {

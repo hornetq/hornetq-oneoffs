@@ -41,7 +41,7 @@ import org.hornetq.jms.referenceable.SerializableObjectRefAddr;
  * 
  * @author <a href="mailto:ovidiu@feodorov.com">Ovidiu Feodorov</a>
  * @author <a href="mailto:tim.fox@jboss.com">Tim Fox</a>
- * @version <tt>$Revision$</tt> $Id$
+ * @version <tt>$Revision: 10146 $</tt> $Id: HornetQConnectionFactory.java 10146 2011-01-26 03:21:12Z clebert.suconic@jboss.com $
  */
 public class HornetQConnectionFactory implements Serializable, Referenceable
 {

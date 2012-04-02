@@ -35,7 +35,7 @@ import org.jboss.netty.handler.ssl.SslHandler;
  * @author <a href="mailto:ataylor@redhat.com">Andy Taylor</a>
  * @author <a href="mailto:tim.fox@jboss.com">Tim Fox</a>
  * 
- * @version <tt>$Revision$</tt>
+ * @version <tt>$Revision: 9760 $</tt>
  */
 public class NettyConnection implements Connection
 {

@@ -30,9 +30,9 @@ import org.hornetq.jms.tests.util.ProxyAssertSupport;
  * A ObjectMessageDeliveryTest
  * @author <a href="mailto:tim.fox@jboss.com">Tim Fox</a>
  * @author <a href="mailto:juha@jboss.org">Juha Lindfors</a>
- * @version <tt>$Revision$</tt>
+ * @version <tt>$Revision: 8611 $</tt>
  *
- * $Id$
+ * $Id: ObjectMessageDeliveryTest.java 8611 2009-12-08 01:06:31Z timfox $
  *
  */
 public class ObjectMessageDeliveryTest extends HornetQServerTestCase

@@ -1049,7 +1049,10 @@ public class ServerSessionImpl implements ServerSession , FailureListener
 
       if (consumer == null)
       {
-         ServerSessionImpl.log.error("There is no consumer with id " + consumerID);
+         if (log.isDebugEnabled())
+         {
+            ServerSessionImpl.log.debug("There is no consumer with id " + consumerID);
+         }
 
          return;
       }
@@ -1171,6 +1174,21 @@ public class ServerSessionImpl implements ServerSession , FailureListener
          metaData = new HashMap<String, String>();
       }
       metaData.put(key, data);
+   }
+
+
+   public boolean addUniqueMetaData(String key, String data)
+   {
+      if (server.lookupSession(key, data))
+      {
+         // There is a duplication of this property
+         return false;
+      }
+      else
+      {
+         addMetaData(key, data);
+         return true;
+      }
    }
 
    public String getMetaData(String key)

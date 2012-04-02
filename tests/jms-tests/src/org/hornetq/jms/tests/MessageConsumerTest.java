@@ -50,9 +50,9 @@ import org.hornetq.jms.tests.util.ProxyAssertSupport;
  * @author <a href="mailto:ovidiu@feodorov.com">Ovidiu Feodorov</a>
  * @author <a href="mailto:tim.fox@jboss.com">Tim Fox</a>
  * @author <a href="mailto:clebert.suconic@jboss.com">Clebert Suconic</a>
- * @version <tt>$Revision$</tt>
+ * @version <tt>$Revision: 8907 $</tt>
  *          <p/>
- *          $Id$
+ *          $Id: MessageConsumerTest.java 8907 2010-03-01 14:00:10Z jmesnil $
  */
 public class MessageConsumerTest extends JMSTestCase
 {

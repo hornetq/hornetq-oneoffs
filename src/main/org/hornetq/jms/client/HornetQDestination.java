@@ -31,9 +31,9 @@ import org.hornetq.jms.referenceable.SerializableObjectRefAddr;
  * HornetQ implementation of a JMS Destination.
  * 
  * @author <a href="mailto:tim.fox@jboss.com">Tim Fox</a>
- * @version <tt>$Revision$</tt>
+ * @version <tt>$Revision: 9677 $</tt>
  *
- * $Id$
+ * $Id: HornetQDestination.java 9677 2010-09-13 18:08:17Z clebert.suconic@jboss.com $
  */
 public class HornetQDestination implements Destination, Serializable, Referenceable
 {

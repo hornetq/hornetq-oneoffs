@@ -26,9 +26,9 @@ import org.hornetq.jms.tests.util.ProxyAssertSupport;
 
 /**
  * @author <a href="mailto:ovidiu@feodorov.com">Ovidiu Feodorov</a>
- * @version <tt>$Revision$</tt>
+ * @version <tt>$Revision: 9086 $</tt>
  *
- * $Id$
+ * $Id: MessageTestBase.java 9086 2010-04-09 16:31:00Z timfox $
  */
 public abstract class MessageTestBase extends HornetQServerTestCase
 {

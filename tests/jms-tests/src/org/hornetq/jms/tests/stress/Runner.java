@@ -24,9 +24,9 @@ import org.hornetq.core.logging.Logger;
  * Base class for running components of a stress test
  * 
  * @author <a href="tim.fox@jboss.com">Tim Fox</a>
- * @version <tt>$Revision$</tt>
+ * @version <tt>$Revision: 8611 $</tt>
  *
- * $Id$
+ * $Id: Runner.java 8611 2009-12-08 01:06:31Z timfox $
  */
 public abstract class Runner implements Runnable
 {

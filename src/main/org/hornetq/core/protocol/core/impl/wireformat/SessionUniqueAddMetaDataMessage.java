@@ -1,5 +1,5 @@
 /*
- * Copyright 2009 Red Hat, Inc.
+ * Copyright 2010 Red Hat, Inc.
  * Red Hat licenses this file to you under the Apache License, version
  * 2.0 (the "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
@@ -11,43 +11,38 @@
  * permissions and limitations under the License.
  */
 
-package org.hornetq.jms.tests.message;
+package org.hornetq.core.protocol.core.impl.wireformat;
 
-import java.io.Serializable;
-
-import javax.jms.JMSException;
-import javax.jms.ObjectMessage;
 
 /**
- * @author <a href="mailto:ovidiu@feodorov.com">Ovidiu Feodorov</a>
- * @version <tt>$Revision: 8611 $</tt>
+ * A SessionUniqueAddMetaDataMessageV2
  *
- * $Id: SimpleJMSObjectMessage.java 8611 2009-12-08 01:06:31Z timfox $
+ * @author clebertsuconic
+ *
+ *
  */
-public class SimpleJMSObjectMessage extends SimpleJMSMessage implements ObjectMessage
+public class SessionUniqueAddMetaDataMessage extends SessionAddMetaDataMessageV2
 {
-   // Constants -----------------------------------------------------
 
-   // Static --------------------------------------------------------
+   // Constants -----------------------------------------------------
 
    // Attributes ----------------------------------------------------
 
-   private Serializable object;
+   // Static --------------------------------------------------------
 
    // Constructors --------------------------------------------------
-
-   // ObjectMessage implementation ----------------------------------
-
-   public void setObject(final Serializable object) throws JMSException
+   
+   public SessionUniqueAddMetaDataMessage()
    {
-      this.object = object;
+      super(SESS_UNIQUE_ADD_METADATA);
    }
+   
 
-   public Serializable getObject() throws JMSException
+   public SessionUniqueAddMetaDataMessage(String key, String data)
    {
-      return object;
+      super(SESS_UNIQUE_ADD_METADATA, key, data);
    }
-
+   
    // Public --------------------------------------------------------
 
    // Package protected ---------------------------------------------
@@ -57,4 +52,5 @@ public class SimpleJMSObjectMessage extends SimpleJMSMessage implements ObjectMe
    // Private -------------------------------------------------------
 
    // Inner classes -------------------------------------------------
+
 }

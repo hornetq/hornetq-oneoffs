@@ -32,9 +32,9 @@ import org.hornetq.jms.client.HornetQConnectionFactory;
  *
  * @author <a href="mailto:ovidiu@feodorov.com">Ovidiu Feodorov</a>
  * @author <a href="mailto:tim.fox@jboss.org">Tim Fox</a>
- * @version <tt>$Revision$</tt>
+ * @version <tt>$Revision: 10038 $</tt>
  *
- * $Id$
+ * $Id: CTSMiscellaneousTest.java 10038 2010-12-13 18:10:21Z clebert.suconic@jboss.com $
  */
 public class CTSMiscellaneousTest extends JMSTest
 {

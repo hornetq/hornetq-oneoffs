@@ -43,6 +43,7 @@ import static org.hornetq.core.protocol.core.impl.PacketImpl.REPLICATION_RESPONS
 import static org.hornetq.core.protocol.core.impl.PacketImpl.SESS_ACKNOWLEDGE;
 import static org.hornetq.core.protocol.core.impl.PacketImpl.SESS_ADD_METADATA;
 import static org.hornetq.core.protocol.core.impl.PacketImpl.SESS_ADD_METADATA2;
+import static org.hornetq.core.protocol.core.impl.PacketImpl.SESS_UNIQUE_ADD_METADATA;
 import static org.hornetq.core.protocol.core.impl.PacketImpl.SESS_BINDINGQUERY;
 import static org.hornetq.core.protocol.core.impl.PacketImpl.SESS_BINDINGQUERY_RESP;
 import static org.hornetq.core.protocol.core.impl.PacketImpl.SESS_CLOSE;
@@ -138,6 +139,7 @@ import org.hornetq.core.protocol.core.impl.wireformat.SessionRequestProducerCred
 import org.hornetq.core.protocol.core.impl.wireformat.SessionSendContinuationMessage;
 import org.hornetq.core.protocol.core.impl.wireformat.SessionSendLargeMessage;
 import org.hornetq.core.protocol.core.impl.wireformat.SessionSendMessage;
+import org.hornetq.core.protocol.core.impl.wireformat.SessionUniqueAddMetaDataMessage;
 import org.hornetq.core.protocol.core.impl.wireformat.SessionXACommitMessage;
 import org.hornetq.core.protocol.core.impl.wireformat.SessionXAEndMessage;
 import org.hornetq.core.protocol.core.impl.wireformat.SessionXAForgetMessage;
@@ -522,6 +524,11 @@ public class PacketDecoder
          case SESS_ADD_METADATA2:
          {
             packet = new SessionAddMetaDataMessageV2();
+            break;
+         }
+         case SESS_UNIQUE_ADD_METADATA:
+         {
+            packet = new SessionUniqueAddMetaDataMessage();
             break;
          }
          default:

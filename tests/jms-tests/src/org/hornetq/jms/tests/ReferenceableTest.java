@@ -41,9 +41,9 @@ import org.hornetq.jms.tests.util.ProxyAssertSupport;
  * All administered objects should be referenceable and serializable as per spec 4.2
  * 
  * @author <a href="tim.fox@jboss.com">Tim Fox</a>
- * @version $Revision$
+ * @version $Revision: 9764 $
  *
- * $Id$
+ * $Id: ReferenceableTest.java 9764 2010-10-11 01:01:04Z gaohoward $
  */
 public class ReferenceableTest extends JMSTestCase
 {

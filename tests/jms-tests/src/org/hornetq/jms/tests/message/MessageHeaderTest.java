@@ -57,9 +57,9 @@ import org.hornetq.jms.tests.util.ProxyAssertSupport;
  *
  * @author <a href="mailto:ovidiu@feodorov.com">Ovidiu Feodorov</a>
  * @author <a href="mailto:tim.fox@jboss.com">Tim Fox</a>
- * @version <tt>$Revision$</tt>
+ * @version <tt>$Revision: 11387 $</tt>
  *
- * $Id$
+ * $Id: MessageHeaderTest.java 11387 2011-09-21 17:56:19Z clebert.suconic@jboss.com $
  */
 public class MessageHeaderTest extends MessageHeaderTestBase
 {
@@ -1413,6 +1413,15 @@ public class MessageHeaderTest extends MessageHeaderTestBase
        * @see org.hornetq.api.core.client.ClientSession#addMetaDataV1(java.lang.String, java.lang.String)
        */
       public void addMetaDataV1(String key, String data) throws HornetQException
+      {
+         // TODO Auto-generated method stub
+         
+      }
+
+      /* (non-Javadoc)
+       * @see org.hornetq.api.core.client.ClientSession#addUniqueMetaData(java.lang.String, java.lang.String)
+       */
+      public void addUniqueMetaData(String key, String data) throws HornetQException
       {
          // TODO Auto-generated method stub
          

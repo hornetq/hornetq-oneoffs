@@ -32,9 +32,9 @@ import org.hornetq.jms.tests.util.ProxyAssertSupport;
  *
  * @author <a href="mailto:ovidiu@feodorov.com">Ovidiu Feodorov</a>
  * @author <a href="mailto:tim.fox@jboss.com">Tim Fox</a>
- * @version <tt>$Revision$</tt>
+ * @version <tt>$Revision: 9764 $</tt>
  *
- * $Id$
+ * $Id: ConnectionClosedTest.java 9764 2010-10-11 01:01:04Z gaohoward $
  */
 public class ConnectionClosedTest extends JMSTestCase
 {

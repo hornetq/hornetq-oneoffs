@@ -20,7 +20,7 @@ import org.hornetq.jms.tests.util.ProxyAssertSupport;
 
 /**
  * @author <a href="mailto:ovidiu@feodorov.com">Ovidiu Feodorov</a>
- * @version <tt>$Revision$</tt>
+ * @version <tt>$Revision: 8947 $</tt>
  */
 public class JMSMessageIDHeaderTest extends MessageHeaderTestBase
 {

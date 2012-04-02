@@ -33,9 +33,9 @@ import org.hornetq.jms.tests.util.ProxyAssertSupport;
  *
  * @author <a href="mailto:ovidiu@feodorov.com">Ovidiu Feodorov</a>
  * @author <a href="mailto:tim.fox@jboss.com">Tim Fox</a>
- * @version <tt>$Revision$</tt>
+ * @version <tt>$Revision: 11387 $</tt>
  *
- * $Id$
+ * $Id: ConnectionTest.java 11387 2011-09-21 17:56:19Z clebert.suconic@jboss.com $
  */
 public class ConnectionTest extends JMSTestCase
 {
@@ -88,8 +88,21 @@ public class ConnectionTest extends JMSTestCase
       connection.setClientID(clientID);
 
       ProxyAssertSupport.assertEquals(clientID, connection.getClientID());
+      
+      Connection connection2 = JMSTest.cf.createConnection();
+      try
+      {
+         connection2.setClientID(clientID);
+         fail("setClientID was expected to throw an exception");
+      }
+      catch (JMSException e)
+      {
+         // expected
+      }
 
       connection.close();
+
+      connection2.setClientID(clientID);
    }
 
    public void testSetClientAfterStart() throws Exception

@@ -31,9 +31,9 @@ import javax.naming.RefAddr;
  * Basically the address is the serialized form of the object as a byte[]
  * 
  * @author <a href="tim.fox@jboss.com">Tim Fox</a>
- * @version $Revision$
+ * @version $Revision: 8611 $
  *
- * $Id$
+ * $Id: SerializableObjectRefAddr.java 8611 2009-12-08 01:06:31Z timfox $
  */
 public class SerializableObjectRefAddr extends RefAddr
 {

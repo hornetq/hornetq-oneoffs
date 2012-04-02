@@ -35,9 +35,9 @@ import org.hornetq.jms.tests.util.ProxyAssertSupport;
 /**
  * @author <a href="mailto:tim.fox@jboss.com">Tim Fox</a>
  * @author <a href="mailto:ovidiu@feodorov.com">Ovidiu Feodorov</a>
- * @version <tt>$Revision$</tt>
+ * @version <tt>$Revision: 10079 $</tt>
  *
- * $Id$
+ * $Id: SessionTest.java 10079 2010-12-28 00:10:31Z clebert.suconic@jboss.com $
  */
 public class SessionTest extends HornetQServerTestCase
 {

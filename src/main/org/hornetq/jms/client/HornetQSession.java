@@ -70,9 +70,9 @@ import org.hornetq.core.logging.Logger;
  * @author <a href="mailto:tim.fox@jboss.com">Tim Fox</a>
  * @author <a href="mailto:ataylor@redhat.com">Andy Taylor</a>
  *
- * @version <tt>$Revision$</tt>
+ * @version <tt>$Revision: 10076 $</tt>
  *
- * $Id$
+ * $Id: HornetQSession.java 10076 2010-12-27 21:27:30Z clebert.suconic@jboss.com $
  */
 public class HornetQSession implements Session, QueueSession, TopicSession
 {

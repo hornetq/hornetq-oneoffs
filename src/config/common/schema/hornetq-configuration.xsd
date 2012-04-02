@@ -140,6 +140,8 @@
                 </xsd:element>
             <xsd:element maxOccurs="1" minOccurs="0" name="grouping-handler" type="groupingHandlerType">
             </xsd:element>
+				<xsd:element maxOccurs="1" minOccurs="0" name="page-max-concurrent-io" type="xsd:string">
+				</xsd:element>
 				<xsd:element maxOccurs="1" minOccurs="0" name="paging-directory" type="xsd:string">
 				</xsd:element>
 				<xsd:element maxOccurs="1" minOccurs="0" name="bindings-directory" type="xsd:string">

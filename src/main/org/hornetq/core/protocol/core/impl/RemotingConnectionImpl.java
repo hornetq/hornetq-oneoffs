@@ -40,7 +40,7 @@ import org.hornetq.utils.SimpleIDGenerator;
 /**
  * @author <a href="tim.fox@jboss.com">Tim Fox</a>
  * @author <a href="mailto:jmesnil@redhat.com">Jeff Mesnil</a>
- * @version <tt>$Revision$</tt> $Id$
+ * @version <tt>$Revision: 10065 $</tt> $Id: RemotingConnectionImpl.java 10065 2010-12-21 20:01:58Z ataylor $
  */
 public class RemotingConnectionImpl implements BufferHandler, CoreRemotingConnection
 {

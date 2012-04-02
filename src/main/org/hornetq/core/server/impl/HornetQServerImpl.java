@@ -74,6 +74,7 @@ import org.hornetq.core.persistence.impl.nullpm.NullStorageManager;
 import org.hornetq.core.postoffice.Binding;
 import org.hornetq.core.postoffice.DuplicateIDCache;
 import org.hornetq.core.postoffice.PostOffice;
+import org.hornetq.core.postoffice.QueueBinding;
 import org.hornetq.core.postoffice.impl.DivertBinding;
 import org.hornetq.core.postoffice.impl.LocalQueueBinding;
 import org.hornetq.core.postoffice.impl.PostOfficeImpl;
@@ -965,6 +966,23 @@ public class HornetQServerImpl implements HornetQServer
       sessions.remove(name);
    }
 
+   public boolean lookupSession(String key, String value)
+   {
+      // getSessions is called here in a try to minimize locking the Server while this check is being done
+      Set<ServerSession> allSessions = getSessions();
+      
+      for (ServerSession session : allSessions)
+      {
+         String metaValue = session.getMetaData(key);
+         if (metaValue != null && metaValue.equals(value))
+         {
+            return true;
+         }
+      }
+      
+      return false;
+   }
+   
    public synchronized List<ServerSession> getSessions(final String connectionID)
    {
       Set<Entry<String, ServerSession>> sessionEntries = sessions.entrySet();
@@ -1070,11 +1088,6 @@ public class HornetQServerImpl implements HornetQServer
       }
 
       Queue queue = (Queue)binding.getBindable();
-      
-      if (queue.getPageSubscription() != null)
-      {
-         queue.getPageSubscription().close();
-      }
 
       if (queue.getConsumerCount() != 0)
       {
@@ -1098,14 +1111,27 @@ public class HornetQServerImpl implements HornetQServer
          }
       }
 
+      postOffice.removeBinding(queueName);
+
       queue.deleteAllReferences();
 
       if (queue.isDurable())
       {
          storageManager.deleteQueueBinding(queue.getID());
       }
+      
 
-      postOffice.removeBinding(queueName);
+      if (queue.getPageSubscription() != null)
+      {
+         queue.getPageSubscription().close();
+      }
+      
+      PageSubscription subs = queue.getPageSubscription();
+      
+      if (subs != null)
+      {
+         subs.cleanupEntries(true);
+      }
    }
 
    public synchronized void registerActivateCallback(final ActivateCallback callback)
@@ -1580,26 +1606,29 @@ public class HornetQServerImpl implements HornetQServer
       {
          queueBindingInfosMap.put(queueBindingInfo.getId(), queueBindingInfo);
          
-         Filter filter = FilterImpl.createFilter(queueBindingInfo.getFilterString());
-
-         PageSubscription subscription = pagingManager.getPageStore(queueBindingInfo.getAddress()).getCursorProvier().createSubscription(queueBindingInfo.getId(), filter, true);
-         
-         Queue queue = queueFactory.createQueue(queueBindingInfo.getId(),
-                                                queueBindingInfo.getAddress(),
-                                                queueBindingInfo.getQueueName(),
-                                                filter,
-                                                subscription,
-                                                true,
-                                                false);
-
-         Binding binding = new LocalQueueBinding(queueBindingInfo.getAddress(), queue, nodeManager.getNodeId());
-
-         queues.put(queueBindingInfo.getId(), queue);
-
-         postOffice.addBinding(binding);
-
-         managementService.registerAddress(queueBindingInfo.getAddress());
-         managementService.registerQueue(queue, queueBindingInfo.getAddress(), storageManager);
+         if (queueBindingInfo.getFilterString() == null || !queueBindingInfo.getFilterString().toString().equals(GENERIC_IGNORED_FILTER))
+         {
+            Filter filter = FilterImpl.createFilter(queueBindingInfo.getFilterString());
+   
+            PageSubscription subscription = pagingManager.getPageStore(queueBindingInfo.getAddress()).getCursorProvier().createSubscription(queueBindingInfo.getId(), filter, true);
+            
+            Queue queue = queueFactory.createQueue(queueBindingInfo.getId(),
+                                                   queueBindingInfo.getAddress(),
+                                                   queueBindingInfo.getQueueName(),
+                                                   filter,
+                                                   subscription,
+                                                   true,
+                                                   false);
+   
+            Binding binding = new LocalQueueBinding(queueBindingInfo.getAddress(), queue, nodeManager.getNodeId());
+   
+            queues.put(queueBindingInfo.getId(), queue);
+   
+            postOffice.addBinding(binding);
+   
+            managementService.registerAddress(queueBindingInfo.getAddress());
+            managementService.registerQueue(queue, queueBindingInfo.getAddress(), storageManager);
+         }
          
          
       }
