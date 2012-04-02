@@ -214,7 +214,7 @@ public class JMSTestBase extends ServiceTestBase
                                         HornetQClient.DEFAULT_COMPRESS_LARGE_MESSAGES,
                                         HornetQClient.DEFAULT_CONSUMER_WINDOW_SIZE,
                                         HornetQClient.DEFAULT_CONSUMER_MAX_RATE,
-                                        HornetQClient.DEFAULT_CONFIRMATION_WINDOW_SIZE,
+                                        100 * 1024, // HornetQClient.DEFAULT_CONFIRMATION_WINDOW_SIZE,
                                         HornetQClient.DEFAULT_PRODUCER_WINDOW_SIZE,
                                         HornetQClient.DEFAULT_PRODUCER_MAX_RATE,
                                         HornetQClient.DEFAULT_BLOCK_ON_ACKNOWLEDGE,

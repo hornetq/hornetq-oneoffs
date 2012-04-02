@@ -23,7 +23,7 @@ import org.hornetq.utils.PriorityLinkedListImpl;
 /**
  * @author <a href="tim.fox@jboss.com>Tim Fox</a>
  *
- * $Id$
+ * $Id: PriorityLinkedListTestBase.java 10752 2011-05-28 16:34:41Z clebert.suconic@jboss.com $
  */
 public abstract class PriorityLinkedListTestBase extends TestCase
 {

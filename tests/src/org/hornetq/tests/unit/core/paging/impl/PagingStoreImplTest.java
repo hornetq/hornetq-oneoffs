@@ -13,6 +13,7 @@
 
 package org.hornetq.tests.unit.core.paging.impl;
 
+import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -1675,6 +1676,41 @@ public class PagingStoreImplTest extends UnitTestCase
        * @see org.hornetq.core.persistence.StorageManager#lineUpContext()
        */
       public void lineUpContext()
+      {
+         // TODO Auto-generated method stub
+         
+      }
+
+      /* (non-Javadoc)
+       * @see org.hornetq.core.persistence.StorageManager#startPageRead()
+       */
+      public void beforePageRead() throws Exception
+      {
+         // TODO Auto-generated method stub
+         
+      }
+
+      /* (non-Javadoc)
+       * @see org.hornetq.core.persistence.StorageManager#finishPageRead()
+       */
+      public void afterPageRead() throws Exception
+      {
+         // TODO Auto-generated method stub
+         
+      }
+
+      /* (non-Javadoc)
+       * @see org.hornetq.core.persistence.StorageManager#allocateDirectBuffer(int)
+       */
+      public ByteBuffer allocateDirectBuffer(int size)
+      {
+         return ByteBuffer.allocateDirect(size);
+      }
+
+      /* (non-Javadoc)
+       * @see org.hornetq.core.persistence.StorageManager#freeDirectuffer(java.nio.ByteBuffer)
+       */
+      public void freeDirectuffer(ByteBuffer buffer)
       {
          // TODO Auto-generated method stub
          

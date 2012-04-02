@@ -30,7 +30,7 @@ import org.jboss.netty.handler.codec.embedder.DecoderEmbedder;
  * A HornetQFrameDecoder2Test
  *
  * @author <a href="tlee@redhat.com">Trustin Lee</a>
- * @version $Revision$, $Date$
+ * @version $Revision: 9099 $, $Date: 2010-04-12 07:08:00 -0500 (Mon, 12 Apr 2010) $
  */
 public class HornetQFrameDecoder2Test extends UnitTestCase
 {

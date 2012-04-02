@@ -22,7 +22,7 @@ import org.hornetq.tests.unit.core.remoting.HornetQBufferTestBase;
  * @author <a href="mailto:jmesnil@redhat.com">Jeff Mesnil</a>
  * @author <a href="mailto:csuconic@redhat.com">Clebert Suconic</a>
  *
- * @version <tt>$Revision$</tt>
+ * @version <tt>$Revision: 8730 $</tt>
  *
  */
 public class ChannelBufferWrapper2Test extends HornetQBufferTestBase

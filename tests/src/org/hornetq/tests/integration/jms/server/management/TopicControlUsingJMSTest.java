@@ -96,7 +96,7 @@ public class TopicControlUsingJMSTest extends ManagementTestBase
       Connection connection_2 = JMSUtil.createConnection(InVMConnectorFactory.class.getName());
       JMSUtil.createDurableSubscriber(connection_2, topic, clientID, subscriptionName);
       Connection connection_3 = JMSUtil.createConnection(InVMConnectorFactory.class.getName());
-      JMSUtil.createDurableSubscriber(connection_3, topic, clientID, subscriptionName + "2");
+      JMSUtil.createDurableSubscriber(connection_3, topic, clientID + "2", subscriptionName + "2");
 
       Assert.assertEquals(3, proxy.retrieveAttributeValue("subscriptionCount"));
       Assert.assertEquals(1, proxy.retrieveAttributeValue("nonDurableSubscriptionCount"));
@@ -115,7 +115,7 @@ public class TopicControlUsingJMSTest extends ManagementTestBase
       Connection connection_2 = JMSUtil.createConnection(InVMConnectorFactory.class.getName());
       JMSUtil.createDurableSubscriber(connection_2, topic, clientID, subscriptionName);
       Connection connection_3 = JMSUtil.createConnection(InVMConnectorFactory.class.getName());
-      JMSUtil.createDurableSubscriber(connection_3, topic, clientID, subscriptionName + "2");
+      JMSUtil.createDurableSubscriber(connection_3, topic, clientID + "2", subscriptionName + "2");
 
       Assert.assertEquals(0, proxy.retrieveAttributeValue("messageCount"));
       Assert.assertEquals(0, proxy.retrieveAttributeValue("nonDurableMessageCount"));
@@ -140,7 +140,7 @@ public class TopicControlUsingJMSTest extends ManagementTestBase
       Connection connection_2 = JMSUtil.createConnection(InVMConnectorFactory.class.getName());
       JMSUtil.createDurableSubscriber(connection_2, topic, clientID, subscriptionName);
       Connection connection_3 = JMSUtil.createConnection(InVMConnectorFactory.class.getName());
-      JMSUtil.createDurableSubscriber(connection_3, topic, clientID, subscriptionName + "2");
+      JMSUtil.createDurableSubscriber(connection_3, topic, clientID + "2", subscriptionName + "2");
 
       Assert.assertEquals(3, ((Object[])proxy.invokeOperation("listAllSubscriptions")).length);
       Assert.assertEquals(1, ((Object[])proxy.invokeOperation("listNonDurableSubscriptions")).length);
@@ -254,7 +254,7 @@ public class TopicControlUsingJMSTest extends ManagementTestBase
       Connection connection_2 = JMSUtil.createConnection(InVMConnectorFactory.class.getName());
       TopicSubscriber durableSubscriber_2 = JMSUtil.createDurableSubscriber(connection_2,
                                                                             topic,
-                                                                            clientID,
+                                                                            clientID + "2",
                                                                             subscriptionName + "2");
 
       Assert.assertEquals(2, proxy.retrieveAttributeValue("subscriptionCount"));
@@ -276,7 +276,7 @@ public class TopicControlUsingJMSTest extends ManagementTestBase
       Connection connection_1 = JMSUtil.createConnection(InVMConnectorFactory.class.getName());
       JMSUtil.createDurableSubscriber(connection_1, topic, clientID, subscriptionName);
       Connection connection_2 = JMSUtil.createConnection(InVMConnectorFactory.class.getName());
-      JMSUtil.createDurableSubscriber(connection_2, topic, clientID, subscriptionName + "2");
+      JMSUtil.createDurableSubscriber(connection_2, topic, clientID + "2", subscriptionName + "2");
 
       JMSUtil.sendMessages(topic, 3);
 
@@ -344,7 +344,7 @@ public class TopicControlUsingJMSTest extends ManagementTestBase
       Connection connection_2 = JMSUtil.createConnection(InVMConnectorFactory.class.getName());
       JMSUtil.createDurableSubscriber(connection_2, topic, clientID, subscriptionName);
       Connection connection_3 = JMSUtil.createConnection(InVMConnectorFactory.class.getName());
-      JMSUtil.createDurableSubscriber(connection_3, topic, clientID, subscriptionName + "2");
+      JMSUtil.createDurableSubscriber(connection_3, topic, clientID + "2", subscriptionName + "2");
 
       assertEquals(0, proxy.retrieveAttributeValue("messagesAdded"));
 
@@ -370,7 +370,7 @@ public class TopicControlUsingJMSTest extends ManagementTestBase
       Connection connection_3 = JMSUtil.createConnection(InVMConnectorFactory.class.getName());
       MessageConsumer cons_3 = JMSUtil.createDurableSubscriber(connection_3,
                                                                topic,
-                                                               clientID,
+                                                               clientID + "2",
                                                                subscriptionName + "2",
                                                                Session.CLIENT_ACKNOWLEDGE);
 

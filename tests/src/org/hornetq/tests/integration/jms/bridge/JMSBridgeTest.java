@@ -42,9 +42,9 @@ import org.hornetq.jms.client.HornetQMessage;
  * A JMSBridgeTest
  *
  * @author <a href="mailto:tim.fox@jboss.com">Tim Fox</a>
- * @version <tt>$Revision$</tt>
+ * @version <tt>$Revision: 9764 $</tt>
  *
- * $Id$
+ * $Id: JMSBridgeTest.java 9764 2010-10-11 01:01:04Z gaohoward $
  *
  */
 public class JMSBridgeTest extends BridgeTestBase
