@@ -77,6 +77,27 @@ public final class BridgeConfiguration implements Serializable
    public BridgeConfiguration()
    {
    }
+   public BridgeConfiguration(final String name,
+                              final String queueName,
+                              final String forwardingAddress,
+                              final String filterString,
+                              final String transformerClassName,
+                              final int minLargeMessageSize,
+                              final long clientFailureCheckPeriod,
+                              final long connectionTTL,
+                              final long retryInterval,
+                              final long maxRetryInterval,
+                              final double retryIntervalMultiplier,
+                              final int reconnectAttempts,
+                              final boolean useDuplicateDetection,
+                              final int confirmationWindowSize,
+                              final List<String> staticConnectors,
+                              final boolean ha,
+                              final String user,
+                              final String password)
+   {
+      this(name, queueName, forwardingAddress, filterString, transformerClassName, minLargeMessageSize, clientFailureCheckPeriod, connectionTTL, retryInterval, maxRetryInterval, retryIntervalMultiplier, reconnectAttempts, 10, useDuplicateDetection, confirmationWindowSize, staticConnectors, ha, user, password);
+   }
 
    public BridgeConfiguration(final String name,
                               final String queueName,
@@ -118,6 +139,28 @@ public final class BridgeConfiguration implements Serializable
       this.maxRetryInterval = maxRetryInterval;
       this.ha = ha;
       discoveryGroupName = null;
+   }
+
+   public BridgeConfiguration(final String name,
+                              final String queueName,
+                              final String forwardingAddress,
+                              final String filterString,
+                              final String transformerClassName,
+                              final int minLargeMessageSize,
+                              final long clientFailureCheckPeriod,
+                              final long connectionTTL,
+                              final long retryInterval,
+                              final long maxRetryInterval,
+                              final double retryIntervalMultiplier,
+                              final int reconnectAttempts,
+                              final boolean useDuplicateDetection,
+                              final int confirmationWindowSize,
+                              final String discoveryGroupName,
+                              final boolean ha,
+                              final String user,
+                              final String password)
+   {
+      this(name, queueName, forwardingAddress, filterString, transformerClassName, minLargeMessageSize, clientFailureCheckPeriod, connectionTTL, retryInterval, maxRetryInterval, retryIntervalMultiplier, reconnectAttempts, 10, useDuplicateDetection, confirmationWindowSize, discoveryGroupName, ha, user, password);
    }
 
    public BridgeConfiguration(final String name,
