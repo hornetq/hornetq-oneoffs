@@ -5,7 +5,7 @@
    <parent>
       <groupId>org.hornetq</groupId>
       <artifactId>hornetq-pom</artifactId>
-      <version>2.3.1.Final</version>
+      <version>2.3.1.BZ1017943</version>
    </parent>
 
    <artifactId>hornetq-distribution</artifactId>
