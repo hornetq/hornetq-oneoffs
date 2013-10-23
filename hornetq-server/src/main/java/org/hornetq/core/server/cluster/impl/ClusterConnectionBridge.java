@@ -271,6 +271,8 @@ public class ClusterConnectionBridge extends BridgeImpl
                                                 NotificationType.PROPOSAL +
                                                 "','" +
                                                 NotificationType.PROPOSAL_RESPONSE +
+                                                "','" +
+                                                NotificationType.UNPROPOSAL +
                                                 "') AND " +
                                                 ManagementHelper.HDR_DISTANCE +
                                                 "<" +

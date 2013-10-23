@@ -584,6 +584,7 @@ public class HornetQServerImpl implements HornetQServer
          if (groupingHandler != null)
          {
             managementService.removeNotificationListener(groupingHandler);
+            groupingHandler.stop();
             groupingHandler = null;
          }
          stopComponent(clusterManager);
@@ -1598,12 +1599,29 @@ public class HornetQServerImpl implements HornetQServer
          deploymentManager.start();
       }
 
+      if(groupingHandler != null)
+      {
+         groupingHandler.start();
+      }
       // We do this at the end - we don't want things like MDBs or other connections connecting to a backup server until
       // it is activated
 
-      remotingService.start();
+      if (groupingHandler != null && groupingHandler instanceof LocalGroupingHandler)
+      {
+         clusterManager.start();
 
-      clusterManager.start();
+         clusterManager.activate();
+
+         groupingHandler.awaitBindings();
+
+         remotingService.start();
+      }
+      else
+      {
+         remotingService.start();
+
+         clusterManager.start();
+      }
 
       if (nodeManager.getNodeId() == null)
       {
@@ -1900,11 +1918,15 @@ public class HornetQServerImpl implements HornetQServer
          if (config.getType() == GroupingHandlerConfiguration.TYPE.LOCAL)
          {
             groupingHandler1 =
-                     new LocalGroupingHandler(managementService,
+                     new LocalGroupingHandler(executorFactory,
+               managementService,
                config.getName(),
                config.getAddress(),
                getStorageManager(),
-               config.getTimeout());
+               config.getTimeout(),
+               config.getGroupTimeout(),
+               config.getReaperPeriod(),
+               config.getReaperPriority());
          }
          else
          {
