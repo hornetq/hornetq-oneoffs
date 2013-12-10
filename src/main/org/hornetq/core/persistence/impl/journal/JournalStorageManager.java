@@ -3381,6 +3381,11 @@ public class JournalStorageManager implements StorageManager
          return buffer.toString();
       }
 
+      public Message getMsg()
+      {
+         return msg;
+      }
+
    }
 
    /**
