@@ -32,13 +32,14 @@
    <properties>
       <netty.version>3.6.6.Final</netty.version>
 
-      <hornetq.version.versionName>2.3.8</hornetq.version.versionName>
+      <!-- this was a special version created for the internal system Brew -->
+      <hornetq.version.versionName>2.3.9.MEAD1</hornetq.version.versionName>
       <hornetq.version.majorVersion>2</hornetq.version.majorVersion>
       <hornetq.version.minorVersion>3</hornetq.version.minorVersion>
       <hornetq.version.microVersion>9</hornetq.version.microVersion>
       <hornetq.version.incrementingVersion>123</hornetq.version.incrementingVersion>
       <hornetq.version.versionSuffix>Final</hornetq.version.versionSuffix>
-      <hornetq.version.versionTag>HornetQ_2_3_8_Final</hornetq.version.versionTag>
+      <hornetq.version.versionTag>HornetQ_2_3_9_MEAD1</hornetq.version.versionTag>
       <HornetQ-Version>
          ${hornetq.version.majorVersion}.${hornetq.version.minorVersion}.${hornetq.version.microVersion}.${hornetq.version.versionSuffix}
          (${hornetq.version.versionName}, ${hornetq.version.incrementingVersion})
