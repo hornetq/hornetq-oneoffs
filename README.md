@@ -1,3 +1,5 @@
+this was an special branch created for our internal system MEAD with fixes that are only applied internally
+
 # HornetQ
 
 If you need information about the HornetQ project please go to
