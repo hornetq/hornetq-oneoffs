@@ -282,6 +282,12 @@ public class BindingsImplTest extends UnitTestCase
 
       }
 
+      @Override
+      public void unproposed(SimpleString groupID)
+      {
+
+      }
+
       final SimpleString name;
 
       FakeBinding(final SimpleString name)

@@ -263,9 +263,9 @@ public interface HornetQServerLogger extends BasicLogger
    @LogMessage(level = Logger.Level.INFO)
    @Message(
          id = 221040,
-         value =  "Group Bindings removed from {0}",
+         value =  "Remote group coordinators did not start yet",
          format = Message.Format.MESSAGE_FORMAT)
-   void groupingQueueRemovedComplete(SimpleString clusterName);
+   void remoteGroupCoordinatorsNotStarted();
 
    @LogMessage(level = Logger.Level.WARN)
    @Message(id = 222000, value = "HornetQServer is being finalized and has not been stopped. Please remember to stop the server before letting it go out of scope",
@@ -1301,6 +1301,12 @@ public interface HornetQServerLogger extends BasicLogger
        format = Message.Format.MESSAGE_FORMAT)
     void bridgeCantFindConnectors(String bridgeName);
 
+   @LogMessage(level = Logger.Level.WARN)
+    @Message(
+       id = 224066,
+       value = "Could not contact group handler coordinator after 10 retries, message being routed without grouping information",
+       format = Message.Format.MESSAGE_FORMAT)
+   void impossibleToRouteGrouped();
 
 
 }

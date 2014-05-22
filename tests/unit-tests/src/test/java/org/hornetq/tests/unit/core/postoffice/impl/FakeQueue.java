@@ -47,6 +47,12 @@ public class FakeQueue implements Queue
    }
 
    @Override
+   public void unproposed(SimpleString groupID)
+   {
+
+   }
+
+   @Override
    public void setInternalQueue(boolean internalQueue)
    {
       // no-op

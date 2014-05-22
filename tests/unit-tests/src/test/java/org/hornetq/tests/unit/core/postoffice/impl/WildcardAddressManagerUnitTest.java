@@ -98,6 +98,11 @@ public class WildcardAddressManagerUnitTest extends UnitTestCase
          this.id = id;
       }
 
+      @Override
+      public void unproposed(SimpleString groupID)
+      {
+
+      }
 
       @Override
       public SimpleString getAddress()
@@ -210,6 +215,11 @@ public class WildcardAddressManagerUnitTest extends UnitTestCase
       public void setRouteWhenNoConsumers(boolean takePriorityIntoAccount)
       {
 
+      }
+
+      @Override
+      public void unproposed(SimpleString groupID)
+      {
       }
 
       @Override

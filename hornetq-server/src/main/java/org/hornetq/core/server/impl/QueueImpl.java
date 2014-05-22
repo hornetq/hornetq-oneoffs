@@ -25,6 +25,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Executor;
 import java.util.concurrent.RejectedExecutionException;
 import java.util.concurrent.ScheduledExecutorService;
@@ -196,6 +197,35 @@ public class QueueImpl implements Queue
      * to guarantee ordering will be always be correct
      */
     private final Object directDeliveryGuard = new Object();
+
+   /**
+    * For testing only
+    * */
+   public List<SimpleString> getGroupsUsed()
+   {
+      final CountDownLatch flush = new CountDownLatch(1);
+      executor.execute(new Runnable()
+      {
+         public void run()
+         {
+            flush.countDown();
+         }
+      });
+      try
+      {
+         flush.await(10, TimeUnit.SECONDS);
+      }
+      catch (Exception ignored)
+      {
+      }
+
+      synchronized (this)
+      {
+         ArrayList<SimpleString> groupsUsed = new ArrayList<SimpleString>();
+         groupsUsed.addAll(groups.keySet());
+         return groupsUsed;
+      }
+   }
 
    public String debug()
    {
@@ -390,6 +420,41 @@ public class QueueImpl implements Queue
       return filter;
    }
 
+
+   public void unproposed(final SimpleString groupID)
+   {
+
+
+      if (groupID.toString().endsWith("." + this.getName()))
+      {
+
+
+         // this means this unproposed belongs to this routing, so we will
+         // remove this group
+
+         // This is removing the name and a . added, giving us the original groupID used
+         // this is because a groupID is stored per queue, and only this queue is expiring at this point
+         final SimpleString groupIDToRemove = (SimpleString)groupID.subSequence(0, groupID.length() - getName().length() - 1);
+         // using an executor so we don't want to hold anyone just because of this
+         getExecutor().execute(new Runnable()
+         {
+            public void run()
+            {
+               synchronized (QueueImpl.this)
+               {
+                  if (groups.remove(groupIDToRemove) != null)
+                  {
+                     HornetQServerLogger.LOGGER.debug("Removing group after unproposal " + groupID + " from queue " + QueueImpl.this);
+                  }
+                  else
+                  {
+                     HornetQServerLogger.LOGGER.debug("Couldn't remove Removing group " + groupIDToRemove + " after unproposal on queue " + QueueImpl.this);
+                  }
+               }
+            }
+         });
+      }
+   }
    /* Called when a message is cancelled back into the queue */
    public synchronized void addHead(final MessageReference ref)
    {
@@ -1906,8 +1971,7 @@ public class QueueImpl implements Queue
                }
 
                // If a group id is set, then this overrides the consumer chosen round-robin
-
-               SimpleString groupID = ref.getMessage().getSimpleStringProperty(Message.HDR_GROUP_ID);
+               SimpleString groupID = extractGroupID(ref);
 
                if (groupID != null)
                {
@@ -1993,6 +2057,20 @@ public class QueueImpl implements Queue
       if (pageIterator != null && messageReferences.size() == 0 && pageSubscription.isPaging() && pageIterator.hasNext() && !depagePending)
       {
          scheduleDepage(false);
+      }
+   }
+
+   private SimpleString extractGroupID(MessageReference ref)
+   {
+
+      if (internalQueue)
+      {
+         return null;
+      }
+      else
+      {
+         // But we don't use the groupID on internal queues (clustered queues) otherwise the group map would leak forever
+         return ref.getMessage().getSimpleStringProperty(Message.HDR_GROUP_ID);
       }
    }
 
@@ -2322,7 +2400,7 @@ public class QueueImpl implements Queue
 
             // If a group id is set, then this overrides the consumer chosen round-robin
 
-            SimpleString groupID = ref.getMessage().getSimpleStringProperty(Message.HDR_GROUP_ID);
+            SimpleString groupID = extractGroupID(ref);
 
             if (groupID != null)
             {
