@@ -1488,7 +1488,7 @@ public class HornetQServerImpl implements HornetQServer
 
       clusterManager.deploy();
 
-      remotingService = new RemotingServiceImpl(clusterManager, configuration, this, managementService, scheduledPool);
+      remotingService = new RemotingServiceImpl(clusterManager, configuration, this, managementService, scheduledPool, executorFactory.getExecutor());
 
       messagingServerControl = managementService.registerServer(postOffice,
          storageManager,
