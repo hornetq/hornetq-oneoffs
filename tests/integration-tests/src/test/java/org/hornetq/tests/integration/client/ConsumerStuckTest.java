@@ -161,7 +161,6 @@ public class ConsumerStuckTest extends ServiceTestBase
       }
    }
 
-<<<<<<< HEAD
    @Test
    public void testClientStuckTestWithDirectDelivery() throws Exception
    {
@@ -304,6 +303,4 @@ public class ConsumerStuckTest extends ServiceTestBase
       }
    }
 
-=======
->>>>>>> eda3c55... HORNETQ-1379 & https://bugzilla.redhat.com/show_bug.cgi?id=1125042 - forcing clients out when the server is stuck on delivery over OIO
 }
