@@ -1,0 +1,1309 @@
+[INFO] Scanning for projects...
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Build Order:
+[INFO] 
+[INFO] HornetQ Parent
+[INFO] HornetQ Bootstrap
+[INFO] HornetQ Commons
+[INFO] HornetQ Journal
+[INFO] HornetQ Core Client
+[INFO] HornetQ Server
+[INFO] HornetQ JMS Client
+[INFO] HornetQ JMS Server
+[INFO] HornetQ RAR POM
+[INFO] HornetQ REST Interface Implementation
+[INFO] HornetQ JBoss AS Integration
+[INFO] HornetQ JBoss AS4 Integration
+[INFO] HornetQ Spring Integration
+[INFO] HornetQ Twitter Integration
+[INFO] HornetQ Tests POM
+[INFO] HornetQ Unit Tests
+[INFO] HornetQ JMS Tests
+[INFO] HornetQ Integration Tests
+[INFO] HornetQ Joram Tests
+[INFO] HornetQ soak Tests
+[INFO] HornetQ stress Tests
+[INFO] HornetQ timing Tests
+[INFO] HornetQ concurrent Tests
+[INFO] HornetQ performance Tests
+[INFO] HornetQ ByteMan Tests
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building HornetQ Parent 2.3.12.BZ1156180
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] >>> maven-source-plugin:2.2.1:jar (attach-sources) @ hornetq-pom >>>
+[INFO] 
+[INFO] <<< maven-source-plugin:2.2.1:jar (attach-sources) @ hornetq-pom <<<
+[INFO] 
+[INFO] --- maven-source-plugin:2.2.1:jar (attach-sources) @ hornetq-pom ---
+[INFO] 
+[INFO] >>> maven-source-plugin:2.2.1:jar (default) @ hornetq-pom >>>
+[INFO] 
+[INFO] <<< maven-source-plugin:2.2.1:jar (default) @ hornetq-pom <<<
+[INFO] 
+[INFO] --- maven-source-plugin:2.2.1:jar (default) @ hornetq-pom ---
+[INFO] 
+[INFO] --- maven-install-plugin:2.4:install (default-install) @ hornetq-pom ---
+[INFO] Installing /Users/aminebelkoura/support/software/gits/hornetq/hornetq/pom.xml to /Users/aminebelkoura/.m2/repository/org/hornetq/hornetq-pom/2.3.12.BZ1156180/hornetq-pom-2.3.12.BZ1156180.pom
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building HornetQ Bootstrap 2.3.12.BZ1156180
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ hornetq-bootstrap ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-bootstrap/src/main/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.0:compile (default-compile) @ hornetq-bootstrap ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 3 source files to /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-bootstrap/target/classes
+[WARNING] bootstrap class path not set in conjunction with -source 1.6
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ hornetq-bootstrap ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-bootstrap/src/test/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.0:testCompile (default-testCompile) @ hornetq-bootstrap ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.13:test (default-test) @ hornetq-bootstrap ---
+[INFO] No tests to run.
+[INFO] 
+[INFO] --- maven-jar-plugin:2.4:jar (default-jar) @ hornetq-bootstrap ---
+[INFO] Building jar: /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-bootstrap/target/hornetq-bootstrap-2.3.12.BZ1156180.jar
+[INFO] 
+[INFO] >>> maven-source-plugin:2.2.1:jar (attach-sources) @ hornetq-bootstrap >>>
+[INFO] 
+[INFO] <<< maven-source-plugin:2.2.1:jar (attach-sources) @ hornetq-bootstrap <<<
+[INFO] 
+[INFO] --- maven-source-plugin:2.2.1:jar (attach-sources) @ hornetq-bootstrap ---
+[INFO] Building jar: /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-bootstrap/target/hornetq-bootstrap-2.3.12.BZ1156180-sources.jar
+[INFO] 
+[INFO] >>> maven-source-plugin:2.2.1:jar (default) @ hornetq-bootstrap >>>
+[INFO] 
+[INFO] <<< maven-source-plugin:2.2.1:jar (default) @ hornetq-bootstrap <<<
+[INFO] 
+[INFO] --- maven-source-plugin:2.2.1:jar (default) @ hornetq-bootstrap ---
+[INFO] 
+[INFO] --- maven-install-plugin:2.4:install (default-install) @ hornetq-bootstrap ---
+[INFO] Installing /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-bootstrap/target/hornetq-bootstrap-2.3.12.BZ1156180.jar to /Users/aminebelkoura/.m2/repository/org/hornetq/hornetq-bootstrap/2.3.12.BZ1156180/hornetq-bootstrap-2.3.12.BZ1156180.jar
+[INFO] Installing /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-bootstrap/pom.xml to /Users/aminebelkoura/.m2/repository/org/hornetq/hornetq-bootstrap/2.3.12.BZ1156180/hornetq-bootstrap-2.3.12.BZ1156180.pom
+[INFO] Installing /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-bootstrap/target/hornetq-bootstrap-2.3.12.BZ1156180-sources.jar to /Users/aminebelkoura/.m2/repository/org/hornetq/hornetq-bootstrap/2.3.12.BZ1156180/hornetq-bootstrap-2.3.12.BZ1156180-sources.jar
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building HornetQ Commons 2.3.12.BZ1156180
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ hornetq-commons ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-commons/src/main/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.0:compile (default-compile) @ hornetq-commons ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 54 source files to /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-commons/target/classes
+[WARNING] bootstrap class path not set in conjunction with -source 1.6
+[WARNING] /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-commons/src/main/java/org/hornetq/utils/PasswordMaskingUtil.java: Some input files use unchecked or unsafe operations.
+[WARNING] /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-commons/src/main/java/org/hornetq/utils/PasswordMaskingUtil.java: Recompile with -Xlint:unchecked for details.
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ hornetq-commons ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-commons/src/test/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.0:testCompile (default-testCompile) @ hornetq-commons ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 1 source file to /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-commons/target/test-classes
+[WARNING] bootstrap class path not set in conjunction with -source 1.6
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.13:test (default-test) @ hornetq-commons ---
+[INFO] Surefire report directory: /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-commons/target/surefire-reports
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running org.hornetq.utils.PairTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.033 sec
+
+Results :
+
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
+
+[INFO] 
+[INFO] --- maven-jar-plugin:2.4:jar (default-jar) @ hornetq-commons ---
+[INFO] Building jar: /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-commons/target/hornetq-commons-2.3.12.BZ1156180.jar
+[INFO] 
+[INFO] >>> maven-source-plugin:2.2.1:jar (attach-sources) @ hornetq-commons >>>
+[INFO] 
+[INFO] <<< maven-source-plugin:2.2.1:jar (attach-sources) @ hornetq-commons <<<
+[INFO] 
+[INFO] --- maven-source-plugin:2.2.1:jar (attach-sources) @ hornetq-commons ---
+[INFO] Building jar: /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-commons/target/hornetq-commons-2.3.12.BZ1156180-sources.jar
+[INFO] 
+[INFO] >>> maven-source-plugin:2.2.1:jar (default) @ hornetq-commons >>>
+[INFO] 
+[INFO] <<< maven-source-plugin:2.2.1:jar (default) @ hornetq-commons <<<
+[INFO] 
+[INFO] --- maven-source-plugin:2.2.1:jar (default) @ hornetq-commons ---
+[INFO] 
+[INFO] --- maven-install-plugin:2.4:install (default-install) @ hornetq-commons ---
+[INFO] Installing /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-commons/target/hornetq-commons-2.3.12.BZ1156180.jar to /Users/aminebelkoura/.m2/repository/org/hornetq/hornetq-commons/2.3.12.BZ1156180/hornetq-commons-2.3.12.BZ1156180.jar
+[INFO] Installing /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-commons/pom.xml to /Users/aminebelkoura/.m2/repository/org/hornetq/hornetq-commons/2.3.12.BZ1156180/hornetq-commons-2.3.12.BZ1156180.pom
+[INFO] Installing /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-commons/target/hornetq-commons-2.3.12.BZ1156180-sources.jar to /Users/aminebelkoura/.m2/repository/org/hornetq/hornetq-commons/2.3.12.BZ1156180/hornetq-commons-2.3.12.BZ1156180-sources.jar
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building HornetQ Journal 2.3.12.BZ1156180
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ hornetq-journal ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-journal/src/main/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.0:compile (default-compile) @ hornetq-journal ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 60 source files to /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-journal/target/classes
+[WARNING] bootstrap class path not set in conjunction with -source 1.6
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ hornetq-journal ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-journal/src/test/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.0:testCompile (default-testCompile) @ hornetq-journal ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 1 source file to /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-journal/target/test-classes
+[WARNING] bootstrap class path not set in conjunction with -source 1.6
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.13:test (default-test) @ hornetq-journal ---
+[INFO] Surefire report directory: /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-journal/target/surefire-reports
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running org.hornetq.tests.asyncio.LibaioDependencyCheckTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.033 sec
+
+Results :
+
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
+
+[INFO] 
+[INFO] --- maven-jar-plugin:2.4:jar (default-jar) @ hornetq-journal ---
+[INFO] Building jar: /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-journal/target/hornetq-journal-2.3.12.BZ1156180.jar
+[INFO] 
+[INFO] >>> maven-source-plugin:2.2.1:jar (attach-sources) @ hornetq-journal >>>
+[INFO] 
+[INFO] <<< maven-source-plugin:2.2.1:jar (attach-sources) @ hornetq-journal <<<
+[INFO] 
+[INFO] --- maven-source-plugin:2.2.1:jar (attach-sources) @ hornetq-journal ---
+[INFO] Building jar: /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-journal/target/hornetq-journal-2.3.12.BZ1156180-sources.jar
+[INFO] 
+[INFO] >>> maven-source-plugin:2.2.1:jar (default) @ hornetq-journal >>>
+[INFO] 
+[INFO] <<< maven-source-plugin:2.2.1:jar (default) @ hornetq-journal <<<
+[INFO] 
+[INFO] --- maven-source-plugin:2.2.1:jar (default) @ hornetq-journal ---
+[INFO] 
+[INFO] --- maven-install-plugin:2.4:install (default-install) @ hornetq-journal ---
+[INFO] Installing /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-journal/target/hornetq-journal-2.3.12.BZ1156180.jar to /Users/aminebelkoura/.m2/repository/org/hornetq/hornetq-journal/2.3.12.BZ1156180/hornetq-journal-2.3.12.BZ1156180.jar
+[INFO] Installing /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-journal/pom.xml to /Users/aminebelkoura/.m2/repository/org/hornetq/hornetq-journal/2.3.12.BZ1156180/hornetq-journal-2.3.12.BZ1156180.pom
+[INFO] Installing /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-journal/target/hornetq-journal-2.3.12.BZ1156180-sources.jar to /Users/aminebelkoura/.m2/repository/org/hornetq/hornetq-journal/2.3.12.BZ1156180/hornetq-journal-2.3.12.BZ1156180-sources.jar
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building HornetQ Core Client 2.3.12.BZ1156180
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- javacc-maven-plugin:2.6:javacc (javacc) @ hornetq-core-client ---
+Java Compiler Compiler Version 5.0 (Parser Generator)
+(type "javacc" with no arguments for help)
+Reading from file /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-core-client/src/main/javacc/FilterParser.jj . . .
+Note: UNICODE_INPUT option is specified. Please make sure you create the parser/lexer using a Reader with the correct character encoding.
+File "TokenMgrError.java" does not exist.  Will create one.
+File "ParseException.java" does not exist.  Will create one.
+File "Token.java" does not exist.  Will create one.
+File "SimpleCharStream.java" does not exist.  Will create one.
+Parser generated successfully.
+[INFO] Processed 1 grammar
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ hornetq-core-client ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 1 resource
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.0:compile (default-compile) @ hornetq-core-client ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 239 source files to /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-core-client/target/classes
+[WARNING] bootstrap class path not set in conjunction with -source 1.6
+[WARNING] /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-core-client/src/main/java/org/hornetq/api/core/JGroupsBroadcastGroupConfiguration.java: /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-core-client/src/main/java/org/hornetq/api/core/JGroupsBroadcastGroupConfiguration.java uses or overrides a deprecated API.
+[WARNING] /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-core-client/src/main/java/org/hornetq/api/core/JGroupsBroadcastGroupConfiguration.java: Recompile with -Xlint:deprecation for details.
+[WARNING] /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-core-client/src/main/java/org/hornetq/utils/PriorityLinkedListImpl.java: Some input files use unchecked or unsafe operations.
+[WARNING] /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-core-client/src/main/java/org/hornetq/utils/PriorityLinkedListImpl.java: Recompile with -Xlint:unchecked for details.
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ hornetq-core-client ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-core-client/src/test/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.0:testCompile (default-testCompile) @ hornetq-core-client ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 10 source files to /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-core-client/target/test-classes
+[WARNING] bootstrap class path not set in conjunction with -source 1.6
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.13:test (default-test) @ hornetq-core-client ---
+[INFO] Surefire report directory: /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-core-client/target/surefire-reports
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running org.hornetq.core.remoting.impl.netty.HornetQFrameDecoderTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.09 sec
+Running org.hornetq.util.CompressionUtilTest
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.012 sec
+Running org.hornetq.util.ConcurrentHashSetTest
+Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.021 sec
+Running org.hornetq.util.TimeAndCounterIDGeneratorTest
+Time = 149440CEEB6, SequenceGenerator(tmMark=149440CEEB000000, CurrentCounter = 1482881434761822208, HexCurrentCounter = 149440CEEB000000)
+Current Time = 149440CEF00 SequenceGenerator(tmMark=149440CEF0000000, CurrentCounter = 1482881434845708288, HexCurrentCounter = 149440CEF0000000)
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.081 sec
+Running org.hornetq.util.TypedPropertiesConversionTest
+Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.014 sec
+Running org.hornetq.util.TypedPropertiesTest
+Tests run: 13, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.011 sec
+Running org.hornetq.util.XMLUtilTest
+Tests run: 19, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.082 sec
+
+Results :
+
+Tests run: 59, Failures: 0, Errors: 0, Skipped: 0
+
+[INFO] 
+[INFO] --- maven-jar-plugin:2.4:test-jar (default) @ hornetq-core-client ---
+[INFO] Building jar: /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-core-client/target/hornetq-core-client-2.3.12.BZ1156180-tests.jar
+[INFO] 
+[INFO] --- maven-jar-plugin:2.4:jar (default-jar) @ hornetq-core-client ---
+[INFO] Building jar: /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-core-client/target/hornetq-core-client-2.3.12.BZ1156180.jar
+[INFO] 
+[INFO] >>> maven-source-plugin:2.2.1:jar (attach-sources) @ hornetq-core-client >>>
+[INFO] 
+[INFO] --- javacc-maven-plugin:2.6:javacc (javacc) @ hornetq-core-client ---
+[INFO] Skipping - all parsers are up to date
+[INFO] 
+[INFO] <<< maven-source-plugin:2.2.1:jar (attach-sources) @ hornetq-core-client <<<
+[INFO] 
+[INFO] --- maven-source-plugin:2.2.1:jar (attach-sources) @ hornetq-core-client ---
+[INFO] Building jar: /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-core-client/target/hornetq-core-client-2.3.12.BZ1156180-sources.jar
+[INFO] 
+[INFO] >>> maven-source-plugin:2.2.1:jar (default) @ hornetq-core-client >>>
+[INFO] 
+[INFO] --- javacc-maven-plugin:2.6:javacc (javacc) @ hornetq-core-client ---
+[INFO] Skipping - all parsers are up to date
+[INFO] 
+[INFO] <<< maven-source-plugin:2.2.1:jar (default) @ hornetq-core-client <<<
+[INFO] 
+[INFO] --- maven-source-plugin:2.2.1:jar (default) @ hornetq-core-client ---
+[INFO] 
+[INFO] --- maven-install-plugin:2.4:install (default-install) @ hornetq-core-client ---
+[INFO] Installing /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-core-client/target/hornetq-core-client-2.3.12.BZ1156180.jar to /Users/aminebelkoura/.m2/repository/org/hornetq/hornetq-core-client/2.3.12.BZ1156180/hornetq-core-client-2.3.12.BZ1156180.jar
+[INFO] Installing /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-core-client/pom.xml to /Users/aminebelkoura/.m2/repository/org/hornetq/hornetq-core-client/2.3.12.BZ1156180/hornetq-core-client-2.3.12.BZ1156180.pom
+[INFO] Installing /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-core-client/target/hornetq-core-client-2.3.12.BZ1156180-tests.jar to /Users/aminebelkoura/.m2/repository/org/hornetq/hornetq-core-client/2.3.12.BZ1156180/hornetq-core-client-2.3.12.BZ1156180-tests.jar
+[INFO] Installing /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-core-client/target/hornetq-core-client-2.3.12.BZ1156180-sources.jar to /Users/aminebelkoura/.m2/repository/org/hornetq/hornetq-core-client/2.3.12.BZ1156180/hornetq-core-client-2.3.12.BZ1156180-sources.jar
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building HornetQ Server 2.3.12.BZ1156180
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ hornetq-server ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 2 resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.0:compile (default-compile) @ hornetq-server ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 264 source files to /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-server/target/classes
+[WARNING] bootstrap class path not set in conjunction with -source 1.6
+[WARNING] /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-server/src/main/java/org/hornetq/core/management/impl/HornetQServerControlImpl.java: /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-server/src/main/java/org/hornetq/core/management/impl/HornetQServerControlImpl.java uses or overrides a deprecated API.
+[WARNING] /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-server/src/main/java/org/hornetq/core/management/impl/HornetQServerControlImpl.java: Recompile with -Xlint:deprecation for details.
+[WARNING] /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-server/src/main/java/org/hornetq/core/registry/MapBindingRegistry.java: Some input files use unchecked or unsafe operations.
+[WARNING] /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-server/src/main/java/org/hornetq/core/registry/MapBindingRegistry.java: Recompile with -Xlint:unchecked for details.
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ hornetq-server ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 10 resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.0:testCompile (default-testCompile) @ hornetq-server ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 17 source files to /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-server/target/test-classes
+[WARNING] bootstrap class path not set in conjunction with -source 1.6
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.13:test (default-test) @ hornetq-server ---
+[INFO] Surefire report directory: /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-server/target/surefire-reports
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running org.hornetq.core.config.impl.ConfigurationImplTest
+org.hornetq.core.config.impl.ConfigurationImplTest::#test testGetSetInterceptors
+org.hornetq.core.config.impl.ConfigurationImplTest::#test testSerialize
+org.hornetq.core.config.impl.ConfigurationImplTest::#test testSetGetAttributes
+org.hornetq.core.config.impl.ConfigurationImplTest::#test testDefaults
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.203 sec
+Running org.hornetq.core.config.impl.DefaultsFileConfigurationTest
+org.hornetq.core.config.impl.DefaultsFileConfigurationTest::#test testDefaults
+org.hornetq.core.config.impl.DefaultsFileConfigurationTest::#test testGetSetInterceptors
+org.hornetq.core.config.impl.DefaultsFileConfigurationTest::#test testSerialize
+org.hornetq.core.config.impl.DefaultsFileConfigurationTest::#test testSetGetAttributes
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.282 sec
+Running org.hornetq.core.config.impl.FileConfigurationParserTest
+org.hornetq.core.config.impl.FileConfigurationParserTest::#test testSchemaValidation
+org.hornetq.core.config.impl.FileConfigurationParserTest::#test testDivertRoutingNameIsNotRequired
+org.hornetq.core.config.impl.FileConfigurationParserTest::#test testParsingDefaultServerConfig
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.589 sec
+Running org.hornetq.core.config.impl.FileConfigurationTest
+org.hornetq.core.config.impl.FileConfigurationTest::#test testDefaults
+org.hornetq.core.config.impl.FileConfigurationTest::#test testSetGetConfigurationURL
+org.hornetq.core.config.impl.FileConfigurationTest::#test testGetSetInterceptors
+org.hornetq.core.config.impl.FileConfigurationTest::#test testSerialize
+org.hornetq.core.config.impl.FileConfigurationTest::#test testSetGetAttributes
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.162 sec
+Running org.hornetq.core.config.impl.ValidatorsTest
+Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.015 sec
+Running org.hornetq.core.filter.impl.FilterTest
+Tests run: 21, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.058 sec
+Running org.hornetq.core.filter.impl.OperatorTest
+Tests run: 24, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.008 sec
+Running org.hornetq.core.list.PriorityLinkedListTest
+Tests run: 11, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.008 sec
+Running org.hornetq.core.message.impl.MessagePropertyTest
+org.hornetq.core.message.impl.MessagePropertyTest::#test testProperties
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.688 sec
+Running org.hornetq.core.security.RoleTest
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 sec
+Running org.hornetq.core.version.impl.VersionImplTest
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 sec
+Running org.hornetq.tests.util.SimpleStringTest
+Tests run: 16, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.164 sec
+
+Results :
+
+Tests run: 104, Failures: 0, Errors: 0, Skipped: 0
+
+[INFO] 
+[INFO] --- maven-jar-plugin:2.4:test-jar (default) @ hornetq-server ---
+[INFO] Building jar: /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-server/target/hornetq-server-2.3.12.BZ1156180-tests.jar
+[INFO] 
+[INFO] --- maven-jar-plugin:2.4:jar (default-jar) @ hornetq-server ---
+[INFO] Building jar: /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-server/target/hornetq-server-2.3.12.BZ1156180.jar
+[INFO] 
+[INFO] >>> maven-source-plugin:2.2.1:jar (attach-sources) @ hornetq-server >>>
+[INFO] 
+[INFO] <<< maven-source-plugin:2.2.1:jar (attach-sources) @ hornetq-server <<<
+[INFO] 
+[INFO] --- maven-source-plugin:2.2.1:jar (attach-sources) @ hornetq-server ---
+[INFO] Building jar: /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-server/target/hornetq-server-2.3.12.BZ1156180-sources.jar
+[INFO] 
+[INFO] >>> maven-source-plugin:2.2.1:jar (default) @ hornetq-server >>>
+[INFO] 
+[INFO] <<< maven-source-plugin:2.2.1:jar (default) @ hornetq-server <<<
+[INFO] 
+[INFO] --- maven-source-plugin:2.2.1:jar (default) @ hornetq-server ---
+[INFO] 
+[INFO] --- maven-install-plugin:2.4:install (default-install) @ hornetq-server ---
+[INFO] Installing /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-server/target/hornetq-server-2.3.12.BZ1156180.jar to /Users/aminebelkoura/.m2/repository/org/hornetq/hornetq-server/2.3.12.BZ1156180/hornetq-server-2.3.12.BZ1156180.jar
+[INFO] Installing /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-server/pom.xml to /Users/aminebelkoura/.m2/repository/org/hornetq/hornetq-server/2.3.12.BZ1156180/hornetq-server-2.3.12.BZ1156180.pom
+[INFO] Installing /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-server/target/hornetq-server-2.3.12.BZ1156180-tests.jar to /Users/aminebelkoura/.m2/repository/org/hornetq/hornetq-server/2.3.12.BZ1156180/hornetq-server-2.3.12.BZ1156180-tests.jar
+[INFO] Installing /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-server/target/hornetq-server-2.3.12.BZ1156180-sources.jar to /Users/aminebelkoura/.m2/repository/org/hornetq/hornetq-server/2.3.12.BZ1156180/hornetq-server-2.3.12.BZ1156180-sources.jar
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building HornetQ JMS Client 2.3.12.BZ1156180
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ hornetq-jms-client ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-jms-client/src/main/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.0:compile (default-compile) @ hornetq-jms-client ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 50 source files to /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-jms-client/target/classes
+[WARNING] bootstrap class path not set in conjunction with -source 1.6
+[WARNING] /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-jms-client/src/main/java/org/hornetq/jms/client/HornetQMessage.java: Some input files use unchecked or unsafe operations.
+[WARNING] /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-jms-client/src/main/java/org/hornetq/jms/client/HornetQMessage.java: Recompile with -Xlint:unchecked for details.
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ hornetq-jms-client ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-jms-client/src/test/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.0:testCompile (default-testCompile) @ hornetq-jms-client ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.13:test (default-test) @ hornetq-jms-client ---
+[INFO] No tests to run.
+[INFO] 
+[INFO] --- maven-jar-plugin:2.4:jar (default-jar) @ hornetq-jms-client ---
+[INFO] Building jar: /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-jms-client/target/hornetq-jms-client-2.3.12.BZ1156180.jar
+[INFO] 
+[INFO] >>> maven-source-plugin:2.2.1:jar (attach-sources) @ hornetq-jms-client >>>
+[INFO] 
+[INFO] <<< maven-source-plugin:2.2.1:jar (attach-sources) @ hornetq-jms-client <<<
+[INFO] 
+[INFO] --- maven-source-plugin:2.2.1:jar (attach-sources) @ hornetq-jms-client ---
+[INFO] Building jar: /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-jms-client/target/hornetq-jms-client-2.3.12.BZ1156180-sources.jar
+[INFO] 
+[INFO] >>> maven-source-plugin:2.2.1:jar (default) @ hornetq-jms-client >>>
+[INFO] 
+[INFO] <<< maven-source-plugin:2.2.1:jar (default) @ hornetq-jms-client <<<
+[INFO] 
+[INFO] --- maven-source-plugin:2.2.1:jar (default) @ hornetq-jms-client ---
+[INFO] 
+[INFO] --- maven-install-plugin:2.4:install (default-install) @ hornetq-jms-client ---
+[INFO] Installing /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-jms-client/target/hornetq-jms-client-2.3.12.BZ1156180.jar to /Users/aminebelkoura/.m2/repository/org/hornetq/hornetq-jms-client/2.3.12.BZ1156180/hornetq-jms-client-2.3.12.BZ1156180.jar
+[INFO] Installing /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-jms-client/pom.xml to /Users/aminebelkoura/.m2/repository/org/hornetq/hornetq-jms-client/2.3.12.BZ1156180/hornetq-jms-client-2.3.12.BZ1156180.pom
+[INFO] Installing /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-jms-client/target/hornetq-jms-client-2.3.12.BZ1156180-sources.jar to /Users/aminebelkoura/.m2/repository/org/hornetq/hornetq-jms-client/2.3.12.BZ1156180/hornetq-jms-client-2.3.12.BZ1156180-sources.jar
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building HornetQ JMS Server 2.3.12.BZ1156180
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ hornetq-jms-server ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 1 resource
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.0:compile (default-compile) @ hornetq-jms-server ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 49 source files to /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-jms-server/target/classes
+[WARNING] bootstrap class path not set in conjunction with -source 1.6
+[WARNING] /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-jms-server/src/main/java/org/hornetq/jms/management/impl/JMSTopicControlImpl.java: Some input files use unchecked or unsafe operations.
+[WARNING] /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-jms-server/src/main/java/org/hornetq/jms/management/impl/JMSTopicControlImpl.java: Recompile with -Xlint:unchecked for details.
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ hornetq-jms-server ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-jms-server/src/test/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.0:testCompile (default-testCompile) @ hornetq-jms-server ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.13:test (default-test) @ hornetq-jms-server ---
+[INFO] No tests to run.
+[INFO] 
+[INFO] --- maven-jar-plugin:2.4:jar (default-jar) @ hornetq-jms-server ---
+[INFO] Building jar: /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-jms-server/target/hornetq-jms-server-2.3.12.BZ1156180.jar
+[INFO] 
+[INFO] >>> maven-source-plugin:2.2.1:jar (attach-sources) @ hornetq-jms-server >>>
+[INFO] 
+[INFO] <<< maven-source-plugin:2.2.1:jar (attach-sources) @ hornetq-jms-server <<<
+[INFO] 
+[INFO] --- maven-source-plugin:2.2.1:jar (attach-sources) @ hornetq-jms-server ---
+[INFO] Building jar: /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-jms-server/target/hornetq-jms-server-2.3.12.BZ1156180-sources.jar
+[INFO] 
+[INFO] >>> maven-source-plugin:2.2.1:jar (default) @ hornetq-jms-server >>>
+[INFO] 
+[INFO] <<< maven-source-plugin:2.2.1:jar (default) @ hornetq-jms-server <<<
+[INFO] 
+[INFO] --- maven-source-plugin:2.2.1:jar (default) @ hornetq-jms-server ---
+[INFO] 
+[INFO] --- maven-install-plugin:2.4:install (default-install) @ hornetq-jms-server ---
+[INFO] Installing /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-jms-server/target/hornetq-jms-server-2.3.12.BZ1156180.jar to /Users/aminebelkoura/.m2/repository/org/hornetq/hornetq-jms-server/2.3.12.BZ1156180/hornetq-jms-server-2.3.12.BZ1156180.jar
+[INFO] Installing /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-jms-server/pom.xml to /Users/aminebelkoura/.m2/repository/org/hornetq/hornetq-jms-server/2.3.12.BZ1156180/hornetq-jms-server-2.3.12.BZ1156180.pom
+[INFO] Installing /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-jms-server/target/hornetq-jms-server-2.3.12.BZ1156180-sources.jar to /Users/aminebelkoura/.m2/repository/org/hornetq/hornetq-jms-server/2.3.12.BZ1156180/hornetq-jms-server-2.3.12.BZ1156180-sources.jar
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building HornetQ RAR POM 2.3.12.BZ1156180
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ hornetq-ra ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-ra/src/main/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.0:compile (default-compile) @ hornetq-ra ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 39 source files to /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-ra/target/classes
+[WARNING] bootstrap class path not set in conjunction with -source 1.6
+[WARNING] /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-ra/src/main/java/org/hornetq/ra/HornetQRAConnectionMetaData.java: /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-ra/src/main/java/org/hornetq/ra/HornetQRAConnectionMetaData.java uses unchecked or unsafe operations.
+[WARNING] /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-ra/src/main/java/org/hornetq/ra/HornetQRAConnectionMetaData.java: Recompile with -Xlint:unchecked for details.
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ hornetq-ra ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-ra/src/test/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.0:testCompile (default-testCompile) @ hornetq-ra ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.13:test (default-test) @ hornetq-ra ---
+[INFO] No tests to run.
+[INFO] 
+[INFO] --- maven-jar-plugin:2.4:jar (default-jar) @ hornetq-ra ---
+[INFO] Building jar: /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-ra/target/hornetq-ra-2.3.12.BZ1156180.jar
+[INFO] 
+[INFO] >>> maven-source-plugin:2.2.1:jar (attach-sources) @ hornetq-ra >>>
+[INFO] 
+[INFO] <<< maven-source-plugin:2.2.1:jar (attach-sources) @ hornetq-ra <<<
+[INFO] 
+[INFO] --- maven-source-plugin:2.2.1:jar (attach-sources) @ hornetq-ra ---
+[INFO] Building jar: /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-ra/target/hornetq-ra-2.3.12.BZ1156180-sources.jar
+[INFO] 
+[INFO] >>> maven-source-plugin:2.2.1:jar (default) @ hornetq-ra >>>
+[INFO] 
+[INFO] <<< maven-source-plugin:2.2.1:jar (default) @ hornetq-ra <<<
+[INFO] 
+[INFO] --- maven-source-plugin:2.2.1:jar (default) @ hornetq-ra ---
+[INFO] 
+[INFO] --- maven-install-plugin:2.4:install (default-install) @ hornetq-ra ---
+[INFO] Installing /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-ra/target/hornetq-ra-2.3.12.BZ1156180.jar to /Users/aminebelkoura/.m2/repository/org/hornetq/hornetq-ra/2.3.12.BZ1156180/hornetq-ra-2.3.12.BZ1156180.jar
+[INFO] Installing /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-ra/pom.xml to /Users/aminebelkoura/.m2/repository/org/hornetq/hornetq-ra/2.3.12.BZ1156180/hornetq-ra-2.3.12.BZ1156180.pom
+[INFO] Installing /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-ra/target/hornetq-ra-2.3.12.BZ1156180-sources.jar to /Users/aminebelkoura/.m2/repository/org/hornetq/hornetq-ra/2.3.12.BZ1156180/hornetq-ra-2.3.12.BZ1156180-sources.jar
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building HornetQ REST Interface Implementation 2.3.12.BZ1156180
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ hornetq-rest ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 1 resource
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.0:compile (default-compile) @ hornetq-rest ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 66 source files to /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-rest/target/classes
+[WARNING] bootstrap class path not set in conjunction with -source 1.6
+[WARNING] /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-rest/src/main/java/org/hornetq/rest/Jms.java: /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-rest/src/main/java/org/hornetq/rest/Jms.java uses unchecked or unsafe operations.
+[WARNING] /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-rest/src/main/java/org/hornetq/rest/Jms.java: Recompile with -Xlint:unchecked for details.
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ hornetq-rest ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 4 resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.0:testCompile (default-testCompile) @ hornetq-rest ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 24 source files to /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-rest/target/test-classes
+[WARNING] bootstrap class path not set in conjunction with -source 1.6
+[WARNING] /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-rest/src/test/java/org/hornetq/rest/test/MessageTestBase.java: Some input files use unchecked or unsafe operations.
+[WARNING] /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-rest/src/test/java/org/hornetq/rest/test/MessageTestBase.java: Recompile with -Xlint:unchecked for details.
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.13:test (default-test) @ hornetq-rest ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- maven-jar-plugin:2.4:jar (default-jar) @ hornetq-rest ---
+[INFO] Building jar: /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-rest/target/hornetq-rest-2.3.12.BZ1156180.jar
+[INFO] 
+[INFO] >>> maven-source-plugin:2.2.1:jar (attach-sources) @ hornetq-rest >>>
+[INFO] 
+[INFO] <<< maven-source-plugin:2.2.1:jar (attach-sources) @ hornetq-rest <<<
+[INFO] 
+[INFO] --- maven-source-plugin:2.2.1:jar (attach-sources) @ hornetq-rest ---
+[INFO] Building jar: /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-rest/target/hornetq-rest-2.3.12.BZ1156180-sources.jar
+[INFO] 
+[INFO] >>> maven-source-plugin:2.2.1:jar (default) @ hornetq-rest >>>
+[INFO] 
+[INFO] <<< maven-source-plugin:2.2.1:jar (default) @ hornetq-rest <<<
+[INFO] 
+[INFO] --- maven-source-plugin:2.2.1:jar (default) @ hornetq-rest ---
+[INFO] 
+[INFO] --- maven-install-plugin:2.4:install (default-install) @ hornetq-rest ---
+[INFO] Installing /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-rest/target/hornetq-rest-2.3.12.BZ1156180.jar to /Users/aminebelkoura/.m2/repository/org/hornetq/rest/hornetq-rest/2.3.12.BZ1156180/hornetq-rest-2.3.12.BZ1156180.jar
+[INFO] Installing /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-rest/pom.xml to /Users/aminebelkoura/.m2/repository/org/hornetq/rest/hornetq-rest/2.3.12.BZ1156180/hornetq-rest-2.3.12.BZ1156180.pom
+[INFO] Installing /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-rest/target/hornetq-rest-2.3.12.BZ1156180-sources.jar to /Users/aminebelkoura/.m2/repository/org/hornetq/rest/hornetq-rest/2.3.12.BZ1156180/hornetq-rest-2.3.12.BZ1156180-sources.jar
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building HornetQ JBoss AS Integration 2.3.12.BZ1156180
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ hornetq-jboss-as-integration ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /Users/aminebelkoura/support/software/gits/hornetq/hornetq/integration/hornetq-jboss-as-integration/src/main/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.0:compile (default-compile) @ hornetq-jboss-as-integration ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 7 source files to /Users/aminebelkoura/support/software/gits/hornetq/hornetq/integration/hornetq-jboss-as-integration/target/classes
+[WARNING] bootstrap class path not set in conjunction with -source 1.6
+[WARNING] /Users/aminebelkoura/support/software/gits/hornetq/hornetq/integration/hornetq-jboss-as-integration/src/main/java/org/hornetq/integration/jboss/tm/JBoss4TransactionManagerLocator.java: Some input files use or override a deprecated API.
+[WARNING] /Users/aminebelkoura/support/software/gits/hornetq/hornetq/integration/hornetq-jboss-as-integration/src/main/java/org/hornetq/integration/jboss/tm/JBoss4TransactionManagerLocator.java: Recompile with -Xlint:deprecation for details.
+[WARNING] /Users/aminebelkoura/support/software/gits/hornetq/hornetq/integration/hornetq-jboss-as-integration/src/main/java/org/hornetq/integration/jboss/security/AS4SecurityActions.java: /Users/aminebelkoura/support/software/gits/hornetq/hornetq/integration/hornetq-jboss-as-integration/src/main/java/org/hornetq/integration/jboss/security/AS4SecurityActions.java uses unchecked or unsafe operations.
+[WARNING] /Users/aminebelkoura/support/software/gits/hornetq/hornetq/integration/hornetq-jboss-as-integration/src/main/java/org/hornetq/integration/jboss/security/AS4SecurityActions.java: Recompile with -Xlint:unchecked for details.
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ hornetq-jboss-as-integration ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /Users/aminebelkoura/support/software/gits/hornetq/hornetq/integration/hornetq-jboss-as-integration/src/test/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.0:testCompile (default-testCompile) @ hornetq-jboss-as-integration ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.13:test (default-test) @ hornetq-jboss-as-integration ---
+[INFO] No tests to run.
+[INFO] 
+[INFO] --- maven-jar-plugin:2.4:jar (default-jar) @ hornetq-jboss-as-integration ---
+[INFO] Building jar: /Users/aminebelkoura/support/software/gits/hornetq/hornetq/integration/hornetq-jboss-as-integration/target/hornetq-jboss-as-integration-2.3.12.BZ1156180.jar
+[INFO] 
+[INFO] >>> maven-source-plugin:2.2.1:jar (attach-sources) @ hornetq-jboss-as-integration >>>
+[INFO] 
+[INFO] <<< maven-source-plugin:2.2.1:jar (attach-sources) @ hornetq-jboss-as-integration <<<
+[INFO] 
+[INFO] --- maven-source-plugin:2.2.1:jar (attach-sources) @ hornetq-jboss-as-integration ---
+[INFO] Building jar: /Users/aminebelkoura/support/software/gits/hornetq/hornetq/integration/hornetq-jboss-as-integration/target/hornetq-jboss-as-integration-2.3.12.BZ1156180-sources.jar
+[INFO] 
+[INFO] >>> maven-source-plugin:2.2.1:jar (default) @ hornetq-jboss-as-integration >>>
+[INFO] 
+[INFO] <<< maven-source-plugin:2.2.1:jar (default) @ hornetq-jboss-as-integration <<<
+[INFO] 
+[INFO] --- maven-source-plugin:2.2.1:jar (default) @ hornetq-jboss-as-integration ---
+[INFO] 
+[INFO] --- maven-install-plugin:2.4:install (default-install) @ hornetq-jboss-as-integration ---
+[INFO] Installing /Users/aminebelkoura/support/software/gits/hornetq/hornetq/integration/hornetq-jboss-as-integration/target/hornetq-jboss-as-integration-2.3.12.BZ1156180.jar to /Users/aminebelkoura/.m2/repository/org/hornetq/hornetq-jboss-as-integration/2.3.12.BZ1156180/hornetq-jboss-as-integration-2.3.12.BZ1156180.jar
+[INFO] Installing /Users/aminebelkoura/support/software/gits/hornetq/hornetq/integration/hornetq-jboss-as-integration/pom.xml to /Users/aminebelkoura/.m2/repository/org/hornetq/hornetq-jboss-as-integration/2.3.12.BZ1156180/hornetq-jboss-as-integration-2.3.12.BZ1156180.pom
+[INFO] Installing /Users/aminebelkoura/support/software/gits/hornetq/hornetq/integration/hornetq-jboss-as-integration/target/hornetq-jboss-as-integration-2.3.12.BZ1156180-sources.jar to /Users/aminebelkoura/.m2/repository/org/hornetq/hornetq-jboss-as-integration/2.3.12.BZ1156180/hornetq-jboss-as-integration-2.3.12.BZ1156180-sources.jar
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building HornetQ JBoss AS4 Integration 2.3.12.BZ1156180
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ hornetq-service-sar ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-service-sar/src/main/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.0:compile (default-compile) @ hornetq-service-sar ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 10 source files to /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-service-sar/target/classes
+[WARNING] bootstrap class path not set in conjunction with -source 1.6
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ hornetq-service-sar ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-service-sar/src/test/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.0:testCompile (default-testCompile) @ hornetq-service-sar ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.13:test (default-test) @ hornetq-service-sar ---
+[INFO] No tests to run.
+[INFO] 
+[INFO] --- maven-jar-plugin:2.4:jar (default-jar) @ hornetq-service-sar ---
+[INFO] Building jar: /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-service-sar/target/hornetq-service-sar-2.3.12.BZ1156180.jar
+[INFO] 
+[INFO] >>> maven-source-plugin:2.2.1:jar (attach-sources) @ hornetq-service-sar >>>
+[INFO] 
+[INFO] <<< maven-source-plugin:2.2.1:jar (attach-sources) @ hornetq-service-sar <<<
+[INFO] 
+[INFO] --- maven-source-plugin:2.2.1:jar (attach-sources) @ hornetq-service-sar ---
+[INFO] Building jar: /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-service-sar/target/hornetq-service-sar-2.3.12.BZ1156180-sources.jar
+[INFO] 
+[INFO] >>> maven-source-plugin:2.2.1:jar (default) @ hornetq-service-sar >>>
+[INFO] 
+[INFO] <<< maven-source-plugin:2.2.1:jar (default) @ hornetq-service-sar <<<
+[INFO] 
+[INFO] --- maven-source-plugin:2.2.1:jar (default) @ hornetq-service-sar ---
+[INFO] 
+[INFO] --- maven-install-plugin:2.4:install (default-install) @ hornetq-service-sar ---
+[INFO] Installing /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-service-sar/target/hornetq-service-sar-2.3.12.BZ1156180.jar to /Users/aminebelkoura/.m2/repository/org/hornetq/hornetq-service-sar/2.3.12.BZ1156180/hornetq-service-sar-2.3.12.BZ1156180.jar
+[INFO] Installing /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-service-sar/pom.xml to /Users/aminebelkoura/.m2/repository/org/hornetq/hornetq-service-sar/2.3.12.BZ1156180/hornetq-service-sar-2.3.12.BZ1156180.pom
+[INFO] Installing /Users/aminebelkoura/support/software/gits/hornetq/hornetq/hornetq-service-sar/target/hornetq-service-sar-2.3.12.BZ1156180-sources.jar to /Users/aminebelkoura/.m2/repository/org/hornetq/hornetq-service-sar/2.3.12.BZ1156180/hornetq-service-sar-2.3.12.BZ1156180-sources.jar
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building HornetQ Spring Integration 2.3.12.BZ1156180
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ hornetq-spring-integration ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /Users/aminebelkoura/support/software/gits/hornetq/hornetq/integration/hornetq-spring-integration/src/main/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.0:compile (default-compile) @ hornetq-spring-integration ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 4 source files to /Users/aminebelkoura/support/software/gits/hornetq/hornetq/integration/hornetq-spring-integration/target/classes
+[WARNING] bootstrap class path not set in conjunction with -source 1.6
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ hornetq-spring-integration ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /Users/aminebelkoura/support/software/gits/hornetq/hornetq/integration/hornetq-spring-integration/src/test/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.0:testCompile (default-testCompile) @ hornetq-spring-integration ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.13:test (default-test) @ hornetq-spring-integration ---
+[INFO] No tests to run.
+[INFO] 
+[INFO] --- maven-jar-plugin:2.4:jar (default-jar) @ hornetq-spring-integration ---
+[INFO] Building jar: /Users/aminebelkoura/support/software/gits/hornetq/hornetq/integration/hornetq-spring-integration/target/hornetq-spring-integration-2.3.12.BZ1156180.jar
+[INFO] 
+[INFO] >>> maven-source-plugin:2.2.1:jar (attach-sources) @ hornetq-spring-integration >>>
+[INFO] 
+[INFO] <<< maven-source-plugin:2.2.1:jar (attach-sources) @ hornetq-spring-integration <<<
+[INFO] 
+[INFO] --- maven-source-plugin:2.2.1:jar (attach-sources) @ hornetq-spring-integration ---
+[INFO] Building jar: /Users/aminebelkoura/support/software/gits/hornetq/hornetq/integration/hornetq-spring-integration/target/hornetq-spring-integration-2.3.12.BZ1156180-sources.jar
+[INFO] 
+[INFO] >>> maven-source-plugin:2.2.1:jar (default) @ hornetq-spring-integration >>>
+[INFO] 
+[INFO] <<< maven-source-plugin:2.2.1:jar (default) @ hornetq-spring-integration <<<
+[INFO] 
+[INFO] --- maven-source-plugin:2.2.1:jar (default) @ hornetq-spring-integration ---
+[INFO] 
+[INFO] --- maven-install-plugin:2.4:install (default-install) @ hornetq-spring-integration ---
+[INFO] Installing /Users/aminebelkoura/support/software/gits/hornetq/hornetq/integration/hornetq-spring-integration/target/hornetq-spring-integration-2.3.12.BZ1156180.jar to /Users/aminebelkoura/.m2/repository/org/hornetq/hornetq-spring-integration/2.3.12.BZ1156180/hornetq-spring-integration-2.3.12.BZ1156180.jar
+[INFO] Installing /Users/aminebelkoura/support/software/gits/hornetq/hornetq/integration/hornetq-spring-integration/pom.xml to /Users/aminebelkoura/.m2/repository/org/hornetq/hornetq-spring-integration/2.3.12.BZ1156180/hornetq-spring-integration-2.3.12.BZ1156180.pom
+[INFO] Installing /Users/aminebelkoura/support/software/gits/hornetq/hornetq/integration/hornetq-spring-integration/target/hornetq-spring-integration-2.3.12.BZ1156180-sources.jar to /Users/aminebelkoura/.m2/repository/org/hornetq/hornetq-spring-integration/2.3.12.BZ1156180/hornetq-spring-integration-2.3.12.BZ1156180-sources.jar
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building HornetQ Twitter Integration 2.3.12.BZ1156180
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ hornetq-twitter-integration ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /Users/aminebelkoura/support/software/gits/hornetq/hornetq/integration/hornetq-twitter-integration/src/main/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.0:compile (default-compile) @ hornetq-twitter-integration ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 7 source files to /Users/aminebelkoura/support/software/gits/hornetq/hornetq/integration/hornetq-twitter-integration/target/classes
+[WARNING] bootstrap class path not set in conjunction with -source 1.6
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ hornetq-twitter-integration ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /Users/aminebelkoura/support/software/gits/hornetq/hornetq/integration/hornetq-twitter-integration/src/test/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.0:testCompile (default-testCompile) @ hornetq-twitter-integration ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.13:test (default-test) @ hornetq-twitter-integration ---
+[INFO] No tests to run.
+[INFO] 
+[INFO] --- maven-jar-plugin:2.4:jar (default-jar) @ hornetq-twitter-integration ---
+[INFO] Building jar: /Users/aminebelkoura/support/software/gits/hornetq/hornetq/integration/hornetq-twitter-integration/target/hornetq-twitter-integration-2.3.12.BZ1156180.jar
+[INFO] 
+[INFO] >>> maven-source-plugin:2.2.1:jar (attach-sources) @ hornetq-twitter-integration >>>
+[INFO] 
+[INFO] <<< maven-source-plugin:2.2.1:jar (attach-sources) @ hornetq-twitter-integration <<<
+[INFO] 
+[INFO] --- maven-source-plugin:2.2.1:jar (attach-sources) @ hornetq-twitter-integration ---
+[INFO] Building jar: /Users/aminebelkoura/support/software/gits/hornetq/hornetq/integration/hornetq-twitter-integration/target/hornetq-twitter-integration-2.3.12.BZ1156180-sources.jar
+[INFO] 
+[INFO] >>> maven-source-plugin:2.2.1:jar (default) @ hornetq-twitter-integration >>>
+[INFO] 
+[INFO] <<< maven-source-plugin:2.2.1:jar (default) @ hornetq-twitter-integration <<<
+[INFO] 
+[INFO] --- maven-source-plugin:2.2.1:jar (default) @ hornetq-twitter-integration ---
+[INFO] 
+[INFO] --- maven-install-plugin:2.4:install (default-install) @ hornetq-twitter-integration ---
+[INFO] Installing /Users/aminebelkoura/support/software/gits/hornetq/hornetq/integration/hornetq-twitter-integration/target/hornetq-twitter-integration-2.3.12.BZ1156180.jar to /Users/aminebelkoura/.m2/repository/org/hornetq/hornetq-twitter-integration/2.3.12.BZ1156180/hornetq-twitter-integration-2.3.12.BZ1156180.jar
+[INFO] Installing /Users/aminebelkoura/support/software/gits/hornetq/hornetq/integration/hornetq-twitter-integration/pom.xml to /Users/aminebelkoura/.m2/repository/org/hornetq/hornetq-twitter-integration/2.3.12.BZ1156180/hornetq-twitter-integration-2.3.12.BZ1156180.pom
+[INFO] Installing /Users/aminebelkoura/support/software/gits/hornetq/hornetq/integration/hornetq-twitter-integration/target/hornetq-twitter-integration-2.3.12.BZ1156180-sources.jar to /Users/aminebelkoura/.m2/repository/org/hornetq/hornetq-twitter-integration/2.3.12.BZ1156180/hornetq-twitter-integration-2.3.12.BZ1156180-sources.jar
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building HornetQ Tests POM 2.3.12.BZ1156180
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] >>> maven-source-plugin:2.2.1:jar (attach-sources) @ hornetq-tests-pom >>>
+[INFO] 
+[INFO] <<< maven-source-plugin:2.2.1:jar (attach-sources) @ hornetq-tests-pom <<<
+[INFO] 
+[INFO] --- maven-source-plugin:2.2.1:jar (attach-sources) @ hornetq-tests-pom ---
+[INFO] 
+[INFO] >>> maven-source-plugin:2.2.1:jar (default) @ hornetq-tests-pom >>>
+[INFO] 
+[INFO] <<< maven-source-plugin:2.2.1:jar (default) @ hornetq-tests-pom <<<
+[INFO] 
+[INFO] --- maven-source-plugin:2.2.1:jar (default) @ hornetq-tests-pom ---
+[INFO] 
+[INFO] --- maven-install-plugin:2.4:install (default-install) @ hornetq-tests-pom ---
+[INFO] Installing /Users/aminebelkoura/support/software/gits/hornetq/hornetq/tests/pom.xml to /Users/aminebelkoura/.m2/repository/org/hornetq/tests/hornetq-tests-pom/2.3.12.BZ1156180/hornetq-tests-pom-2.3.12.BZ1156180.pom
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building HornetQ Unit Tests 2.3.12.BZ1156180
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ unit-tests ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /Users/aminebelkoura/support/software/gits/hornetq/hornetq/tests/unit-tests/src/main/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.0:compile (default-compile) @ unit-tests ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ unit-tests ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 5 resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.0:testCompile (default-testCompile) @ unit-tests ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 90 source files to /Users/aminebelkoura/support/software/gits/hornetq/hornetq/tests/unit-tests/target/test-classes
+[WARNING] bootstrap class path not set in conjunction with -source 1.6
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.13:test (default-test) @ unit-tests ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- maven-jar-plugin:2.4:test-jar (default) @ unit-tests ---
+[INFO] Building jar: /Users/aminebelkoura/support/software/gits/hornetq/hornetq/tests/unit-tests/target/unit-tests-2.3.12.BZ1156180-tests.jar
+[INFO] 
+[INFO] --- maven-jar-plugin:2.4:jar (default-jar) @ unit-tests ---
+[WARNING] JAR will be empty - no content was marked for inclusion!
+[INFO] Building jar: /Users/aminebelkoura/support/software/gits/hornetq/hornetq/tests/unit-tests/target/unit-tests-2.3.12.BZ1156180.jar
+[INFO] 
+[INFO] >>> maven-source-plugin:2.2.1:jar (attach-sources) @ unit-tests >>>
+[INFO] 
+[INFO] <<< maven-source-plugin:2.2.1:jar (attach-sources) @ unit-tests <<<
+[INFO] 
+[INFO] --- maven-source-plugin:2.2.1:jar (attach-sources) @ unit-tests ---
+[INFO] No sources in project. Archive not created.
+[INFO] 
+[INFO] >>> maven-source-plugin:2.2.1:jar (default) @ unit-tests >>>
+[INFO] 
+[INFO] <<< maven-source-plugin:2.2.1:jar (default) @ unit-tests <<<
+[INFO] 
+[INFO] --- maven-source-plugin:2.2.1:jar (default) @ unit-tests ---
+[INFO] No sources in project. Archive not created.
+[INFO] 
+[INFO] --- maven-install-plugin:2.4:install (default-install) @ unit-tests ---
+[INFO] Installing /Users/aminebelkoura/support/software/gits/hornetq/hornetq/tests/unit-tests/target/unit-tests-2.3.12.BZ1156180.jar to /Users/aminebelkoura/.m2/repository/org/hornetq/tests/unit-tests/2.3.12.BZ1156180/unit-tests-2.3.12.BZ1156180.jar
+[INFO] Installing /Users/aminebelkoura/support/software/gits/hornetq/hornetq/tests/unit-tests/pom.xml to /Users/aminebelkoura/.m2/repository/org/hornetq/tests/unit-tests/2.3.12.BZ1156180/unit-tests-2.3.12.BZ1156180.pom
+[INFO] Installing /Users/aminebelkoura/support/software/gits/hornetq/hornetq/tests/unit-tests/target/unit-tests-2.3.12.BZ1156180-tests.jar to /Users/aminebelkoura/.m2/repository/org/hornetq/tests/unit-tests/2.3.12.BZ1156180/unit-tests-2.3.12.BZ1156180-tests.jar
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building HornetQ JMS Tests 2.3.12.BZ1156180
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ jms-tests ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /Users/aminebelkoura/support/software/gits/hornetq/hornetq/tests/jms-tests/src/main/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.0:compile (default-compile) @ jms-tests ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ jms-tests ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 8 resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.0:testCompile (default-testCompile) @ jms-tests ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 98 source files to /Users/aminebelkoura/support/software/gits/hornetq/hornetq/tests/jms-tests/target/test-classes
+[WARNING] bootstrap class path not set in conjunction with -source 1.6
+[WARNING] /Users/aminebelkoura/support/software/gits/hornetq/hornetq/tests/jms-tests/src/test/java/org/hornetq/jms/tests/tools/container/InVMContext.java: Some input files use unchecked or unsafe operations.
+[WARNING] /Users/aminebelkoura/support/software/gits/hornetq/hornetq/tests/jms-tests/src/test/java/org/hornetq/jms/tests/tools/container/InVMContext.java: Recompile with -Xlint:unchecked for details.
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.13:test (default-test) @ jms-tests ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- maven-jar-plugin:2.4:test-jar (default) @ jms-tests ---
+[INFO] Building jar: /Users/aminebelkoura/support/software/gits/hornetq/hornetq/tests/jms-tests/target/jms-tests-2.3.12.BZ1156180-tests.jar
+[INFO] 
+[INFO] --- maven-jar-plugin:2.4:jar (default-jar) @ jms-tests ---
+[WARNING] JAR will be empty - no content was marked for inclusion!
+[INFO] Building jar: /Users/aminebelkoura/support/software/gits/hornetq/hornetq/tests/jms-tests/target/jms-tests-2.3.12.BZ1156180.jar
+[INFO] 
+[INFO] >>> maven-source-plugin:2.2.1:jar (attach-sources) @ jms-tests >>>
+[INFO] 
+[INFO] <<< maven-source-plugin:2.2.1:jar (attach-sources) @ jms-tests <<<
+[INFO] 
+[INFO] --- maven-source-plugin:2.2.1:jar (attach-sources) @ jms-tests ---
+[INFO] No sources in project. Archive not created.
+[INFO] 
+[INFO] >>> maven-source-plugin:2.2.1:jar (default) @ jms-tests >>>
+[INFO] 
+[INFO] <<< maven-source-plugin:2.2.1:jar (default) @ jms-tests <<<
+[INFO] 
+[INFO] --- maven-source-plugin:2.2.1:jar (default) @ jms-tests ---
+[INFO] No sources in project. Archive not created.
+[INFO] 
+[INFO] --- maven-install-plugin:2.4:install (default-install) @ jms-tests ---
+[INFO] Installing /Users/aminebelkoura/support/software/gits/hornetq/hornetq/tests/jms-tests/target/jms-tests-2.3.12.BZ1156180.jar to /Users/aminebelkoura/.m2/repository/org/hornetq/tests/jms-tests/2.3.12.BZ1156180/jms-tests-2.3.12.BZ1156180.jar
+[INFO] Installing /Users/aminebelkoura/support/software/gits/hornetq/hornetq/tests/jms-tests/pom.xml to /Users/aminebelkoura/.m2/repository/org/hornetq/tests/jms-tests/2.3.12.BZ1156180/jms-tests-2.3.12.BZ1156180.pom
+[INFO] Installing /Users/aminebelkoura/support/software/gits/hornetq/hornetq/tests/jms-tests/target/jms-tests-2.3.12.BZ1156180-tests.jar to /Users/aminebelkoura/.m2/repository/org/hornetq/tests/jms-tests/2.3.12.BZ1156180/jms-tests-2.3.12.BZ1156180-tests.jar
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building HornetQ Integration Tests 2.3.12.BZ1156180
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ integration-tests ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /Users/aminebelkoura/support/software/gits/hornetq/hornetq/tests/integration-tests/src/main/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.0:compile (default-compile) @ integration-tests ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ integration-tests ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 9 resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.0:testCompile (default-testCompile) @ integration-tests ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 416 source files to /Users/aminebelkoura/support/software/gits/hornetq/hornetq/tests/integration-tests/target/test-classes
+[WARNING] bootstrap class path not set in conjunction with -source 1.6
+[WARNING] /Users/aminebelkoura/support/software/gits/hornetq/hornetq/tests/integration-tests/src/test/java/org/hornetq/tests/integration/paging/PagingReceiveTest.java: Some input files use or override a deprecated API.
+[WARNING] /Users/aminebelkoura/support/software/gits/hornetq/hornetq/tests/integration-tests/src/test/java/org/hornetq/tests/integration/paging/PagingReceiveTest.java: Recompile with -Xlint:deprecation for details.
+[WARNING] /Users/aminebelkoura/support/software/gits/hornetq/hornetq/tests/integration-tests/src/test/java/org/hornetq/tests/integration/management/ManagementHelperTest.java: Some input files use unchecked or unsafe operations.
+[WARNING] /Users/aminebelkoura/support/software/gits/hornetq/hornetq/tests/integration-tests/src/test/java/org/hornetq/tests/integration/management/ManagementHelperTest.java: Recompile with -Xlint:unchecked for details.
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.13:test (default-test) @ integration-tests ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- maven-jar-plugin:2.4:test-jar (default) @ integration-tests ---
+[INFO] Building jar: /Users/aminebelkoura/support/software/gits/hornetq/hornetq/tests/integration-tests/target/integration-tests-2.3.12.BZ1156180-tests.jar
+[INFO] 
+[INFO] --- maven-jar-plugin:2.4:jar (default-jar) @ integration-tests ---
+[WARNING] JAR will be empty - no content was marked for inclusion!
+[INFO] Building jar: /Users/aminebelkoura/support/software/gits/hornetq/hornetq/tests/integration-tests/target/integration-tests-2.3.12.BZ1156180.jar
+[INFO] 
+[INFO] >>> maven-source-plugin:2.2.1:jar (attach-sources) @ integration-tests >>>
+[INFO] 
+[INFO] <<< maven-source-plugin:2.2.1:jar (attach-sources) @ integration-tests <<<
+[INFO] 
+[INFO] --- maven-source-plugin:2.2.1:jar (attach-sources) @ integration-tests ---
+[INFO] No sources in project. Archive not created.
+[INFO] 
+[INFO] >>> maven-source-plugin:2.2.1:jar (default) @ integration-tests >>>
+[INFO] 
+[INFO] <<< maven-source-plugin:2.2.1:jar (default) @ integration-tests <<<
+[INFO] 
+[INFO] --- maven-source-plugin:2.2.1:jar (default) @ integration-tests ---
+[INFO] No sources in project. Archive not created.
+[INFO] 
+[INFO] --- maven-install-plugin:2.4:install (default-install) @ integration-tests ---
+[INFO] Installing /Users/aminebelkoura/support/software/gits/hornetq/hornetq/tests/integration-tests/target/integration-tests-2.3.12.BZ1156180.jar to /Users/aminebelkoura/.m2/repository/org/hornetq/tests/integration-tests/2.3.12.BZ1156180/integration-tests-2.3.12.BZ1156180.jar
+[INFO] Installing /Users/aminebelkoura/support/software/gits/hornetq/hornetq/tests/integration-tests/pom.xml to /Users/aminebelkoura/.m2/repository/org/hornetq/tests/integration-tests/2.3.12.BZ1156180/integration-tests-2.3.12.BZ1156180.pom
+[INFO] Installing /Users/aminebelkoura/support/software/gits/hornetq/hornetq/tests/integration-tests/target/integration-tests-2.3.12.BZ1156180-tests.jar to /Users/aminebelkoura/.m2/repository/org/hornetq/tests/integration-tests/2.3.12.BZ1156180/integration-tests-2.3.12.BZ1156180-tests.jar
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building HornetQ Joram Tests 2.3.12.BZ1156180
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ joram-tests ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /Users/aminebelkoura/support/software/gits/hornetq/hornetq/tests/joram-tests/src/main/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.0:compile (default-compile) @ joram-tests ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ joram-tests ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 2 resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.0:testCompile (default-testCompile) @ joram-tests ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 30 source files to /Users/aminebelkoura/support/software/gits/hornetq/hornetq/tests/joram-tests/target/test-classes
+[WARNING] bootstrap class path not set in conjunction with -source 1.6
+[WARNING] /Users/aminebelkoura/support/software/gits/hornetq/hornetq/tests/joram-tests/src/test/java/org/objectweb/jtests/jms/conform/message/MessageTypeTest.java: /Users/aminebelkoura/support/software/gits/hornetq/hornetq/tests/joram-tests/src/test/java/org/objectweb/jtests/jms/conform/message/MessageTypeTest.java uses unchecked or unsafe operations.
+[WARNING] /Users/aminebelkoura/support/software/gits/hornetq/hornetq/tests/joram-tests/src/test/java/org/objectweb/jtests/jms/conform/message/MessageTypeTest.java: Recompile with -Xlint:unchecked for details.
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.13:test (default-test) @ joram-tests ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- maven-jar-plugin:2.4:jar (default-jar) @ joram-tests ---
+[WARNING] JAR will be empty - no content was marked for inclusion!
+[INFO] Building jar: /Users/aminebelkoura/support/software/gits/hornetq/hornetq/tests/joram-tests/target/joram-tests-2.3.12.BZ1156180.jar
+[INFO] 
+[INFO] >>> maven-source-plugin:2.2.1:jar (attach-sources) @ joram-tests >>>
+[INFO] 
+[INFO] <<< maven-source-plugin:2.2.1:jar (attach-sources) @ joram-tests <<<
+[INFO] 
+[INFO] --- maven-source-plugin:2.2.1:jar (attach-sources) @ joram-tests ---
+[INFO] No sources in project. Archive not created.
+[INFO] 
+[INFO] --- maven-jar-plugin:2.4:test-jar (default) @ joram-tests ---
+[INFO] Building jar: /Users/aminebelkoura/support/software/gits/hornetq/hornetq/tests/joram-tests/target/joram-tests-2.3.12.BZ1156180-tests.jar
+[INFO] 
+[INFO] >>> maven-source-plugin:2.2.1:jar (default) @ joram-tests >>>
+[INFO] 
+[INFO] <<< maven-source-plugin:2.2.1:jar (default) @ joram-tests <<<
+[INFO] 
+[INFO] --- maven-source-plugin:2.2.1:jar (default) @ joram-tests ---
+[INFO] No sources in project. Archive not created.
+[INFO] 
+[INFO] --- maven-install-plugin:2.4:install (default-install) @ joram-tests ---
+[INFO] Installing /Users/aminebelkoura/support/software/gits/hornetq/hornetq/tests/joram-tests/target/joram-tests-2.3.12.BZ1156180.jar to /Users/aminebelkoura/.m2/repository/org/hornetq/tests/joram-tests/2.3.12.BZ1156180/joram-tests-2.3.12.BZ1156180.jar
+[INFO] Installing /Users/aminebelkoura/support/software/gits/hornetq/hornetq/tests/joram-tests/pom.xml to /Users/aminebelkoura/.m2/repository/org/hornetq/tests/joram-tests/2.3.12.BZ1156180/joram-tests-2.3.12.BZ1156180.pom
+[INFO] Installing /Users/aminebelkoura/support/software/gits/hornetq/hornetq/tests/joram-tests/target/joram-tests-2.3.12.BZ1156180-tests.jar to /Users/aminebelkoura/.m2/repository/org/hornetq/tests/joram-tests/2.3.12.BZ1156180/joram-tests-2.3.12.BZ1156180-tests.jar
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building HornetQ soak Tests 2.3.12.BZ1156180
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ soak-tests ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /Users/aminebelkoura/support/software/gits/hornetq/hornetq/tests/soak-tests/src/main/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.0:compile (default-compile) @ soak-tests ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ soak-tests ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /Users/aminebelkoura/support/software/gits/hornetq/hornetq/tests/soak-tests/src/test/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.0:testCompile (default-testCompile) @ soak-tests ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 7 source files to /Users/aminebelkoura/support/software/gits/hornetq/hornetq/tests/soak-tests/target/test-classes
+[WARNING] bootstrap class path not set in conjunction with -source 1.6
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.13:test (default-test) @ soak-tests ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- maven-jar-plugin:2.4:jar (default-jar) @ soak-tests ---
+[WARNING] JAR will be empty - no content was marked for inclusion!
+[INFO] Building jar: /Users/aminebelkoura/support/software/gits/hornetq/hornetq/tests/soak-tests/target/soak-tests-2.3.12.BZ1156180.jar
+[INFO] 
+[INFO] >>> maven-source-plugin:2.2.1:jar (attach-sources) @ soak-tests >>>
+[INFO] 
+[INFO] <<< maven-source-plugin:2.2.1:jar (attach-sources) @ soak-tests <<<
+[INFO] 
+[INFO] --- maven-source-plugin:2.2.1:jar (attach-sources) @ soak-tests ---
+[INFO] No sources in project. Archive not created.
+[INFO] 
+[INFO] >>> maven-source-plugin:2.2.1:jar (default) @ soak-tests >>>
+[INFO] 
+[INFO] <<< maven-source-plugin:2.2.1:jar (default) @ soak-tests <<<
+[INFO] 
+[INFO] --- maven-source-plugin:2.2.1:jar (default) @ soak-tests ---
+[INFO] No sources in project. Archive not created.
+[INFO] 
+[INFO] --- maven-install-plugin:2.4:install (default-install) @ soak-tests ---
+[INFO] Installing /Users/aminebelkoura/support/software/gits/hornetq/hornetq/tests/soak-tests/target/soak-tests-2.3.12.BZ1156180.jar to /Users/aminebelkoura/.m2/repository/org/hornetq/tests/soak-tests/2.3.12.BZ1156180/soak-tests-2.3.12.BZ1156180.jar
+[INFO] Installing /Users/aminebelkoura/support/software/gits/hornetq/hornetq/tests/soak-tests/pom.xml to /Users/aminebelkoura/.m2/repository/org/hornetq/tests/soak-tests/2.3.12.BZ1156180/soak-tests-2.3.12.BZ1156180.pom
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building HornetQ stress Tests 2.3.12.BZ1156180
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ stress-tests ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /Users/aminebelkoura/support/software/gits/hornetq/hornetq/tests/stress-tests/src/main/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.0:compile (default-compile) @ stress-tests ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ stress-tests ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /Users/aminebelkoura/support/software/gits/hornetq/hornetq/tests/stress-tests/src/test/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.0:testCompile (default-testCompile) @ stress-tests ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 22 source files to /Users/aminebelkoura/support/software/gits/hornetq/hornetq/tests/stress-tests/target/test-classes
+[WARNING] bootstrap class path not set in conjunction with -source 1.6
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.13:test (default-test) @ stress-tests ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- maven-jar-plugin:2.4:jar (default-jar) @ stress-tests ---
+[WARNING] JAR will be empty - no content was marked for inclusion!
+[INFO] Building jar: /Users/aminebelkoura/support/software/gits/hornetq/hornetq/tests/stress-tests/target/stress-tests-2.3.12.BZ1156180.jar
+[INFO] 
+[INFO] >>> maven-source-plugin:2.2.1:jar (attach-sources) @ stress-tests >>>
+[INFO] 
+[INFO] <<< maven-source-plugin:2.2.1:jar (attach-sources) @ stress-tests <<<
+[INFO] 
+[INFO] --- maven-source-plugin:2.2.1:jar (attach-sources) @ stress-tests ---
+[INFO] No sources in project. Archive not created.
+[INFO] 
+[INFO] >>> maven-source-plugin:2.2.1:jar (default) @ stress-tests >>>
+[INFO] 
+[INFO] <<< maven-source-plugin:2.2.1:jar (default) @ stress-tests <<<
+[INFO] 
+[INFO] --- maven-source-plugin:2.2.1:jar (default) @ stress-tests ---
+[INFO] No sources in project. Archive not created.
+[INFO] 
+[INFO] --- maven-install-plugin:2.4:install (default-install) @ stress-tests ---
+[INFO] Installing /Users/aminebelkoura/support/software/gits/hornetq/hornetq/tests/stress-tests/target/stress-tests-2.3.12.BZ1156180.jar to /Users/aminebelkoura/.m2/repository/org/hornetq/tests/stress-tests/2.3.12.BZ1156180/stress-tests-2.3.12.BZ1156180.jar
+[INFO] Installing /Users/aminebelkoura/support/software/gits/hornetq/hornetq/tests/stress-tests/pom.xml to /Users/aminebelkoura/.m2/repository/org/hornetq/tests/stress-tests/2.3.12.BZ1156180/stress-tests-2.3.12.BZ1156180.pom
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building HornetQ timing Tests 2.3.12.BZ1156180
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ timing-tests ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /Users/aminebelkoura/support/software/gits/hornetq/hornetq/tests/timing-tests/src/main/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.0:compile (default-compile) @ timing-tests ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ timing-tests ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /Users/aminebelkoura/support/software/gits/hornetq/hornetq/tests/timing-tests/src/test/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.0:testCompile (default-testCompile) @ timing-tests ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 10 source files to /Users/aminebelkoura/support/software/gits/hornetq/hornetq/tests/timing-tests/target/test-classes
+[WARNING] bootstrap class path not set in conjunction with -source 1.6
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.13:test (default-test) @ timing-tests ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- maven-jar-plugin:2.4:jar (default-jar) @ timing-tests ---
+[WARNING] JAR will be empty - no content was marked for inclusion!
+[INFO] Building jar: /Users/aminebelkoura/support/software/gits/hornetq/hornetq/tests/timing-tests/target/timing-tests-2.3.12.BZ1156180.jar
+[INFO] 
+[INFO] >>> maven-source-plugin:2.2.1:jar (attach-sources) @ timing-tests >>>
+[INFO] 
+[INFO] <<< maven-source-plugin:2.2.1:jar (attach-sources) @ timing-tests <<<
+[INFO] 
+[INFO] --- maven-source-plugin:2.2.1:jar (attach-sources) @ timing-tests ---
+[INFO] No sources in project. Archive not created.
+[INFO] 
+[INFO] >>> maven-source-plugin:2.2.1:jar (default) @ timing-tests >>>
+[INFO] 
+[INFO] <<< maven-source-plugin:2.2.1:jar (default) @ timing-tests <<<
+[INFO] 
+[INFO] --- maven-source-plugin:2.2.1:jar (default) @ timing-tests ---
+[INFO] No sources in project. Archive not created.
+[INFO] 
+[INFO] --- maven-install-plugin:2.4:install (default-install) @ timing-tests ---
+[INFO] Installing /Users/aminebelkoura/support/software/gits/hornetq/hornetq/tests/timing-tests/target/timing-tests-2.3.12.BZ1156180.jar to /Users/aminebelkoura/.m2/repository/org/hornetq/tests/timing-tests/2.3.12.BZ1156180/timing-tests-2.3.12.BZ1156180.jar
+[INFO] Installing /Users/aminebelkoura/support/software/gits/hornetq/hornetq/tests/timing-tests/pom.xml to /Users/aminebelkoura/.m2/repository/org/hornetq/tests/timing-tests/2.3.12.BZ1156180/timing-tests-2.3.12.BZ1156180.pom
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building HornetQ concurrent Tests 2.3.12.BZ1156180
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ concurrent-tests ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /Users/aminebelkoura/support/software/gits/hornetq/hornetq/tests/concurrent-tests/src/main/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.0:compile (default-compile) @ concurrent-tests ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ concurrent-tests ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /Users/aminebelkoura/support/software/gits/hornetq/hornetq/tests/concurrent-tests/src/test/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.0:testCompile (default-testCompile) @ concurrent-tests ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 2 source files to /Users/aminebelkoura/support/software/gits/hornetq/hornetq/tests/concurrent-tests/target/test-classes
+[WARNING] bootstrap class path not set in conjunction with -source 1.6
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.13:test (default-test) @ concurrent-tests ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- maven-jar-plugin:2.4:jar (default-jar) @ concurrent-tests ---
+[WARNING] JAR will be empty - no content was marked for inclusion!
+[INFO] Building jar: /Users/aminebelkoura/support/software/gits/hornetq/hornetq/tests/concurrent-tests/target/concurrent-tests-2.3.12.BZ1156180.jar
+[INFO] 
+[INFO] >>> maven-source-plugin:2.2.1:jar (attach-sources) @ concurrent-tests >>>
+[INFO] 
+[INFO] <<< maven-source-plugin:2.2.1:jar (attach-sources) @ concurrent-tests <<<
+[INFO] 
+[INFO] --- maven-source-plugin:2.2.1:jar (attach-sources) @ concurrent-tests ---
+[INFO] No sources in project. Archive not created.
+[INFO] 
+[INFO] >>> maven-source-plugin:2.2.1:jar (default) @ concurrent-tests >>>
+[INFO] 
+[INFO] <<< maven-source-plugin:2.2.1:jar (default) @ concurrent-tests <<<
+[INFO] 
+[INFO] --- maven-source-plugin:2.2.1:jar (default) @ concurrent-tests ---
+[INFO] No sources in project. Archive not created.
+[INFO] 
+[INFO] --- maven-install-plugin:2.4:install (default-install) @ concurrent-tests ---
+[INFO] Installing /Users/aminebelkoura/support/software/gits/hornetq/hornetq/tests/concurrent-tests/target/concurrent-tests-2.3.12.BZ1156180.jar to /Users/aminebelkoura/.m2/repository/org/hornetq/tests/concurrent-tests/2.3.12.BZ1156180/concurrent-tests-2.3.12.BZ1156180.jar
+[INFO] Installing /Users/aminebelkoura/support/software/gits/hornetq/hornetq/tests/concurrent-tests/pom.xml to /Users/aminebelkoura/.m2/repository/org/hornetq/tests/concurrent-tests/2.3.12.BZ1156180/concurrent-tests-2.3.12.BZ1156180.pom
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building HornetQ performance Tests 2.3.12.BZ1156180
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ performance-tests ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /Users/aminebelkoura/support/software/gits/hornetq/hornetq/tests/performance-tests/src/main/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.0:compile (default-compile) @ performance-tests ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ performance-tests ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /Users/aminebelkoura/support/software/gits/hornetq/hornetq/tests/performance-tests/src/test/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.0:testCompile (default-testCompile) @ performance-tests ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 5 source files to /Users/aminebelkoura/support/software/gits/hornetq/hornetq/tests/performance-tests/target/test-classes
+[WARNING] bootstrap class path not set in conjunction with -source 1.6
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.13:test (default-test) @ performance-tests ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- maven-jar-plugin:2.4:jar (default-jar) @ performance-tests ---
+[WARNING] JAR will be empty - no content was marked for inclusion!
+[INFO] Building jar: /Users/aminebelkoura/support/software/gits/hornetq/hornetq/tests/performance-tests/target/performance-tests-2.3.12.BZ1156180.jar
+[INFO] 
+[INFO] >>> maven-source-plugin:2.2.1:jar (attach-sources) @ performance-tests >>>
+[INFO] 
+[INFO] <<< maven-source-plugin:2.2.1:jar (attach-sources) @ performance-tests <<<
+[INFO] 
+[INFO] --- maven-source-plugin:2.2.1:jar (attach-sources) @ performance-tests ---
+[INFO] No sources in project. Archive not created.
+[INFO] 
+[INFO] >>> maven-source-plugin:2.2.1:jar (default) @ performance-tests >>>
+[INFO] 
+[INFO] <<< maven-source-plugin:2.2.1:jar (default) @ performance-tests <<<
+[INFO] 
+[INFO] --- maven-source-plugin:2.2.1:jar (default) @ performance-tests ---
+[INFO] No sources in project. Archive not created.
+[INFO] 
+[INFO] --- maven-install-plugin:2.4:install (default-install) @ performance-tests ---
+[INFO] Installing /Users/aminebelkoura/support/software/gits/hornetq/hornetq/tests/performance-tests/target/performance-tests-2.3.12.BZ1156180.jar to /Users/aminebelkoura/.m2/repository/org/hornetq/tests/performance-tests/2.3.12.BZ1156180/performance-tests-2.3.12.BZ1156180.jar
+[INFO] Installing /Users/aminebelkoura/support/software/gits/hornetq/hornetq/tests/performance-tests/pom.xml to /Users/aminebelkoura/.m2/repository/org/hornetq/tests/performance-tests/2.3.12.BZ1156180/performance-tests-2.3.12.BZ1156180.pom
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building HornetQ ByteMan Tests 2.3.12.BZ1156180
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ byteman-tests ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /Users/aminebelkoura/support/software/gits/hornetq/hornetq/tests/byteman-tests/src/main/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.0:compile (default-compile) @ byteman-tests ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ byteman-tests ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /Users/aminebelkoura/support/software/gits/hornetq/hornetq/tests/byteman-tests/src/test/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.0:testCompile (default-testCompile) @ byteman-tests ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 6 source files to /Users/aminebelkoura/support/software/gits/hornetq/hornetq/tests/byteman-tests/target/test-classes
+[WARNING] bootstrap class path not set in conjunction with -source 1.6
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.13:test (default-test) @ byteman-tests ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- maven-jar-plugin:2.4:test-jar (default) @ byteman-tests ---
+[INFO] Building jar: /Users/aminebelkoura/support/software/gits/hornetq/hornetq/tests/byteman-tests/target/byteman-tests-2.3.12.BZ1156180-tests.jar
+[INFO] 
+[INFO] --- maven-jar-plugin:2.4:jar (default-jar) @ byteman-tests ---
+[WARNING] JAR will be empty - no content was marked for inclusion!
+[INFO] Building jar: /Users/aminebelkoura/support/software/gits/hornetq/hornetq/tests/byteman-tests/target/byteman-tests-2.3.12.BZ1156180.jar
+[INFO] 
+[INFO] >>> maven-source-plugin:2.2.1:jar (attach-sources) @ byteman-tests >>>
+[INFO] 
+[INFO] <<< maven-source-plugin:2.2.1:jar (attach-sources) @ byteman-tests <<<
+[INFO] 
+[INFO] --- maven-source-plugin:2.2.1:jar (attach-sources) @ byteman-tests ---
+[INFO] No sources in project. Archive not created.
+[INFO] 
+[INFO] >>> maven-source-plugin:2.2.1:jar (default) @ byteman-tests >>>
+[INFO] 
+[INFO] <<< maven-source-plugin:2.2.1:jar (default) @ byteman-tests <<<
+[INFO] 
+[INFO] --- maven-source-plugin:2.2.1:jar (default) @ byteman-tests ---
+[INFO] No sources in project. Archive not created.
+[INFO] 
+[INFO] --- maven-install-plugin:2.4:install (default-install) @ byteman-tests ---
+[INFO] Installing /Users/aminebelkoura/support/software/gits/hornetq/hornetq/tests/byteman-tests/target/byteman-tests-2.3.12.BZ1156180.jar to /Users/aminebelkoura/.m2/repository/org/hornetq/tests/byteman-tests/2.3.12.BZ1156180/byteman-tests-2.3.12.BZ1156180.jar
+[INFO] Installing /Users/aminebelkoura/support/software/gits/hornetq/hornetq/tests/byteman-tests/pom.xml to /Users/aminebelkoura/.m2/repository/org/hornetq/tests/byteman-tests/2.3.12.BZ1156180/byteman-tests-2.3.12.BZ1156180.pom
+[INFO] Installing /Users/aminebelkoura/support/software/gits/hornetq/hornetq/tests/byteman-tests/target/byteman-tests-2.3.12.BZ1156180-tests.jar to /Users/aminebelkoura/.m2/repository/org/hornetq/tests/byteman-tests/2.3.12.BZ1156180/byteman-tests-2.3.12.BZ1156180-tests.jar
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Summary:
+[INFO] 
+[INFO] HornetQ Parent .................................... SUCCESS [0.441s]
+[INFO] HornetQ Bootstrap ................................. SUCCESS [1.183s]
+[INFO] HornetQ Commons ................................... SUCCESS [1.405s]
+[INFO] HornetQ Journal ................................... SUCCESS [1.507s]
+[INFO] HornetQ Core Client ............................... SUCCESS [3.502s]
+[INFO] HornetQ Server .................................... SUCCESS [6.157s]
+[INFO] HornetQ JMS Client ................................ SUCCESS [0.378s]
+[INFO] HornetQ JMS Server ................................ SUCCESS [0.859s]
+[INFO] HornetQ RAR POM ................................... SUCCESS [0.569s]
+[INFO] HornetQ REST Interface Implementation ............. SUCCESS [0.783s]
+[INFO] HornetQ JBoss AS Integration ...................... SUCCESS [0.192s]
+[INFO] HornetQ JBoss AS4 Integration ..................... SUCCESS [0.105s]
+[INFO] HornetQ Spring Integration ........................ SUCCESS [0.149s]
+[INFO] HornetQ Twitter Integration ....................... SUCCESS [0.158s]
+[INFO] HornetQ Tests POM ................................. SUCCESS [0.013s]
+[INFO] HornetQ Unit Tests ................................ SUCCESS [1.156s]
+[INFO] HornetQ JMS Tests ................................. SUCCESS [0.977s]
+[INFO] HornetQ Integration Tests ......................... SUCCESS [2.960s]
+[INFO] HornetQ Joram Tests ............................... SUCCESS [0.528s]
+[INFO] HornetQ soak Tests ................................ SUCCESS [0.107s]
+[INFO] HornetQ stress Tests .............................. SUCCESS [0.261s]
+[INFO] HornetQ timing Tests .............................. SUCCESS [0.225s]
+[INFO] HornetQ concurrent Tests .......................... SUCCESS [0.086s]
+[INFO] HornetQ performance Tests ......................... SUCCESS [0.078s]
+[INFO] HornetQ ByteMan Tests ............................. SUCCESS [0.195s]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 24.272s
+[INFO] Finished at: Fri Oct 24 16:25:55 CDT 2014
+[INFO] Final Memory: 69M/1406M
+[INFO] ------------------------------------------------------------------------

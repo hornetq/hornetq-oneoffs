@@ -4,7 +4,7 @@
    <groupId>org.hornetq</groupId>
    <artifactId>hornetq-pom</artifactId>
    <packaging>pom</packaging>
-   <version>2.3.1.Final</version>
+   <version>2.3.1.BZ1158168</version>
 
    <name>HornetQ Parent</name>
    <url>http://hornetq.org</url>
@@ -32,7 +32,7 @@
    <properties>
       <netty.version>3.6.2.Final</netty.version>
       <netty.version.string>${netty.version}-c0d783c</netty.version.string>
-      <hornetq.version.versionName>Wild Hornet</hornetq.version.versionName>
+      <hornetq.version.versionName>BZ158168</hornetq.version.versionName>
       <hornetq.version.majorVersion>2</hornetq.version.majorVersion>
       <hornetq.version.minorVersion>3</hornetq.version.minorVersion>
       <hornetq.version.microVersion>1</hornetq.version.microVersion>
