@@ -1,4 +1,4 @@
-ipackage org.hornetq.byteman.tests;
+package org.hornetq.byteman.tests;
 
 import java.util.ArrayList;
 import java.util.List;
