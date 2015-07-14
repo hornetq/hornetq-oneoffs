@@ -19,9 +19,8 @@ Copyright 2009 Red Hat, Inc.
    <groupId>org.hornetq</groupId>
    <artifactId>messaging</artifactId>
    <packaging>pom</packaging>
-   <version>2.2.X.SNAPSHOT</version>
-
-    <properties>
+   <version>2.2.32.JBPAPP-11226</version>
+<properties>
         <resteasy.version>2.1.0.GA</resteasy.version>
     </properties>
 
