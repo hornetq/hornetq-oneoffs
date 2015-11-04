@@ -12,8 +12,6 @@
  */
 package org.hornetq.ra.inflow;
 
-import java.util.UUID;
-
 import javax.jms.InvalidClientIDException;
 import javax.jms.MessageListener;
 import javax.resource.ResourceException;
@@ -22,6 +20,7 @@ import javax.resource.spi.endpoint.MessageEndpointFactory;
 import javax.transaction.Transaction;
 import javax.transaction.TransactionManager;
 import javax.transaction.xa.XAResource;
+import java.util.UUID;
 
 import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.SimpleString;
@@ -316,6 +315,12 @@ public class HornetQMessageHandler implements MessageHandler
          {
             tm.setTransactionTimeout(activation.getActivationSpec().getTransactionTimeout());
          }
+
+         if (trace)
+         {
+            HornetQRALogger.LOGGER.trace("HornetQMessageHandler::calling beforeDelivery on message " + message);
+         }
+
          endpoint.beforeDelivery(HornetQActivation.ONMESSAGE);
          beforeDelivery = true;
          msg.doBeforeReceive();
@@ -324,14 +329,19 @@ public class HornetQMessageHandler implements MessageHandler
 
          if (transacted)
          {
-            message.acknowledge();
+            message.individualAcknowledge();
          }
 
          ((MessageListener)endpoint).onMessage(msg);
 
          if (!transacted)
          {
-            message.acknowledge();
+            message.individualAcknowledge();
+         }
+
+         if (trace)
+         {
+            HornetQRALogger.LOGGER.trace("HornetQMessageHandler::calling afterDelivery on message " + message);
          }
 
          try
@@ -341,6 +351,10 @@ public class HornetQMessageHandler implements MessageHandler
          catch (ResourceException e)
          {
             HornetQRALogger.LOGGER.unableToCallAfterDelivery(e);
+            // If we get here, The TX was already rolled back
+            // However we must do some stuff now to make sure the client message buffer is cleared
+            // so we mark this as rollbackonly
+            session.markRollbackOnly();
             return;
          }
          if (useLocalTx)
@@ -376,15 +390,6 @@ public class HornetQMessageHandler implements MessageHandler
                catch (Exception e1)
                {
                   HornetQRALogger.LOGGER.warn("unnable to clear the transaction", e1);
-                  try
-                  {
-                     session.rollback();
-                  }
-                  catch (HornetQException e2)
-                  {
-                     HornetQRALogger.LOGGER.warn("Unable to rollback", e2);
-                     return;
-                  }
                }
             }
 
@@ -413,6 +418,10 @@ public class HornetQMessageHandler implements MessageHandler
                HornetQRALogger.LOGGER.unableToRollbackTX();
             }
          }
+
+         // This is to make sure we will issue a rollback after failures
+         // so that would cleanup consumer buffers among other things
+         session.markRollbackOnly();
       }
       finally
       {
@@ -422,7 +431,8 @@ public class HornetQMessageHandler implements MessageHandler
          }
          catch (HornetQException e)
          {
-            HornetQRALogger.LOGGER.unableToResetSession();
+            HornetQRALogger.LOGGER.unableToResetSession(activation.toString(), e);
+            activation.startReconnectThread("Reset MessageHandler after Failure Thread");
          }
       }
 

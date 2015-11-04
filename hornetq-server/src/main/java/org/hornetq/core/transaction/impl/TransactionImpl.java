@@ -19,6 +19,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.hornetq.api.core.HornetQException;
+import org.hornetq.api.core.HornetQIllegalStateException;
 import org.hornetq.core.journal.IOAsyncTask;
 import org.hornetq.core.persistence.StorageManager;
 import org.hornetq.core.server.HornetQServerLogger;
@@ -33,6 +34,8 @@ import org.hornetq.core.transaction.TransactionOperation;
  */
 public class TransactionImpl implements Transaction
 {
+   private static final boolean isTrace = HornetQServerLogger.LOGGER.isTraceEnabled();
+
    private List<TransactionOperation> operations;
 
    private static final int INITIAL_NUM_PROPERTIES = 10;
@@ -109,6 +112,12 @@ public class TransactionImpl implements Transaction
    // Transaction implementation
    // -----------------------------------------------------------
 
+   public boolean isEffective()
+   {
+      return state == State.PREPARED || state == State.COMMITTED || state == State.ROLLEDBACK;
+
+   }
+
    public void setContainsPersistent()
    {
       containsPersistent = true;
@@ -136,32 +145,54 @@ public class TransactionImpl implements Transaction
 
    public boolean hasTimedOut(final long currentTime, final int defaultTimeout)
    {
-      if (timeoutSeconds == -1)
+      synchronized (timeoutLock)
       {
-         return getState() != Transaction.State.PREPARED && currentTime > createTime + defaultTimeout * 1000;
-      }
-      else
-      {
-         return getState() != Transaction.State.PREPARED && currentTime > createTime + timeoutSeconds * 1000;
+         boolean timedout;
+         if (timeoutSeconds == -1)
+         {
+            timedout = getState() != Transaction.State.PREPARED && currentTime > createTime + defaultTimeout * 1000;
+         }
+         else
+         {
+            timedout = getState() != Transaction.State.PREPARED && currentTime > createTime + timeoutSeconds * 1000;
+         }
+
+         if (timedout)
+         {
+            markAsRollbackOnly(new HornetQException("TX Timeout"));
+         }
+
+         return timedout;
       }
    }
 
    public void prepare() throws Exception
    {
+      if (isTrace)
+      {
+         HornetQServerLogger.LOGGER.trace("TransactionImpl::prepare::" + this);
+      }
       storageManager.readLock();
       try
       {
          synchronized (timeoutLock)
          {
+            if (isEffective())
+            {
+               HornetQServerLogger.LOGGER.debug("TransactionImpl::prepare::" + this + " is being ignored");
+               return;
+            }
             if (state == State.ROLLBACK_ONLY)
             {
+               if (isTrace)
+               {
+                  HornetQServerLogger.LOGGER.trace("TransactionImpl::prepare::rollbackonly, rollingback " + this);
+               }
+
+               internalRollback();
+
                if (exception != null)
                {
-                  // this TX will never be rolled back,
-                  // so we reset it now
-                  beforeRollback();
-                  afterRollback();
-                  operations.clear();
                   throw exception;
                }
                else
@@ -216,11 +247,21 @@ public class TransactionImpl implements Transaction
 
    public void commit(final boolean onePhase) throws Exception
    {
+      if (isTrace)
+      {
+         HornetQServerLogger.LOGGER.trace("TransactionImpl::commit::" + this);
+      }
       synchronized (timeoutLock)
       {
+         if (state == State.COMMITTED)
+         {
+            // I don't think this could happen, but just in case
+            HornetQServerLogger.LOGGER.debug("TransactionImpl::commit::" + this + " is being ignored");
+            return;
+         }
          if (state == State.ROLLBACK_ONLY)
          {
-            rollback();
+            internalRollback();
 
             if (exception != null)
             {
@@ -237,20 +278,25 @@ public class TransactionImpl implements Transaction
          {
             if (onePhase && state != State.ACTIVE || !onePhase && state != State.PREPARED)
             {
-               throw new IllegalStateException("Transaction is in invalid state " + state);
+               throw new HornetQIllegalStateException("Transaction is in invalid state " + state);
             }
          }
          else
          {
             if (state != State.ACTIVE)
             {
-               throw new IllegalStateException("Transaction is in invalid state " + state);
+               throw new HornetQIllegalStateException("Transaction is in invalid state " + state);
             }
          }
 
          beforeCommit();
 
          doCommit();
+
+         // We want to make sure that nothing else gets done after the commit is issued
+         // this will eliminate any possibility or races
+         final List<TransactionOperation> operationsToComplete = this.operations;
+         this.operations = null;
 
          // We use the Callback even for non persistence
          // If we are using non-persistence with replication, the replication manager will have
@@ -267,7 +313,7 @@ public class TransactionImpl implements Transaction
 
             public void done()
             {
-               afterCommit();
+               afterCommit(operationsToComplete);
             }
          });
 
@@ -281,72 +327,113 @@ public class TransactionImpl implements Transaction
    {
       if (containsPersistent || xid != null && state == State.PREPARED)
       {
-
+         // ^^ These are the scenarios where we require a storage.commit
+         // for anything else we won't use the journal
          storageManager.commit(id);
 
          state = State.COMMITTED;
+
       }
    }
 
    public void rollback() throws Exception
    {
+      if (isTrace)
+      {
+         HornetQServerLogger.LOGGER.trace("TransactionImpl::rollback::" + this);
+      }
       synchronized (timeoutLock)
       {
+         if (state == State.ROLLEDBACK)
+         {
+            HornetQServerLogger.LOGGER.debug("TransactionImpl::rollback::" + this + " is being ignored");
+            return;
+         }
          if (xid != null)
          {
             if (state != State.PREPARED && state != State.ACTIVE && state != State.ROLLBACK_ONLY)
             {
-               throw new IllegalStateException("Transaction is in invalid state " + state);
+               throw new HornetQIllegalStateException("Transaction is in invalid state " + state);
             }
          }
          else
          {
             if (state != State.ACTIVE && state != State.ROLLBACK_ONLY)
             {
-               throw new IllegalStateException("Transaction is in invalid state " + state);
+               throw new HornetQIllegalStateException("Transaction is in invalid state " + state);
             }
          }
 
-         beforeRollback();
-
-         doRollback();
-
-         // We use the Callback even for non persistence
-         // If we are using non-persistence with replication, the replication manager will have
-         // to execute this runnable in the correct order
-         storageManager.afterCompleteOperations(new IOAsyncTask()
-         {
-
-            public void onError(final int errorCode, final String errorMessage)
-            {
-               HornetQServerLogger.LOGGER.ioErrorOnTX(errorCode, errorMessage);
-            }
-
-            public void done()
-            {
-               afterRollback();
-               state = State.ROLLEDBACK;
-            }
-         });
+         internalRollback();
       }
+   }
+
+   private void internalRollback() throws Exception
+   {
+      if (isTrace)
+      {
+         HornetQServerLogger.LOGGER.trace("TransactionImpl::internalRollback " + this);
+      }
+
+      beforeRollback();
+
+      try
+      {
+         doRollback();
+         state = State.ROLLEDBACK;
+      }
+      catch (IllegalStateException e)
+      {
+         // Something happened before and the TX didn't make to the Journal / Storage
+         // We will like to execute afterRollback and clear anything pending
+         HornetQServerLogger.LOGGER.warn(e);
+      }
+      // We want to make sure that nothing else gets done after the commit is issued
+      // this will eliminate any possibility or races
+      final List<TransactionOperation> operationsToComplete = this.operations;
+      this.operations = null;
+
+
+      // We use the Callback even for non persistence
+      // If we are using non-persistence with replication, the replication manager will have
+      // to execute this runnable in the correct order
+      storageManager.afterCompleteOperations(new IOAsyncTask()
+      {
+
+         public void onError(final int errorCode, final String errorMessage)
+         {
+            HornetQServerLogger.LOGGER.ioErrorOnTX(errorCode, errorMessage);
+         }
+
+         public void done()
+         {
+            afterRollback(operationsToComplete);
+         }
+      });
    }
 
    public void suspend()
    {
-      if (state != State.ACTIVE)
+      synchronized (timeoutLock)
       {
-         throw new IllegalStateException("Can only suspend active transaction");
+         if (state != State.ACTIVE)
+         {
+            throw new IllegalStateException("Can only suspend active transaction");
+         }
+         state = State.SUSPENDED;
       }
-      state = State.SUSPENDED;
    }
 
    public void resume()
    {
-      if (state != State.SUSPENDED)
+      synchronized (timeoutLock)
       {
-         throw new IllegalStateException("Can only resume a suspended transaction");
+         if (state != State.SUSPENDED)
+         {
+            throw new IllegalStateException("Can only resume a suspended transaction");
+         }
+         state = State.ACTIVE;
       }
-      state = State.ACTIVE;
    }
 
    public Transaction.State getState()
@@ -364,15 +451,29 @@ public class TransactionImpl implements Transaction
       return xid;
    }
 
-   public void markAsRollbackOnly(final HornetQException exception1)
+   public void markAsRollbackOnly(final HornetQException exception)
    {
-      if (HornetQServerLogger.LOGGER.isDebugEnabled())
+      synchronized (timeoutLock)
       {
-         HornetQServerLogger.LOGGER.debug("Marking Transaction " + this.id + " as rollback only");
-      }
-      state = State.ROLLBACK_ONLY;
+         if (isTrace)
+         {
+            HornetQServerLogger.LOGGER.trace("TransactionImpl::" + this + " marking rollbackOnly for " + exception.toString() + ", msg=" + exception.getMessage());
+         }
 
-      this.exception = exception1;
+         if (isEffective())
+         {
+            HornetQServerLogger.LOGGER.debug("Trying to mark transaction " + this.id + " xid=" + this.xid + " as rollbackOnly but it was already effective (prepared, committed or rolledback!)");
+            return;
+         }
+
+         if (HornetQServerLogger.LOGGER.isDebugEnabled())
+         {
+            HornetQServerLogger.LOGGER.debug("Marking Transaction " + this.id + " as rollback only");
+         }
+         state = State.ROLLBACK_ONLY;
+
+         this.exception = exception;
+      }
    }
 
    public synchronized void addOperation(final TransactionOperation operation)
@@ -391,7 +492,14 @@ public class TransactionImpl implements Transaction
 
    public synchronized List<TransactionOperation> getAllOperations()
    {
-      return new ArrayList<TransactionOperation>(operations);
+      if ( operations != null)
+      {
+         return new ArrayList<TransactionOperation>(operations);
+      }
+      else
+      {
+         return new ArrayList<TransactionOperation>();
+      }
    }
 
    public void putProperty(final int index, final Object property)
@@ -432,25 +540,29 @@ public class TransactionImpl implements Transaction
       }
    }
 
-   private synchronized void afterCommit()
+   private synchronized void afterCommit(List<TransactionOperation> oeprationsToComplete)
    {
-      if (operations != null)
+      if (oeprationsToComplete != null)
       {
-         for (TransactionOperation operation : operations)
+         for (TransactionOperation operation : oeprationsToComplete)
          {
             operation.afterCommit(this);
          }
+         // Help out GC here
+         oeprationsToComplete.clear();
       }
    }
 
-   private synchronized void afterRollback()
+   private synchronized void afterRollback(List<TransactionOperation> oeprationsToComplete)
    {
-      if (operations != null)
+      if (oeprationsToComplete != null)
       {
-         for (TransactionOperation operation : operations)
+         for (TransactionOperation operation : oeprationsToComplete)
          {
             operation.afterRollback(this);
          }
+         // Help out GC here
+         oeprationsToComplete.clear();
       }
    }
 
@@ -505,6 +617,7 @@ public class TransactionImpl implements Transaction
       return "TransactionImpl [xid=" + xid +
          ", id=" +
          id +
+         ", xid=" + xid +
          ", state=" +
          state +
          ", createTime=" +

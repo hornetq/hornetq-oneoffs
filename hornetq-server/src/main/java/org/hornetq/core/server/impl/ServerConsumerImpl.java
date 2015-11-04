@@ -38,7 +38,6 @@ import org.hornetq.core.persistence.StorageManager;
 import org.hornetq.core.postoffice.Binding;
 import org.hornetq.core.postoffice.QueueBinding;
 import org.hornetq.core.server.HandleStatus;
-import org.hornetq.core.server.HornetQMessageBundle;
 import org.hornetq.core.server.HornetQServerLogger;
 import org.hornetq.core.server.LargeServerMessage;
 import org.hornetq.core.server.MessageReference;
@@ -317,7 +316,7 @@ public class ServerConsumerImpl implements ServerConsumer, ReadyListener
 
          if (HornetQServerLogger.LOGGER.isTraceEnabled())
          {
-            HornetQServerLogger.LOGGER.trace("Handling reference " + ref);
+            HornetQServerLogger.LOGGER.trace("ServerConsumerImpl::" + this + " Handling reference " + ref);
          }
 
          if (!browseOnly)
@@ -408,6 +407,11 @@ public class ServerConsumerImpl implements ServerConsumer, ReadyListener
    @Override
    public void close(final boolean failed) throws Exception
    {
+      if (isTrace)
+      {
+         HornetQServerLogger.LOGGER.trace("ServerConsumerImpl::" +  this + " being closed with failed=" + failed, new Exception("trace"));
+      }
+
       callback.removeReadyListener(this);
 
       setStarted(false);
@@ -430,6 +434,11 @@ public class ServerConsumerImpl implements ServerConsumer, ReadyListener
       while (iter.hasNext())
       {
          MessageReference ref = iter.next();
+
+         if (isTrace)
+         {
+            HornetQServerLogger.LOGGER.trace("ServerConsumerImpl::" +  this + " cancelling reference " + ref);
+         }
 
          ref.getQueue().cancel(tx, ref, true);
       }
@@ -539,6 +548,7 @@ public class ServerConsumerImpl implements ServerConsumer, ReadyListener
                                                   final boolean lastConsumedAsDelivered,
                                                   final Transaction tx) throws Exception
    {
+
       boolean performACK = lastConsumedAsDelivered;
 
       try
@@ -559,35 +569,39 @@ public class ServerConsumerImpl implements ServerConsumer, ReadyListener
 
       LinkedList<MessageReference> refs = new LinkedList<MessageReference>();
 
-      if (!deliveringRefs.isEmpty())
+      synchronized (lock)
       {
-         for (MessageReference ref : deliveringRefs)
+         if (!deliveringRefs.isEmpty())
          {
-            if (isTrace)
+            for (MessageReference ref : deliveringRefs)
             {
-               HornetQServerLogger.LOGGER.trace("Cancelling reference for messageID = " + ref.getMessage().getMessageID() + ", ref = " + ref);
-            }
-            if (performACK)
-            {
-               acknowledge(false, tx, ref.getMessage().getMessageID());
-
-               performACK = false;
-            }
-            else
-            {
-               if (!failed)
+               if (performACK)
                {
-                  // We don't decrement delivery count if the client failed, since there's a possibility that refs
-                  // were actually delivered but we just didn't get any acks for them
-                  // before failure
-                  ref.decrementDeliveryCount();
+                  ackReference(tx, ref);
+
+                  performACK = false;
+               }
+               else
+               {
+                  refs.add(ref);
+                  if (!failed)
+                  {
+                     // We don't decrement delivery count if the client failed, since there's a possibility that refs
+                     // were actually delivered but we just didn't get any acks for them
+                     // before failure
+                     ref.decrementDeliveryCount();
+                  }
                }
 
-               refs.add(ref);
-            }
-         }
 
-         deliveringRefs.clear();
+               if (isTrace)
+               {
+                  HornetQServerLogger.LOGGER.trace("ServerConsumerImpl::" + this + " Preparing Cancelling list for messageID = " + ref.getMessage().getMessageID() + ", ref = " + ref);
+               }
+            }
+
+            deliveringRefs.clear();
+         }
       }
 
       return refs;
@@ -736,7 +750,10 @@ public class ServerConsumerImpl implements ServerConsumer, ReadyListener
          MessageReference ref;
          do
          {
-            ref = deliveringRefs.poll();
+            synchronized (lock)
+            {
+               ref = deliveringRefs.poll();
+            }
 
             if (HornetQServerLogger.LOGGER.isTraceEnabled())
             {
@@ -745,10 +762,15 @@ public class ServerConsumerImpl implements ServerConsumer, ReadyListener
 
             if (ref == null)
             {
-               throw HornetQMessageBundle.BUNDLE.consumerNoReference(id, messageID, messageQueue.getName());
+               HornetQIllegalStateException ils = new HornetQIllegalStateException("Cannot find ref to ack " + messageID);
+               if (tx != null)
+               {
+                  tx.markAsRollbackOnly(ils);
+               }
+               throw ils;
             }
 
-            ref.getQueue().acknowledge(tx, ref);
+            ackReference(tx, ref);
             acks++;
          }
          while (ref.getMessage().getMessageID() != messageID);
@@ -786,6 +808,11 @@ public class ServerConsumerImpl implements ServerConsumer, ReadyListener
       }
    }
 
+   private void ackReference(Transaction tx, MessageReference ref) throws Exception
+   {
+      ref.getQueue().acknowledge(tx, ref);
+   }
+
    public void individualAcknowledge(final boolean autoCommitAcks, final Transaction tx, final long messageID) throws Exception
    {
       if (browseOnly)
@@ -797,7 +824,12 @@ public class ServerConsumerImpl implements ServerConsumer, ReadyListener
 
       if (ref == null)
       {
-         throw new IllegalStateException("Cannot find ref to ack " + messageID);
+         HornetQIllegalStateException ils = new HornetQIllegalStateException("Cannot find ref to ack " + messageID);
+         if (tx != null)
+         {
+            tx.markAsRollbackOnly(ils);
+         }
+         throw ils;
       }
 
       if (autoCommitAcks)
@@ -806,7 +838,7 @@ public class ServerConsumerImpl implements ServerConsumer, ReadyListener
       }
       else
       {
-         ref.getQueue().acknowledge(tx, ref);
+         ackReference(tx, ref);
       }
       acks++;
    }
@@ -818,27 +850,34 @@ public class ServerConsumerImpl implements ServerConsumer, ReadyListener
          return null;
       }
 
-      // Expiries can come in out of sequence with respect to delivery order
-
-      Iterator<MessageReference> iter = deliveringRefs.iterator();
-
-      MessageReference ref = null;
-
-      while (iter.hasNext())
+      synchronized (lock)
       {
-         MessageReference theRef = iter.next();
-
-         if (theRef.getMessage().getMessageID() == messageID)
+         // This is an optimization, if the reference is the first one, we just poll it.
+         if (deliveringRefs.peek().getMessage().getMessageID() == messageID)
          {
-            iter.remove();
-
-            ref = theRef;
-
-            break;
+            return deliveringRefs.poll();
          }
+
+         Iterator<MessageReference> iter = deliveringRefs.iterator();
+
+         MessageReference ref = null;
+
+         while (iter.hasNext())
+         {
+            MessageReference theRef = iter.next();
+
+            if (theRef.getMessage().getMessageID() == messageID)
+            {
+               iter.remove();
+
+               ref = theRef;
+
+               break;
+            }
+         }
+         return ref;
       }
 
-      return ref;
    }
 
    public void readyForWriting(final boolean ready)

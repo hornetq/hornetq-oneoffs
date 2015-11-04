@@ -81,6 +81,10 @@ public interface HornetQRALogger extends BasicLogger
    @Message(id = 151005, value = "awaiting HornetQ Server availability", format = Message.Format.MESSAGE_FORMAT)
    void awaitingJMSServerCreation();
 
+   @LogMessage(level = Logger.Level.INFO)
+   @Message(id = 151006, value = "Cluster topology change detected. Re-balancing connections on even {0}.", format = Message.Format.MESSAGE_FORMAT)
+   void rebalancingConnections(String event);
+
    @LogMessage(level = Logger.Level.WARN)
    @Message(id = 152000, value = "It wasn't possible to lookup for a Transaction Manager through the configured properties TransactionManagerLocatorClass and TransactionManagerLocatorMethod" +
          "\nHornetQ Resource Adapter won't be able to set and verify transaction timeouts in certain cases.", format = Message.Format.MESSAGE_FORMAT)
@@ -88,15 +92,15 @@ public interface HornetQRALogger extends BasicLogger
 
    @LogMessage(level = Logger.Level.WARN)
    @Message(id = 152001, value = "problem resetting HornetQ xa session after failure" , format = Message.Format.MESSAGE_FORMAT)
-   void problemResettingXASession();
+   void problemResettingXASession(@Cause Throwable t);
 
    @LogMessage(level = Logger.Level.WARN)
    @Message(id = 152002, value = "Unable to roll local transaction back" , format = Message.Format.MESSAGE_FORMAT)
    void unableToRollbackTX();
 
    @LogMessage(level = Logger.Level.WARN)
-   @Message(id = 152003, value = "unable to reset session after failure" , format = Message.Format.MESSAGE_FORMAT)
-   void unableToResetSession();
+   @Message(id = 152003, value = "unable to reset session after failure, we will place the MDB Inflow now in setup mode for activation={0}" , format = Message.Format.MESSAGE_FORMAT)
+   void unableToResetSession(String spec, @Cause Exception e);
 
    @LogMessage(level = Logger.Level.WARN)
    @Message(id = 152004, value = "Handling JMS exception failure" , format = Message.Format.MESSAGE_FORMAT)

@@ -26,7 +26,10 @@ import javax.resource.spi.work.WorkManager;
 import javax.transaction.xa.XAResource;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.hornetq.api.core.HornetQException;
@@ -36,6 +39,8 @@ import org.hornetq.api.core.HornetQNotConnectedException;
 import org.hornetq.api.core.SimpleString;
 import org.hornetq.api.core.client.ClientSession;
 import org.hornetq.api.core.client.ClientSessionFactory;
+import org.hornetq.api.core.client.ClusterTopologyListener;
+import org.hornetq.api.core.client.TopologyMember;
 import org.hornetq.api.jms.HornetQJMSClient;
 import org.hornetq.core.client.impl.ClientSessionInternal;
 import org.hornetq.jms.client.HornetQConnectionFactory;
@@ -108,8 +113,14 @@ public class HornetQActivation
 
    private HornetQConnectionFactory factory;
 
+   private List<String> nodes = Collections.synchronizedList(new ArrayList<String>());
+
+   private Map<String, Long> removedNodes = new ConcurrentHashMap<String, Long>();
+
+   private boolean lastReceived = false;
+
    // Whether we are in the failure recovery loop
-   private final AtomicBoolean inFailure = new AtomicBoolean(false);
+   private final AtomicBoolean inReconnect = new AtomicBoolean(false);
    private XARecoveryConfig resourceRecovery;
 
    static
@@ -373,6 +384,10 @@ public class HornetQActivation
       }
 
       resourceRecovery = ra.getRecoveryManager().register(factory, spec.getUser(), spec.getPassword());
+      if (spec.isRebalanceConnections())
+      {
+         factory.getServerLocator().addClusterTopologyListener(new RebalancingListener());
+      }
 
       HornetQRALogger.LOGGER.debug("Setup complete " + this);
    }
@@ -455,14 +470,24 @@ public class HornetQActivation
          // nothing to be done on this context.. we will just keep going as we need to send an interrupt to threadTearDown and give up
       }
 
+      if (factory != null)
+      {
+         try
+         {
+            // closing the factory will help making sure pending threads are closed
+            factory.close();
+         }
+         catch (Throwable e)
+         {
+            HornetQRALogger.LOGGER.warn(e);
+         }
+
+         factory = null;
+      }
+
+
       if (threadTearDown.isAlive())
       {
-         if (factory != null)
-         {
-            // This will interrupt any threads waiting on reconnect
-            factory.close();
-            factory = null;
-         }
          threadTearDown.interrupt();
 
          try
@@ -480,26 +505,16 @@ public class HornetQActivation
          }
       }
 
-      if (spec.isHasBeenUpdated() && factory != null)
-      {
-         ra.closeConnectionFactory(spec);
-         factory = null;
-      }
 
+      nodes.clear();
+      lastReceived = false;
 
       HornetQRALogger.LOGGER.debug("Tearing down complete " + this);
    }
 
    protected void setupCF() throws Exception
    {
-      if (spec.isHasBeenUpdated())
-      {
-         factory = ra.createHornetQConnectionFactory(spec);
-      }
-      else
-      {
-         factory = ra.getDefaultHornetQConnectionFactory();
-      }
+      factory = ra.newConnectionFactory(spec);
    }
 
    /**
@@ -682,31 +697,56 @@ public class HornetQActivation
       return buffer.toString();
    }
 
-   /**
-    * Handles any failure by trying to reconnect
-    *
-    * @param failure the reason for the failure
-    */
-   public void handleFailure(Throwable failure)
+   public void startReconnectThread(final String threadName)
    {
-      if (failure instanceof HornetQException && ((HornetQException)failure).getType() == HornetQExceptionType.QUEUE_DOES_NOT_EXIST)
+      if (trace)
       {
-         HornetQRALogger.LOGGER.awaitingTopicQueueCreation(getActivationSpec().getDestination());
+         HornetQRALogger.LOGGER.trace("Starting reconnect Thread " + threadName + " on MDB activation " + this);
       }
-      else if (failure instanceof HornetQException && ((HornetQException)failure).getType() == HornetQExceptionType.NOT_CONNECTED)
+      Runnable runnable = new Runnable()
       {
-         HornetQRALogger.LOGGER.awaitingJMSServerCreation();
+         @Override
+         public void run()
+         {
+            reconnect(null);
+         }
+      };
+      Thread t = new Thread(runnable, threadName);
+      t.start();
+   }
+
+   /**
+    * Drops all existing connection-related resources and reconnects
+    *
+    * @param failure if reconnecting in the event of a failure
+    */
+   public void reconnect(Throwable failure)
+   {
+      if (trace)
+      {
+         HornetQRALogger.LOGGER.trace("reconnecting activation " + this);
       }
-      else
+      if (failure != null)
       {
-         HornetQRALogger.LOGGER.failureInActivation(failure, spec);
+         if (failure instanceof HornetQException && ((HornetQException) failure).getType() == HornetQExceptionType.QUEUE_DOES_NOT_EXIST)
+         {
+            HornetQRALogger.LOGGER.awaitingTopicQueueCreation(getActivationSpec().getDestination());
+         }
+         else if (failure instanceof HornetQException && ((HornetQException) failure).getType() == HornetQExceptionType.NOT_CONNECTED)
+         {
+            HornetQRALogger.LOGGER.awaitingJMSServerCreation();
+         }
+         else
+         {
+            HornetQRALogger.LOGGER.failureInActivation(failure, spec);
+         }
       }
       int reconnectCount = 0;
       int setupAttempts = spec.getSetupAttempts();
       long setupInterval = spec.getSetupInterval();
 
-      // Only enter the failure loop once
-      if (inFailure.getAndSet(true))
+      // Only enter the reconnect loop once
+      if (inReconnect.getAndSet(true))
          return;
       try
       {
@@ -764,7 +804,7 @@ public class HornetQActivation
       finally
       {
          // Leaving failure recovery loop
-         inFailure.set(false);
+         inReconnect.set(false);
       }
    }
 
@@ -786,12 +826,52 @@ public class HornetQActivation
          }
          catch (Throwable t)
          {
-            handleFailure(t);
+            reconnect(t);
          }
       }
 
       public void release()
       {
+      }
+   }
+
+   private class RebalancingListener implements ClusterTopologyListener
+   {
+      @Override
+      public void nodeUP(TopologyMember member, boolean last)
+      {
+         boolean newNode = false;
+
+         String id = member.getNodeId();
+         if (!nodes.contains(id))
+         {
+            if (removedNodes.get(id) == null || (removedNodes.get(id) != null && removedNodes.get(id) < member.getUniqueEventID()))
+            {
+               nodes.add(id);
+               newNode = true;
+            }
+         }
+
+         if (lastReceived && newNode)
+         {
+            HornetQRALogger.LOGGER.rebalancingConnections("nodeUp " + member.toString());
+            startReconnectThread("NodeUP Connection Rebalancer");
+         }
+         else if (last)
+         {
+            lastReceived = true;
+         }
+      }
+
+      @Override
+      public void nodeDown(long eventUID, String nodeID)
+      {
+         if (nodes.remove(nodeID))
+         {
+            removedNodes.put(nodeID, eventUID);
+            HornetQRALogger.LOGGER.rebalancingConnections("nodeDown " + nodeID);
+            startReconnectThread("NodeDOWN Connection Rebalancer");
+         }
       }
    }
 }

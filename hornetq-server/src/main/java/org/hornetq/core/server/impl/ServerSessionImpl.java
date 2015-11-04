@@ -27,6 +27,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
 
 import org.hornetq.api.core.HornetQException;
+import org.hornetq.api.core.HornetQIllegalStateException;
 import org.hornetq.api.core.HornetQNonExistentQueueException;
 import org.hornetq.api.core.Message;
 import org.hornetq.api.core.Pair;
@@ -641,12 +642,7 @@ public class ServerSessionImpl implements ServerSession, FailureListener
 
    public void acknowledge(final long consumerID, final long messageID) throws Exception
    {
-      ServerConsumer consumer = consumers.get(consumerID);
-
-      if (consumer == null)
-      {
-         throw HornetQMessageBundle.BUNDLE.consumerDoesntExist(consumerID);
-      }
+      ServerConsumer consumer = findConsumer(consumerID);
 
       if (tx != null && tx.getState() == State.ROLLEDBACK)
       {
@@ -654,7 +650,17 @@ public class ServerSessionImpl implements ServerSession, FailureListener
          // have these messages to be stuck on the limbo until the server is restarted
          // The tx has already timed out, so we need to ack and rollback immediately
          Transaction newTX = newTransaction();
-         consumer.acknowledge(autoCommitAcks, newTX, messageID);
+         try
+         {
+            consumer.acknowledge(autoCommitAcks, newTX, messageID);
+         }
+         catch (Exception e)
+         {
+            // just ignored
+            // will log it just in case
+            HornetQServerLogger.LOGGER.debug("Ignored exception while acking messageID " + messageID +
+                                                " on a rolledback TX", e);
+         }
          newTX.rollback();
       }
       else
@@ -663,9 +669,28 @@ public class ServerSessionImpl implements ServerSession, FailureListener
       }
    }
 
-   public void individualAcknowledge(final long consumerID, final long messageID) throws Exception
+   private ServerConsumer findConsumer(long consumerID) throws HornetQIllegalStateException
    {
       ServerConsumer consumer = consumers.get(consumerID);
+
+      if (consumer == null)
+      {
+         Transaction currentTX = tx;
+         HornetQIllegalStateException exception = HornetQMessageBundle.BUNDLE.consumerDoesntExist(consumerID);
+
+         if (currentTX != null)
+         {
+            currentTX.markAsRollbackOnly(exception);
+         }
+
+         throw exception;
+      }
+      return consumer;
+   }
+
+   public void individualAcknowledge(final long consumerID, final long messageID) throws Exception
+   {
+      ServerConsumer consumer = findConsumer(consumerID);
 
       if (this.xa && tx == null)
       {
@@ -1075,31 +1100,28 @@ public class ServerSessionImpl implements ServerSession, FailureListener
 
    public synchronized void xaFailed(final Xid xid) throws Exception
    {
-      if (tx != null)
-      {
-         final String msg = "Cannot start, session is already doing work in a transaction " + tx.getXid();
+      Transaction theTX = resourceManager.getTransaction(xid);
 
-         throw new HornetQXAException(XAException.XAER_PROTO, msg);
+      if (theTX == null)
+      {
+         theTX = newTransaction(xid);
+         resourceManager.putTransaction(xid, theTX);
+      }
+
+      if (theTX.isEffective())
+      {
+         HornetQServerLogger.LOGGER.debug("Client failed with Xid " + xid + " but the server already had it " + theTX.getState());
+         tx = null;
       }
       else
       {
+         theTX.markAsRollbackOnly(new HornetQException("Can't commit as a Failover happened during the operation"));
+         tx = theTX;
+      }
 
-         tx = newTransaction(xid);
-         tx.markAsRollbackOnly(new HornetQException("Can't commit as a Failover happened during the operation"));
-
-         if (isTrace)
-         {
-            HornetQServerLogger.LOGGER.trace("xastart into tx= " + tx);
-         }
-
-         boolean added = resourceManager.putTransaction(xid, tx);
-
-         if (!added)
-         {
-            final String msg = "Cannot start, there is already a xid " + tx.getXid();
-
-            throw new HornetQXAException(XAException.XAER_DUPID, msg);
-         }
+      if (isTrace)
+      {
+         HornetQServerLogger.LOGGER.trace("xastart into tx= " + tx);
       }
    }
 
@@ -1627,9 +1649,11 @@ public class ServerSessionImpl implements ServerSession, FailureListener
       {
          Transaction newTX = newTransaction();
          cancelAndRollback(clientFailed, newTX, wasStarted, toCancel);
-         throw new IllegalStateException("Transaction has already been rolled back");
       }
-      cancelAndRollback(clientFailed, theTx, wasStarted, toCancel);
+      else
+      {
+         cancelAndRollback(clientFailed, theTx, wasStarted, toCancel);
+      }
    }
 
    private void cancelAndRollback(boolean clientFailed, Transaction theTx, boolean wasStarted, List<MessageReference> toCancel) throws Exception
