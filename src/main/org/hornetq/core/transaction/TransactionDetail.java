@@ -76,8 +76,14 @@ public abstract class TransactionDetail
       detailJson.put(KEY_XID_BRANCH_QUAL, new String(this.xid.getBranchQualifier()));
 
       JSONArray msgsJson = new JSONArray();
+
       List<TransactionOperation> txops = this.transaction.getAllOperations();
-      detailJson.put(KEY_TX_RELATED_MESSAGES, msgsJson);
+
+      if (this.transaction != null)
+      {
+         detailJson.put(KEY_TX_RELATED_MESSAGES, msgsJson);
+      }
+
       if (txops == null)
       {
          return detailJson;
