@@ -488,7 +488,7 @@ public class PostOfficeImpl implements PostOffice, NotificationListener, Binding
       managementService.sendNotification(new Notification(uid, CoreNotificationType.BINDING_ADDED, props));
    }
 
-   public synchronized Binding removeBinding(final SimpleString uniqueName, Transaction tx) throws Exception
+   public synchronized Binding removeBinding(final SimpleString uniqueName, Transaction tx, boolean deleteData) throws Exception
    {
 
       addressSettingsRepository.clearCache();
@@ -500,7 +500,7 @@ public class PostOfficeImpl implements PostOffice, NotificationListener, Binding
          throw new HornetQNonExistentQueueException();
       }
 
-      if (addressManager.getBindingsForRoutingAddress(binding.getAddress()) == null)
+      if (deleteData && addressManager.getBindingsForRoutingAddress(binding.getAddress()) == null)
       {
          pagingManager.deletePageStore(binding.getAddress());
 
@@ -1245,32 +1245,21 @@ public class PostOfficeImpl implements PostOffice, NotificationListener, Binding
 
          DuplicateIDCache cacheBridge = getDuplicateIDCache(BRIDGE_CACHE_STR.concat(message.getAddress()));
 
-         if (cacheBridge.contains(bridgeDupBytes))
+         if (context.getTransaction() == null)
          {
-            HornetQServerLogger.LOGGER.duplicateMessageDetectedThruBridge(message);
+            context.setTransaction(new TransactionImpl(storageManager));
+            startedTX.set(true);
+         }
 
-            if (context.getTransaction() != null)
-            {
-               context.getTransaction().markAsRollbackOnly(new HornetQDuplicateIdException());
-            }
-
+         if (!cacheBridge.atomicVerify(bridgeDupBytes, context.getTransaction()))
+         {
+            context.getTransaction().rollback();
+            startedTX.set(false);
             message.decrementRefCount();
-
             return false;
          }
-         else
-         {
-            if (context.getTransaction() == null)
-            {
-               context.setTransaction(new TransactionImpl(storageManager));
-               startedTX.set(true);
-            }
-         }
-
-         cacheBridge.addToCache(bridgeDupBytes, context.getTransaction());
 
          message.removeProperty(MessageImpl.HDR_BRIDGE_DUPLICATE_ID);
-
       }
       else
       {
@@ -1315,7 +1304,7 @@ public class PostOfficeImpl implements PostOffice, NotificationListener, Binding
                startedTX.set(true);
             }
 
-            cache.addToCache(duplicateIDBytes, context.getTransaction());
+            cache.addToCache(duplicateIDBytes, context.getTransaction(), false);
          }
       }
 

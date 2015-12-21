@@ -112,6 +112,7 @@ import org.hornetq.utils.ByteUtil;
 import org.hornetq.utils.DataConstants;
 import org.hornetq.utils.ExecutorFactory;
 import org.hornetq.utils.HornetQThreadFactory;
+import org.hornetq.utils.UUID;
 import org.hornetq.utils.XidCodecSupport;
 
 import static org.hornetq.core.persistence.impl.journal.JournalRecordIds.ACKNOWLEDGE_CURSOR;
@@ -213,6 +214,8 @@ public class JournalStorageManager implements StorageManager
 
    private boolean journalLoaded = false;
 
+   private final IOCriticalErrorListener ioCriticalErrorListener;
+
    // Persisted core configuration
    private final Map<SimpleString, PersistedRoles> mapPersistedRoles =
       new ConcurrentHashMap<SimpleString, PersistedRoles>();
@@ -231,6 +234,8 @@ public class JournalStorageManager implements StorageManager
                                 final IOCriticalErrorListener criticalErrorListener)
    {
       this.executorFactory = executorFactory;
+
+      this.ioCriticalErrorListener = criticalErrorListener;
 
       executor = executorFactory.getExecutor();
 
@@ -328,6 +333,13 @@ public class JournalStorageManager implements StorageManager
       {
          pageMaxConcurrentIO = null;
       }
+   }
+
+
+   @Override
+   public void criticalError(Throwable error)
+   {
+      ioCriticalErrorListener.onIOException(error, error.getMessage(), null);
    }
 
    public void clearContext()
@@ -3570,7 +3582,41 @@ public class JournalStorageManager implements StorageManager
          // SimpleString simpleStr = new SimpleString(duplID);
          // return "DuplicateIDEncoding [address=" + address + ", duplID=" + simpleStr + "]";
 
-         return "DuplicateIDEncoding [address=" + address + ", duplID=" + ByteUtil.bytesToHex(duplID, 2) + "]";
+         String bridgeRepresentation = null;
+
+         // The bridge will generate IDs on these terms:
+         // This will make them easier to read
+         if (address.toString().startsWith("BRIDGE") && duplID.length == 24)
+         {
+            try
+            {
+               ByteBuffer buff = ByteBuffer.wrap(duplID);
+
+               // 16 for UUID
+               byte[] bytesUUID = new byte[16];
+
+               buff.get(bytesUUID);
+
+               UUID uuid = new UUID(UUID.TYPE_TIME_BASED, bytesUUID);
+
+               long id = buff.getLong();
+               bridgeRepresentation = "nodeUUID=" + uuid.toString() + " messageID=" + id;
+            }
+            catch (Throwable ignored)
+            {
+               bridgeRepresentation = null;
+            }
+         }
+
+         if (bridgeRepresentation != null)
+         {
+            return "DuplicateIDEncoding [address=" + address + ", duplID=" + ByteUtil.bytesToHex(duplID, 2) + " / " +
+                                bridgeRepresentation + "]";
+         }
+         else
+         {
+            return "DuplicateIDEncoding [address=" + address + ",str=" + ByteUtil.toSimpleString(duplID) + ", duplID=" + ByteUtil.bytesToHex(duplID, 2) + "]";
+         }
       }
 
    }

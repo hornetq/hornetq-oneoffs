@@ -165,6 +165,8 @@ import org.hornetq.utils.OrderedExecutorFactory;
 import org.hornetq.utils.ReusableLatch;
 import org.hornetq.utils.SecurityFormatter;
 import org.hornetq.utils.VersionLoader;
+import org.jboss.netty.util.ThreadNameDeterminer;
+import org.jboss.netty.util.ThreadRenamingRunnable;
 
 import static org.hornetq.core.server.impl.QuorumManager.BACKUP_ACTIVATION.FAILURE_REPLICATING;
 import static org.hornetq.core.server.impl.QuorumManager.BACKUP_ACTIVATION.FAIL_OVER;
@@ -390,6 +392,15 @@ public class HornetQServerImpl implements HornetQServer
 
    public final synchronized void start() throws Exception
    {
+
+      ThreadRenamingRunnable.setThreadNameDeterminer(new ThreadNameDeterminer()
+      {
+         @Override
+         public String determineThreadName(String currentThreadName, String proposedThreadName) throws Exception
+         {
+            return proposedThreadName + ", runningThread=" + currentThreadName;
+         }
+      });
       if (state != SERVER_STATE.STOPPED)
       {
          HornetQServerLogger.LOGGER.debug("Server already started!");
@@ -497,22 +508,22 @@ public class HornetQServerImpl implements HornetQServer
     */
    public final void stopTheServer(final boolean criticalIOError)
    {
-      ExecutorService executor = Executors.newSingleThreadExecutor();
-      executor.submit(new Runnable()
+      Thread thread = new Thread()
       {
-         @Override
          public void run()
          {
             try
             {
-               stop(configuration.isFailoverOnServerShutdown(), criticalIOError, false);
+               HornetQServerImpl.this.stop(configuration.isFailoverOnServerShutdown(), criticalIOError, false);
             }
             catch (Exception e)
             {
                HornetQServerLogger.LOGGER.errorStoppingServer(e);
             }
          }
-      });
+      };
+
+      thread.start();
    }
 
    public final void stop() throws Exception
@@ -1321,7 +1332,7 @@ public class HornetQServerImpl implements HornetQServer
          throw HornetQMessageBundle.BUNDLE.bindingNotDivert(name);
       }
 
-      postOffice.removeBinding(name, null);
+      postOffice.removeBinding(name, null, true);
    }
 
    public void deployBridge(BridgeConfiguration config) throws Exception
@@ -1389,7 +1400,7 @@ public class HornetQServerImpl implements HornetQServer
       {
          return new JournalStorageManager(configuration, executorFactory, shutdownOnCriticalIO);
       }
-      return new NullStorageManager();
+      return new NullStorageManager(shutdownOnCriticalIO);
    }
 
    private void callActivateCallbacks()
@@ -2464,13 +2475,20 @@ public class HornetQServerImpl implements HornetQServer
    {
       boolean failedAlready = false;
 
-      public synchronized void onIOException(Exception cause, String message, SequentialFile file)
+      public synchronized void onIOException(Throwable cause, String message, SequentialFile file)
       {
          if (!failedAlready)
          {
             failedAlready = true;
 
-            HornetQServerLogger.LOGGER.ioCriticalIOError(message, file.toString(), cause);
+            if (file == null)
+            {
+               HornetQServerLogger.LOGGER.ioCriticalIOError(message, "NULL", cause);
+            }
+            else
+            {
+               HornetQServerLogger.LOGGER.ioCriticalIOError(message, file.toString(), cause);
+            }
 
             stopTheServer(true);
          }
