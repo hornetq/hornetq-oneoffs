@@ -6,7 +6,7 @@ export JBOSS_HOME=$1
 
 
 # fis the VERSION before running it
-export VERSION="2.3.25.Final"
+export VERSION="2.3.25.SP8.Final"
 #replace jars
 #echo cp ./hornetq-core-client/target/hornetq-core-client-$VERSION.jar $JBOSS_HOME/modules/system/layers/base/org/hornetq/main/hornetq-core-client*.jar
 cp ../hornetq-core-client/target/hornetq-core-client-$VERSION.jar $JBOSS_HOME/modules/system/layers/base/org/hornetq/main/hornetq-core-client*.jar
@@ -26,6 +26,7 @@ rm -rf ./org/hornetq
 unzip -qq -o ../../hornetq-jms-client/target/hornetq-jms-client-$VERSION.jar -x \*META-INF\*
 unzip -qq -o ../../hornetq-core-client/target/hornetq-core-client-$VERSION.jar -x \*META-INF\* 
 unzip -qq -o ../../hornetq-commons/target/hornetq-commons-$VERSION.jar -x \*META-INF\*
+unzip -qq -o ../../hornetq-journal/target/hornetq-journal-$VERSION.jar -x \*META-INF\*
 zip -qq -r jboss-client.jar *
 cp jboss-client.jar $JBOSS_HOME/bin/client/jboss-client.jar
 cd ..
