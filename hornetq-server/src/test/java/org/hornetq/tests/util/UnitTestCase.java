@@ -13,6 +13,9 @@
 
 package org.hornetq.tests.util;
 
+import javax.naming.Context;
+import javax.transaction.xa.XAException;
+import javax.transaction.xa.Xid;
 import java.beans.BeanInfo;
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
@@ -44,10 +47,6 @@ import java.util.UUID;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
-
-import javax.naming.Context;
-import javax.transaction.xa.XAException;
-import javax.transaction.xa.Xid;
 
 import junit.framework.Assert;
 import junit.framework.TestSuite;
@@ -246,6 +245,26 @@ public abstract class UnitTestCase extends CoreUnitTestCase
       configuration.setBindingsDirectory(getBindingsDir(serverID, false));
       configuration.setPagingDirectory(getPageDir(serverID, false));
       configuration.setLargeMessagesDirectory(getLargeMessagesDir(serverID, false));
+
+      configuration.setJournalCompactMinFiles(0);
+      configuration.setJournalCompactPercentage(0);
+      configuration.setClusterPassword(CLUSTER_PASSWORD);
+      return configuration;
+   }
+
+   public static final ConfigurationImpl createBasicConfig(final String testDir, final int serverID)
+   {
+      ConfigurationImpl configuration = new ConfigurationImpl();
+      configuration.setSecurityEnabled(false);
+      configuration.setJournalMinFiles(2);
+      configuration.setJournalFileSize(100 * 1024);
+
+      configuration.setJournalType(getDefaultJournalType());
+
+      configuration.setJournalDirectory(getJournalDir(testDir, serverID, false));
+      configuration.setBindingsDirectory(getBindingsDir(testDir, serverID, false));
+      configuration.setPagingDirectory(getPageDir(testDir, serverID, false));
+      configuration.setLargeMessagesDirectory(getLargeMessagesDir(testDir, serverID, false));
 
       configuration.setJournalCompactMinFiles(0);
       configuration.setJournalCompactPercentage(0);
@@ -457,7 +476,7 @@ public abstract class UnitTestCase extends CoreUnitTestCase
       System.out.println(this.getClass().getName() + "::" + message);
    }
 
-   protected static TestSuite createAIOTestSuite(final Class<?> clazz)
+   protected static TestSuite createAIOTestSuite(final Class clazz)
    {
       TestSuite suite = new TestSuite(clazz.getName() + " testsuite");
 
@@ -702,14 +721,19 @@ public abstract class UnitTestCase extends CoreUnitTestCase
       return getJournalDir(getTestDir());
    }
 
-   protected String getJournalDir(final String testDir1)
+   protected static String getJournalDir(final String testDir1)
    {
       return testDir1 + "/journal";
    }
 
    protected String getJournalDir(final int index, final boolean backup)
    {
-      return getJournalDir(getTestDir()) + directoryNameSuffix(index, backup);
+      return getJournalDir(getTestDir(), index, backup);
+   }
+
+   protected static String getJournalDir(final String testDir, final int index, final boolean backup)
+   {
+      return getJournalDir(testDir) + directoryNameSuffix(index, backup);
    }
 
    /**
@@ -733,7 +757,12 @@ public abstract class UnitTestCase extends CoreUnitTestCase
     */
    protected String getBindingsDir(final int index, final boolean backup)
    {
-      return getBindingsDir(getTestDir()) + directoryNameSuffix(index, backup);
+      return getBindingsDir(getTestDir(), index, backup);
+   }
+
+   protected static String getBindingsDir(final String testDir, final int index, final boolean backup)
+   {
+      return getBindingsDir(testDir) + directoryNameSuffix(index, backup);
    }
 
    /**
@@ -754,7 +783,12 @@ public abstract class UnitTestCase extends CoreUnitTestCase
 
    protected String getPageDir(final int index, final boolean backup)
    {
-      return getPageDir(getTestDir()) + directoryNameSuffix(index, backup);
+      return getPageDir(getTestDir(), index, backup);
+   }
+
+   protected static String getPageDir(final String testDir, final int index, final boolean backup)
+   {
+      return getPageDir(testDir) + directoryNameSuffix(index, backup);
    }
 
    /**
@@ -775,7 +809,12 @@ public abstract class UnitTestCase extends CoreUnitTestCase
 
    protected String getLargeMessagesDir(final int index, final boolean backup)
    {
-      return getLargeMessagesDir(getTestDir()) + directoryNameSuffix(index, backup);
+      return getLargeMessagesDir(getTestDir(), index, backup);
+   }
+
+   protected static String getLargeMessagesDir(final String testDir, final int index, final boolean backup)
+   {
+      return getLargeMessagesDir(testDir) + directoryNameSuffix(index, backup);
    }
 
    private static String directoryNameSuffix(int index, boolean backup)
