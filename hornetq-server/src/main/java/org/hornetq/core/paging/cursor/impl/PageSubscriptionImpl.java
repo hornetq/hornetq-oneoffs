@@ -964,7 +964,18 @@ final class PageSubscriptionImpl implements PageSubscription
 
       logger.tracef("InstallTXCallback looking up pagePosition %s, result=%s", position, info);
 
-      info.remove(position);
+      if (info != null)
+      {
+
+         info.remove(position);
+
+      }
+      else
+      {
+
+         logger.warn("This should not happen. Page Info for position " + position.toString() + " does not exist. Probably has already been deleted by another thread.");
+
+      }
 
       PageCursorTX cursorTX = (PageCursorTX) tx.getProperty(TransactionPropertyIndexes.PAGE_CURSOR_POSITIONS);
 
