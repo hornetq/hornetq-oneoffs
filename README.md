@@ -34,6 +34,6 @@ You just push straight from your working copy
 
 You add the remote:
 
-git add remote one-offs git@github.com:hornetq/hornetq-oneoffs.git
+git remote add one-offs git@github.com:hornetq/hornetq-oneoffs.git
 
 git push one-offs BRANCH-NAME_USING_CONVENTIONS-WITHJIRA
